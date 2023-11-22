@@ -1,0 +1,42 @@
+@use '../../styles/variables' as *;
+
+.custom-checkbox-label {
+    position: relative;
+    cursor: pointer;
+    padding-left: 30px; /* Adjust based on your design */
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    overflow: hidden; /* This will hide the content outside the box */
+  }
+  
+  .custom-checkbox-input {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -o-appearance: none;
+    outline: none;
+    content: none;
+  }
+  
+  .custom-checkbox-input:before {
+    content: '\2713'; /* Unicode checkmark character */
+    font-size: 24px;
+    padding-left: 2px;
+    padding-bottom: 1px;
+    color: transparent !important;
+    background: #fef2e000;
+    display: block;
+    width: 24px;
+    height: 24px;
+    border: 1px solid black;
+    margin-right: 7px;
+    position: absolute;
+    left: 7px; /* Adjust based on your design */
+    top: 2px; /* Adjust based on your design */
+  }
+  
+  .custom-checkbox-input:checked:before {
+    color: black !important;
+  }
+  
+  
+  
