@@ -5,6 +5,8 @@ import DayOverview from './pages/DayOverview/DayOverview'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {API_URL} from './util'
+import Login from './pages/Login/Login';
+import Signup from './pages/Signup/Signup';
 
 
 
@@ -16,6 +18,8 @@ function App() {
       <Routes>
           <Route path='/' element={<ProgramOverview  />}></Route>
           <Route path='/workout' element={<DayOverview  />}></Route>
+          <Route path="/login" element={<Login />} />
+					<Route path="/signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>
     
