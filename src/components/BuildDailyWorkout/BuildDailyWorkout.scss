@@ -1,0 +1,9 @@
+.listItem{
+    height: 5vh;
+    display: flex;
+    margin-bottom:1rem ;
+
+    &__image{
+        height: 100%;
+    }
+}

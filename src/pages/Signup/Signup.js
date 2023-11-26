@@ -22,12 +22,13 @@ function Signup () {
         event.preventDefault();
 
         axios
-            .post("http://localhost:8085/api/users/register", {
+            .post("http://localhost:8085/api/clients/register", {
                 email: event.target.email.value,
                 password: event.target.password.value,
                 first_name: event.target.first_name.value,
                 last_name: event.target.last_name.value,
                 phone: event.target.phone.value,
+                trainer_id: event.target.trainer_id.value
             })
             .then(() => {
                 setSuccess(true);
@@ -51,7 +52,7 @@ function Signup () {
                 <Input type="text" name="email" label="Email" />
                 <Input type="password" name="password" label="Password" />
                 <label>Trainers</label>
-                <select>
+                <select name="trainer_id" >
                 <option value='' disabled selected>Please select</option>
                     {trainers && trainers.map((trainer)=>{
                         return(

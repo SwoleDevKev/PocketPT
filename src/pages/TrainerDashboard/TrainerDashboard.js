@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import BuildDailyWorkout from '../../components/BuildDailyWorkout/BuildDailyWorkout';
 import ClientCard from '../../components/ClientCard/ClientCard'
+import TrainerFooter from '../../components/TrainerFooter/TrainerFooter';
 import './TrainerDashboard.scss'
 
 
@@ -103,6 +105,7 @@ function TrainerDashboard (){
                     <ClientCard key={user.id} client={user} program_id={user.program_id}/>
                 )
             })}
+            <TrainerFooter />
         </>
     )
 }
