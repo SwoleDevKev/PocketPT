@@ -6,21 +6,21 @@ import logo from '../../assets/logos/PocketPT-logo.svg'
 
 function WelcomeHeader () {
     return (
-        <div className='header'>
-            <div className='header__welcome-block'>
-                <img className='header__icon' src={profilePic}/>
-                <div className='header__text-block'>
-                    <h2 className='header__heading'>Welcome !</h2>
-                    <p className='header__text'>Jajuan</p>
+        <div className='welcome-header'>
+            <div className='welcome-header__welcome-block'>
+                <img className='welcome-header__icon' src={profilePic}/>
+                <div className='welcome-header__text-block'>
+                    <h2 className='welcome-header__heading'>Welcome !</h2>
+                    <p className='welcome-header__text'>Jajuan</p>
                 </div>
             </div>
-            <div className='header__logo-container'>
-                <img className='header__logo' src={logo}/>
+            <div className='welcome-header__logo-container'>
+                <img className='welcome-header__logo' src={logo}/>
             </div>
             
-            <div className='header__icon'>
-                <img className='header__image' src={bell}/>
-                <div className='header__notification-dot'></div>
+            <div className='welcome-header__icon'>
+                <img className='welcome-header__image' src={bell}/>
+                <div className='welcome-header__notification-dot'></div>
             </div>
         </div>
     )

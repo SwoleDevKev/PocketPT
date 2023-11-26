@@ -5,9 +5,17 @@ import { useState } from 'react';
 
 
 function ExerciseCard({exercise}){
-    const splitLink = exercise.video_link.split('=');
-    const videoIdAndQuery = splitLink[1]
-    const videoId = videoIdAndQuery.split('&')[0]
+    const link = exercise.video_link
+    let videoId = link
+
+        if (link.includes('=')){
+            const splitLink = link.split('=');
+            const videoIdAndQuery = splitLink[1]
+            videoId = videoIdAndQuery.split('&')[0]
+            
+        }
+     
+    
     const [videoModalVisibility, setVideoModalVisibility] = useState(false)
 
     function handleModalVisibility (){
@@ -24,7 +32,7 @@ function ExerciseCard({exercise}){
             
             <div className='exercise__content'>
             <div className='exercise__checkbox-container'>
-                <CustomCheckbox />
+                <CustomCheckbox  />
             </div>
                 <h2 className='exercise__heading'>{exercise.exercise_name}</h2>
                 <img className='exercise__image' src={`http://i3.ytimg.com/vi/${videoId}/hqdefault.jpg`} onClick={handleModalVisibility} />

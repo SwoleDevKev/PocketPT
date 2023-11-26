@@ -1,10 +1,10 @@
-import './Login.scss';
+import './TrainerLogin.scss';
 import Input from "../../components/Input/Input";
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-function Login() {
+function TrainerLogin() {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
     const navigate = useNavigate();
@@ -12,14 +12,15 @@ function Login() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-		axios.post("http://localhost:8085/api/clients/login", {
+		axios.post("http://localhost:8085/api/trainers/login", {
             email: event.target.email.value,
             password: event.target.password.value
         })
 		.then((response) => {
 			sessionStorage.setItem('token', response.data.token)
-			navigate('/client')
-		}).catch((error) => {
+			navigate('/trainer/home')
+		})
+        .catch((error) => {
             setSuccess(false);
             setError(error.response.data);
         });
@@ -29,7 +30,7 @@ function Login() {
     return (
         <main className="login-page">
             <form className="login" onSubmit={handleSubmit}>
-                <h1 className="login__title">Client Log in</h1>
+                <h1 className="login__title">Trainer Log in</h1>
 
                 <Input type="text" name="email" label="Email" />
                 <Input type="password" name="password" label="Password" />
@@ -42,10 +43,10 @@ function Login() {
                 {error && <div className="signup__message">{error}</div>}
             </form>
             <p>
-                Need an account? <Link to="/signup">Sign up</Link>
+                Need an account? <Link to="/trainer/signup">Trainer Sign up</Link>
             </p>
         </main>
     );
 }
 
-export default Login;
+export default TrainerLogin;

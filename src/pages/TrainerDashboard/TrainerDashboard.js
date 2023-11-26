@@ -1,15 +1,14 @@
-import './WeekOverview.scss'
-import WelcomeHeader from '../../components/WelcomeHeader/WelcomeHeader'
-import Main from '../../components/Main/Main'
-import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import ClientCard from '../../components/ClientCard/ClientCard'
+import './TrainerDashboard.scss'
 
 
-
-function WeekOverview () {
+function TrainerDashboard (){
 
     const [user, setUser] = useState(null);
+    const [clients, setClients] = useState(null)
 	const [failedAuth, setFailedAuth] = useState(false);
 
 	useEffect(() => {
@@ -20,7 +19,7 @@ function WeekOverview () {
 		}
 
 		axios
-			.get("http://localhost:8085/api/clients/current", {
+			.get("http://localhost:8085/api/trainers/current", {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}
@@ -35,19 +34,31 @@ function WeekOverview () {
 			})
 
 		// Demonstrate using auth on single ro/Users/jburton/Desktop/GitLabDemos/lecture-demos-and-reviews/week-10/client-side-auth/mdismatsek/server/routes/users.jsute
-		axios
-			.get("http://localhost:8085/api/clients", {
+        
+		
+	}, []);
+
+    useEffect(()=>{
+
+        const token = sessionStorage.getItem('token');
+
+        if (user){
+            console.log('check',user);
+            axios
+			.get(`http://localhost:8085/api/trainers/${user.id}`, {
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},
 			})
 			.then((response) => {
-				console.log('user auth', response);
+				console.log('all my clients', response);
+                setClients(response.data)
 			})
 			.catch((error) => {
 				console.log(error);
 			});
-	}, []);
+        }
+    },[user])
 
 	const handleLogout = () => {
 		sessionStorage.removeItem("token");
@@ -60,7 +71,7 @@ function WeekOverview () {
 			<main className="dashboard">
 				<p>You must be logged in to see this page.</p>
 				<p>
-					<Link to="/login">Log in</Link>
+					<Link to="/trainer/login">Log in</Link>
 				</p>
 			</main>
 		);
@@ -73,27 +84,27 @@ function WeekOverview () {
 			</main>
 		);
 	}
+    if (clients === null) {
+		return (
+			<main className="dashboard">
+				<p>You Don't yet have any clients</p>
+			</main>
+		);
+	}
 
+
+
+
+    console.log('check2',clients);
     return (
         <>
-            <WelcomeHeader />
-            <main className="dashboard">
-			<h1 className="dashboard__title">Dashboard</h1>
-			<p>
-				Welcome back, {user.first_name} {user.last_name}
-			</p>
-			<h2>My Profile</h2>
-			<p>Email: {user.email}</p>
-			<p>Phone: {user.phone}</p>
-			<p>Address: {user.address}</p>
-
-			<button className="dashboard__logout" onClick={handleLogout}>
-				Log out
-			</button>
-		    </main>
-            <Main programId={user.program_id}/>
+            {clients && clients.map((user)=>{
+                return(
+                    <ClientCard key={user.id} client={user} program_id={user.program_id}/>
+                )
+            })}
         </>
     )
 }
 
-export default WeekOverview
+export default TrainerDashboard
