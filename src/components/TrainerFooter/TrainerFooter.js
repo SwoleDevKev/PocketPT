@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 function TrainerFooter (){
     return(
         <div className='footer'>
-            <Link to='' className='footer__link'>
+            <Link to='/trainer/programs' className='footer__link'>
             <div className='footer__pic-block'>
                 <img className='footer__pic' src={program} />
                 <p className='footer__pic-text'>Programs</p>

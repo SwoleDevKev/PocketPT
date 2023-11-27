@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BuildDailyWorkout from '../../components/BuildDailyWorkout/BuildDailyWorkout';
 import ClientCard from '../../components/ClientCard/ClientCard'
+import Header from '../../components/Header/Header';
 import TrainerFooter from '../../components/TrainerFooter/TrainerFooter';
+import WelcomeHeader from '../../components/WelcomeHeader/WelcomeHeader';
 import './TrainerDashboard.scss'
 
 
@@ -100,6 +102,7 @@ function TrainerDashboard (){
     console.log('check2',clients);
     return (
         <>
+            <Header />
             {clients && clients.map((user)=>{
                 return(
                     <ClientCard key={user.id} client={user} program_id={user.program_id}/>

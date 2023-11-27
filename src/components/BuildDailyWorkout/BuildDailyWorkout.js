@@ -1,10 +1,13 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { API_URL } from '../../util'
 import './BuildDailyWorkout.scss'
 
 
 function BuildDailyWorkout ({dailyWorkout_id}){
+
+    const navigate = useNavigate()
 
     const [exerciseBank, setExerciseBank ]= useState([])
     let videoId = ''
@@ -14,6 +17,8 @@ function BuildDailyWorkout ({dailyWorkout_id}){
             "daily-workout_id": dailyWorkout_id,
             "exercise_id": exercise.id,
         })
+
+        alert(`added ${exercise.exercise_name} `)
     }
 
     useEffect(()=>{
@@ -34,7 +39,7 @@ function BuildDailyWorkout ({dailyWorkout_id}){
              videoId = videoIdAndQuery.split('&')[0]
         
             } return(
-                <div className='listItem' onClick={ ()=>{addExercise(exercise,)}}>
+                <div className='listItem' onClick={ ()=>{addExercise(exercise)}}>
                     <img className='listItem__image' src={`http://i3.ytimg.com/vi/${videoId}/hqdefault.jpg`}/>
                     <p>{exercise.exercise_name}</p>
                 </div>

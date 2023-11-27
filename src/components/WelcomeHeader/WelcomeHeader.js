@@ -2,9 +2,10 @@ import './WelcomeHeader.scss'
 import profilePic from '../../assets/images/jajuan.png'
 import bell from '../../assets/icons/bell.svg'
 import logo from '../../assets/logos/PocketPT-logo.svg'
+import { Link } from 'react-router-dom'
 
 
-function WelcomeHeader () {
+function WelcomeHeader ({path}) {
     return (
         <div className='welcome-header'>
             <div className='welcome-header__welcome-block'>
@@ -15,7 +16,7 @@ function WelcomeHeader () {
                 </div>
             </div>
             <div className='welcome-header__logo-container'>
-                <img className='welcome-header__logo' src={logo}/>
+                <Link to={path}><img className='welcome-header__logo' src={logo}/></Link>
             </div>
             
             <div className='welcome-header__icon'>

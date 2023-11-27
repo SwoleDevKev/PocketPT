@@ -1,14 +1,13 @@
 import './Header.scss'
 import bell from '../../assets/icons/bell.svg'
 import logo from '../../assets/logos/PocketPT-logo.svg'
+import { Link } from 'react-router-dom'
 
 
-function Header () {
+function Header ({path}) {
     return (
         <div className='header'>
-            <div className='header__logo-container'>
-                <img className='header__logo' src={logo}/>
-            </div>
+                <Link className='header__link' to={path}><img className='header__logo' src={logo}/></Link>
             <div className='header__icon'>
                 <img className='header__image' src={bell}/>
                 <div className='header__notification-dot'></div>

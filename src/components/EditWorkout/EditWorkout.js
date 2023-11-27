@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { API_URL } from "../../util"
 
 
-function EditProgram({program}) {
+function EditWorkout({program}) {
 
 
     
@@ -120,4 +120,4 @@ function EditProgram({program}) {
     )
 }
 
-export default EditProgram
+export default EditWorkout

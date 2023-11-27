@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom"
 import Input from "../Input/Input"
 import "./CreateDailyWorkout.scss"
 
 
 function CreateDailyWorkout (){
 
+    navigate = useNavigate()
     const handleWorkoutSubmit = (event)=>{
         event.preventDefault()
 
