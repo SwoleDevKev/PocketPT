@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { API_URL } from '../../util'
 
-function Main(){
+function Main({programId}){
 
     const [program, setProgram] = useState(null)
     useEffect( () => {
 
         async function getProgram(){
-            const response = await axios.get(`${API_URL}/api/programs/1`)
+            const response = await axios.get(`${API_URL}/api/programs/${programId || 1}`)
             setProgram(response.data)
         }
         getProgram()

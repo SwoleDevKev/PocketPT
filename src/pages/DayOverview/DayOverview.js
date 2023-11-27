@@ -12,6 +12,7 @@ function DayOverview ({}){
             {exercises.state && exercises.state.map((exercise)=>{
               return  <ExerciseCard exercise={exercise}/>
             })}
+            <button>Done</button>
         </>
     )
 }

@@ -1,0 +1,8 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.main{
+    &__heading {
+        @include section-padding;
+    }
+}
