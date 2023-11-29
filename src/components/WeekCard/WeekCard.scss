@@ -1,7 +1,7 @@
 @use '../../styles/variables' as *;
 @use '../../styles/mixins' as *;
 
-.week-card{
+.week-card , .week-card0, .week-card1, .week-card2, .week-card3{
     @include section-padding;
     height:20vh;
     display: flex;
@@ -47,4 +47,14 @@
     }
 
 
+}
+
+.week-card1{
+    background-image: url(../../assets/images/1.png);
+}
+.week-card2{
+    background-image: url(../../assets/images/2.png);
+}
+.week-card3{
+    background-image: url(../../assets/images/3.png);
 }

@@ -38,7 +38,7 @@ function TrainerMain({programId, clientId}){
               <button onClick={handleModal}>Assign different Program</button>
               {editModalVisibility && <AssignProgram clientId={clientId} programId={programId}/>}
               {program && program.map((week, index)=>{
-                return <WeekCard week={week} weekNum={index+1} />
+                return <WeekCard week={week} index={index} weekNum={index+1} />
               })}
             </>
           ) 

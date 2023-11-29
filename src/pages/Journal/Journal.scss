@@ -1,0 +1,5 @@
+@use '../../styles/mixins' as *;
+.journal-container{
+    height:95%;
+    @include section-padding;
+}

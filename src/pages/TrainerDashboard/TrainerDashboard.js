@@ -37,7 +37,6 @@ function TrainerDashboard (){
 				setFailedAuth(true)
 			})
 
-		// Demonstrate using auth on single ro/Users/jburton/Desktop/GitLabDemos/lecture-demos-and-reviews/week-10/client-side-auth/mdismatsek/server/routes/users.jsute
         
 		
 	}, []);
@@ -99,16 +98,20 @@ function TrainerDashboard (){
 
 
 
-    console.log('check2',clients);
+   
     return (
         <>
-            <Header />
+            <WelcomeHeader user={user}/>
+			<h1 className='dashboard__heading'>Client Dashboard</h1>
+            <div className='client-container'>
             {clients && clients.map((user)=>{
                 return(
                     <ClientCard key={user.id} client={user} program_id={user.program_id}/>
                 )
             })}
-            <TrainerFooter />
+            </div>
+            
+            <TrainerFooter user={user}/>
         </>
     )
 }

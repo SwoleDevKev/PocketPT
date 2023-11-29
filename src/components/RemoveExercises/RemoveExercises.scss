@@ -1,0 +1,25 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.exercises-modal{
+    width: 100%;
+    padding: 1rem 0;
+}
+
+.listItem{
+    &__image{
+        margin-right: 1rem;
+    }
+    &__name{
+        width:60%;
+    }
+
+    &__button{
+        @include button;
+        width: unset;
+        &:hover{
+            background-color: $red;
+            color: $white;
+        }
+    }
+}

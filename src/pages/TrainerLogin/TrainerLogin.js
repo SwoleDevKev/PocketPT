@@ -28,24 +28,42 @@ function TrainerLogin() {
     };
 
     return (
-        <main className="login-page">
-            <form className="login" onSubmit={handleSubmit}>
-                <h1 className="login__title">Trainer Log in</h1>
+        <>
+            <div className='login-top'>
+                <Link to='/' className="circle"><p className="circle__text">&#8592; Home</p></Link>
+            </div>
+            <main className="login-page">
+                <form className="login" onSubmit={handleSubmit}>
+                    <h1 className="login__title">Trainer Log in</h1>
 
-                <Input type="text" name="email" label="Email" />
-                <Input type="password" name="password" label="Password" />
+                    
+                    <div className="login-field">
+                        <label htmlFor='email' className="login-field__label">
+                        Email
+                        </label>
+                        <input type='text' id='email' name='email' className="login-field__input" />
+                     </div>
 
-                <button className="login__button">
-                    Log in
-                </button>
+                     <div className="login-field">
+                        <label htmlFor='password' className="login-field__label">
+                        Password
+                        </label>
+                        <input type='password' id='password' name='password' className="login-field__input" />
+                     </div>
+                    
+                    <button className="login__button">
+                        Log in
+                    </button>
 
-                {success && <div className="signup__message">Logged in!</div>}
-                {error && <div className="signup__message">{error}</div>}
-            </form>
-            <p>
-                Need an account? <Link to="/trainer/signup">Trainer Sign up</Link>
-            </p>
-        </main>
+                    {success && <div className="signup__message">Logged in!</div>}
+                    {error && <div className="signup__message">{error}</div>}
+                </form>
+                <p>
+                    Need an account? 
+                </p>
+                <Link to="/trainer/signup">Sign up</Link>
+            </main>
+        </>
     );
 }
 

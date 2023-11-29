@@ -1,0 +1,70 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+
+
+
+.landing-top{
+    display: flex;
+    flex-direction: column;
+    border-radius:  20% 20% 0 0;
+    height:60vh;
+    justify-content: center;
+    text-align: center;
+
+    &__image{
+        height: 50%;
+    }
+    &__heading{
+        font-family: 'Titillium bold';
+        font-size: 48px;
+    }
+    &__span{
+        color: $yellow;
+    }
+
+    &__link{
+        text-decoration: none;
+        text-align: center;
+        color: blue;
+
+        &:hover {
+           cursor: pointer; 
+        }
+    }
+}
+.landing {
+    background-color: aqua;
+}
+
+.landing-bottom{
+    display: flex;
+    flex-direction: column;
+    border-radius:  10% 10% 0 0;
+    background-color: $dark-blue;
+    height: 40vh;
+    justify-content: center;
+    align-items: center;
+
+    &__link{
+        text-decoration: none;
+        text-align: center;
+        @include button;
+        color: $white;
+        border-radius: 10px;
+        width:50%;
+        font-family: 'Titillium bold';
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        &:hover {
+           cursor: pointer; 
+        }
+    }
+
+    &__link--alt{
+        background-color: transparent;
+        border: 2px solid $yellow;
+    }
+}
