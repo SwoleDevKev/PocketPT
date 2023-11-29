@@ -27,24 +27,30 @@ function Login() {
     };
 
     return (
-        <main className="login-page">
-            <form className="login" onSubmit={handleSubmit}>
-                <h1 className="login__title">Client Log in</h1>
+        <>
+            <div className='login-top'>
+                <Link to='/' className="circle"><p className="circle__text">&#8592; Home</p></Link>
+            </div>
+            <main className="login-page">
+                <form className="login" onSubmit={handleSubmit}>
+                    <h1 className="login__title">Client Log in</h1>
 
-                <Input type="text" name="email" label="Email" />
-                <Input type="password" name="password" label="Password" />
+                    <Input type="text" name="email" label="Email" />
+                    <Input type="password" name="password" label="Password" />
 
-                <button className="login__button">
-                    Log in
-                </button>
+                    <button className="login__button">
+                        Log in
+                    </button>
 
-                {success && <div className="signup__message">Logged in!</div>}
-                {error && <div className="signup__message">{error}</div>}
-            </form>
-            <p>
-                Need an account? <Link to="/signup">Sign up</Link>
-            </p>
-        </main>
+                    {success && <div className="signup__message">Logged in!</div>}
+                    {error && <div className="signup__message">{error}</div>}
+                </form>
+                <p>
+                    Need an account? 
+                </p>
+                <Link to="/signup">Sign up</Link>
+            </main>
+        </>
     );
 }
 

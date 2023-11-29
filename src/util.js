@@ -1,7 +1,6 @@
 const API_URL = `http://localhost:8085`
-const API_KEY = `AIzaSyC-CwdgJEu98oSRi3lCPN82aiHUuH0Fa3g`
+const defaultAvatar = `http://localhost:8085/images/profile.png`
 
 
 
-
-export {API_URL, API_KEY}
+export {API_URL, defaultAvatar}

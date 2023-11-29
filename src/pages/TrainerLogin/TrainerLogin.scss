@@ -1,53 +1,94 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.circle{
+    height:150px;
+    width: 150px;
+    border-radius: 50%;
+    background-color: $yellow;
+    position: relative;
+    bottom:30px;
+    right: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__text{
+        color: $white;
+    }
+}
+.login-top{
+    height:30vh;
+    position: relative;
+}
+
+
 .login-page {
-    background-color: #f5f5f5;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
+    height: 70vh;
+    border-radius:  10% 10% 0 0;
+    background-color: $dark-blue;
+    justify-content: center;
+    align-items: center;
+
+    p,a {
+        text-decoration: none;
+        color: $white;
+    }
 }
 
 .login {
     display: flex;
     flex-direction: column;
-    width: 22rem;
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
     border-radius: 0.5rem;
-    padding: 2rem 1.5rem;
     margin-bottom: 1rem;
+    width: 100%;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
 
     &__title {
         margin-top: 0;
         margin-bottom: 1.5rem;
-
         text-align: center;
         font-size: 1.5rem;
-        border-bottom: 5px solid #ffcf00;
         padding-bottom: 0.5rem;
         align-self: center;
     }
 
     &__button {
-        margin-top: 1rem;
-        background-color: #1358db;
-        border: 1px solid #1358db;
-        color: #fff;
+        @include button;
+        width: 50%;
         border-radius: 0.5rem;
-        padding: 0.5rem;
-        font-size: inherit;
-        cursor: pointer;
-        transition: background-color 0.15s;
 
-        &:hover {
-            background-color: #003fc2;
-        }
     }
 
     &__message {
         border-left: 5px solid #ddd;
         padding: 0.75rem;
         margin-top: 2rem;
+    }
+}
+
+
+
+.login-field {
+    display: flex;
+    flex-direction: column;
+
+    &__label {
+        margin-bottom: 0.5rem;
+    }
+
+    &__input {
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        font-size: inherit;
     }
 }

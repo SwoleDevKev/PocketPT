@@ -63,123 +63,151 @@ function EditWeeklyProgram({program}) {
         }
        
     }
-    console.log(weeklyPrograms)
+    console.log('before return',program)
 
     return (
         <form className="program-edit" onSubmit={handleSubmit}>
-            <h1 className="login__title">Edit Program</h1>
+            <h1 className="login__title">{`Edit ${program['weekly-program_name']}`}</h1>
 
-            <label className='edit__label' htmlFor='program'>day1 workouts</label>
-            <select
-                className='item-availability__input item-availability__input--select'
-                name="day1"
-                id="day1"
-                defaultValue={''}
-                onChange={handleChangeday1}
-            >
-                <option value='' disabled selected>Please select</option>
-                {weeklyPrograms?.map((program) => (
-                    <option key={program.id} value={program.id}>
-                        {program['daily-workout_name']}
-                    </option>
-                ))}
-            </select>
+            <div className="weekly-program-edit">
 
-            <label className='edit__label' htmlFor='program'>day2 workouts</label>
-            <select
-                className='item-availability__input item-availability__input--select'
-                name="weekly-program"
-                id="weekly-program"
-                defaultValue={''}
-                onChange={handleChangeday2}
-            >
-                <option value='' disabled selected>Please select</option>
-                {weeklyPrograms?.map((program) => (
-                    <option key={program.id} value={program.id}>
-                        {program['daily-workout_name']}
-                    </option>
-                ))}
-            </select>
+                <label className='edit__label' htmlFor='program'>day1 workouts</label>
+                <select
+                    className='item-availability__input item-availability__input--select'
+                    name="day1"
+                    id="day1"
+                    defaultValue={''}
+                    onChange={handleChangeday1}
+                >
+                    <option value='' disabled selected>Please select</option>
+                    {weeklyPrograms?.map((program) => (
+                        <option key={program.id} value={program.id}>
+                            {program['daily-workout_name']}
+                        </option>
+                    ))}
+                </select>
+            </div>
 
-            <label className='edit__label' htmlFor='program'>day3 workouts</label>
-            <select
-                className='item-availability__input item-availability__input--select'
-                name="weekly-program"
-                id="weekly-program"
-                defaultValue={''}
-                onChange={handleChangeday3}
-            >
-                <option value='' disabled selected>Please select</option>
-                {weeklyPrograms?.map((program) => (
-                    <option key={program.id} value={program.id}>
-                        {program['daily-workout_name']}
-                    </option>
-                ))}
-            </select>
 
-            <label className='edit__label' htmlFor='program'>day4 workouts</label>
-            <select
-                className='item-availability__input item-availability__input--select'
-                name="weekly-program"
-                id="weekly-program"
-                defaultValue={''}
-                onChange={handleChangeday4}
-            >
-                <option value='' disabled selected>Please select</option>
-                {weeklyPrograms?.map((program) => (
-                    <option key={program.id} value={program.id}>
-                        {program['daily-workout_name']}
-                    </option>
-                ))}
-            </select>
 
-            <label className='edit__label' htmlFor='program'>day5 workouts</label>
-            <select
-                className='item-availability__input item-availability__input--select'
-                name="weekly-program"
-                id="weekly-program"
-                defaultValue={''}
-                onChange={handleChangeday5}
-            >
-                <option value='' disabled selected>Please select</option>
-                {weeklyPrograms?.map((program) => (
-                    <option key={program.id} value={program.id}>
-                        {program['daily-workout_name']}
-                    </option>
-                ))}
-            </select>
+            <div className="weekly-program-edit">
+                <label className='edit__label' htmlFor='program'>day2 workouts</label>
+                <select
+                    className='item-availability__input item-availability__input--select'
+                    name="weekly-program"
+                    id="weekly-program"
+                    defaultValue={''}
+                    onChange={handleChangeday2}
+                >
+                    <option value='' disabled selected>Please select</option>
+                    {weeklyPrograms?.map((program) => (
+                        <option key={program.id} value={program.id}>
+                            {program['daily-workout_name']}
+                        </option>
+                    ))}
+                </select>
 
-            <label className='edit__label' htmlFor='program'>day6 workouts</label>
-            <select
-                className='item-availability__input item-availability__input--select'
-                name="weekly-program"
-                id="weekly-program"
-                defaultValue={''}
-                onChange={handleChangeday6}
-            >
-                <option value='' disabled selected>Please select</option>
-                {weeklyPrograms?.map((program) => (
-                    <option key={program.id} value={program.id}>
-                        {program['daily-workout_name']}
-                    </option>
-                ))}
-            </select>
+            </div>
 
-            <label className='edit__label' htmlFor='program'>day7 workouts</label>
-            <select
-                className='item-availability__input item-availability__input--select'
-                name="weekly-program"
-                id="weekly-program"
-                defaultValue={''}
-                onChange={handleChangeday7}
-            >
-                <option value='' disabled selected>Please select</option>
-                {weeklyPrograms?.map((program) => (
-                    <option key={program.id} value={program.id}>
-                        {program['daily-workout_name']}
-                    </option>
-                ))}
-            </select>
+
+            <div className="weekly-program-edit">
+                <label className='edit__label' htmlFor='program'>day3 workouts</label>
+                <select
+                    className='item-availability__input item-availability__input--select'
+                    name="weekly-program"
+                    id="weekly-program"
+                    defaultValue={''}
+                    onChange={handleChangeday3}
+                >
+                    <option value='' disabled selected>Please select</option>
+                    {weeklyPrograms?.map((program) => (
+                        <option key={program.id} value={program.id}>
+                            {program['daily-workout_name']}
+                        </option>
+                    ))}
+                </select>
+
+            </div>
+
+
+            <div className="weekly-program-edit">
+                <label className='edit__label' htmlFor='program'>day4 workouts</label>
+                <select
+                    className='item-availability__input item-availability__input--select'
+                    name="weekly-program"
+                    id="weekly-program"
+                    defaultValue={''}
+                    onChange={handleChangeday4}
+                >
+                    <option value='' disabled selected>Please select</option>
+                    {weeklyPrograms?.map((program) => (
+                        <option key={program.id} value={program.id}>
+                            {program['daily-workout_name']}
+                        </option>
+                    ))}
+                </select>
+
+            </div>
+
+
+            <div className="weekly-program-edit">
+                <label className='edit__label' htmlFor='program'>day5 workouts</label>
+                <select
+                    className='item-availability__input item-availability__input--select'
+                    name="weekly-program"
+                    id="weekly-program"
+                    defaultValue={''}
+                    onChange={handleChangeday5}
+                >
+                    <option value='' disabled selected>Please select</option>
+                    {weeklyPrograms?.map((program) => (
+                        <option key={program.id} value={program.id}>
+                            {program['daily-workout_name']}
+                        </option>
+                    ))}
+                </select>
+
+            </div>
+
+
+            <div className="weekly-program-edit">
+                <label className='edit__label' htmlFor='program'>day6 workouts</label>
+                <select
+                    className='item-availability__input item-availability__input--select'
+                    name="weekly-program"
+                    id="weekly-program"
+                    defaultValue={''}
+                    onChange={handleChangeday6}
+                >
+                    <option value='' disabled selected>Please select</option>
+                    {weeklyPrograms?.map((program) => (
+                        <option key={program.id} value={program.id}>
+                            {program['daily-workout_name']}
+                        </option>
+                    ))}
+                </select>
+
+            </div>
+
+
+            <div className="weekly-program-edit">
+                <label className='edit__label' htmlFor='program'>day7 workouts</label>
+                <select
+                    className='item-availability__input item-availability__input--select'
+                    name="weekly-program"
+                    id="weekly-program"
+                    defaultValue={''}
+                    onChange={handleChangeday7}
+                >
+                    <option value='' disabled selected>Please select</option>
+                    {weeklyPrograms?.map((program) => (
+                        <option key={program.id} value={program.id}>
+                            {program['daily-workout_name']}
+                        </option>
+                    ))}
+                </select>
+
+            </div>
 
             <button className="Assign__button">
                 Save

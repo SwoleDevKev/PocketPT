@@ -1,0 +1,15 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.dashboard__heading{
+    @include section-header-padding;
+    text-align: center;
+        text-transform: uppercase;
+        color: $yellow;
+        text-shadow: 1px 1px 1px $dark-blue;
+}
+
+
+.client-container{
+    height: 100%;
+}

@@ -17,12 +17,12 @@ function ProgramCard({program}){
     }
 
     return(
-        <section>
-            <div>
-                <h3>{program.program_name}</h3>
-                <p>{program.program_details}</p>
+        <section className='program-card'>
+            <div className='program-card__content'>
+                <h3 className='program-card__heading'>{program.program_name}</h3>
+                <p className='program-card__details'>{program.program_details}</p>
             </div>
-            <button onClick={handleProgramModal}>Edit this program</button>
+            <button className='program-card__button' onClick={handleProgramModal}>Edit this program</button>
             {editProgramModal && <EditProgram program={program}/>}
         </section>
     )

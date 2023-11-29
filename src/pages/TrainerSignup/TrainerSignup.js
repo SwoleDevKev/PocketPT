@@ -31,6 +31,11 @@ function TrainerSignup () {
     };
 
     return (
+
+        <>
+        <div className="signup-top">
+            <Link to='/' className="circle"><p className="circle__text">&#8592; Home</p></Link>
+        </div>
         <main className="signup-page">
             <form className="signup" onSubmit={handleSubmit}>
                 <h1 className="signup__title">Trainer Sign up</h1>
@@ -50,6 +55,7 @@ function TrainerSignup () {
                 Have an account? <Link to="/trainer/login">Log in</Link>
             </p>
         </main>
+        </>
     );
 }
 

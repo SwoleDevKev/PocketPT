@@ -13,7 +13,7 @@
 }
 
 @mixin divider {
-    border-bottom: $cloud .1rem solid;
+    border-bottom: $light-grey .1rem solid;
 }
 
 @mixin regular {
@@ -123,4 +123,22 @@
         line-height: 1.125rem;
     }
 
+}
+
+@mixin button {
+        @include buttonLabel-font;
+        margin: .5rem 0;
+        background-color: $yellow;
+        color: $dark-blue;
+        width: 100%;
+        border-radius: 1.25rem;
+        border: none;
+        padding: 0 1rem;
+        margin-bottom: .3125rem;
+        height: 2.25rem;
+
+        &:hover{
+            background-color: $light-blue;
+            color: $white;
+        }
 }

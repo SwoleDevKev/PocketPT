@@ -1,6 +1,6 @@
 import "./Signup.scss";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Input from "../../components/Input/Input";
 
@@ -41,7 +41,13 @@ function Signup () {
             });
     };
 
+
     return (
+
+        <>
+        <div className="signup-top">
+            <Link to='/' className="circle"><p className="circle__text">&#8592; Home</p></Link>
+        </div>
         <main className="signup-page">
             <form className="signup" onSubmit={handleSubmit}>
                 <h1 className="signup__title">Client Sign up</h1>
@@ -51,17 +57,21 @@ function Signup () {
                 <Input type="text" name="phone" label="Phone" />
                 <Input type="text" name="email" label="Email" />
                 <Input type="password" name="password" label="Password" />
-                <label>Trainers</label>
-                <select name="trainer_id" >
-                <option value='' disabled selected>Please select</option>
-                    {trainers && trainers.map((trainer)=>{
-                        return(
-                            <option key={trainer.id} value={trainer.id}>
-                        {trainer.first_name +' '+trainer.last_name} </option>
-                        )
-                        
-                    })}
-                </select>
+                
+                <div className="field">
+                    
+                    <label className="field__label" >Trainer</label>
+                    <select name="trainer_id" className="field__input">
+                    <option value='' disabled selected>Please select</option>
+                        {trainers && trainers.map((trainer)=>{
+                            return(
+                                <option key={trainer.id} value={trainer.id}>
+                            {trainer.first_name +' '+trainer.last_name} </option>
+                            )
+                            
+                        })}
+                    </select>
+                </div>
 
                 <button className="signup__button">Sign up</button>
 
@@ -72,6 +82,7 @@ function Signup () {
                 Have an account? <Link to="/login">Log in</Link>
             </p>
         </main>
+        </>
     );
 }
 

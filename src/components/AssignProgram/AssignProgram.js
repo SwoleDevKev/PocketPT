@@ -30,12 +30,12 @@ function AssignProgram ({programId, clientId}){
     }
 
     return (
-        <form className="login" onSubmit={handleSubmit}>
-            <h1 className="login__title">Assign Program</h1>
+        <form className="" onSubmit={handleSubmit}>
+            <h1 className="">Assign Program</h1>
 
             <label className='edit__label' htmlFor='program'>Assign program</label>
             <select
-                        className='item-availability__input item-availability__input--select'
+                        className=''
                         name="program"
                         id="program"
                         defaultValue={programId}
@@ -50,7 +50,7 @@ function AssignProgram ({programId, clientId}){
                         ))}
                     </select>
 
-            <button className="Assign__button">
+            <button className="assign__button">
                 Save
             </button>
 

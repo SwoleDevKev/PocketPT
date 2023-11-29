@@ -1,0 +1,49 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.client{
+
+    display: flex;
+
+
+    &__avatar-container{
+        width: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__link{
+       display: flex;
+       justify-content: center;
+       text-decoration: none;
+    }
+
+    &__avatar{
+        width: 36px;
+        height: 36px;
+        max-width: 48px;
+        max-height: 48px;
+    }
+
+    &__info{
+        display: flex;
+        width:80%;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__heading{
+        text-align: center;
+        text-transform: uppercase;
+        color: $light-blue;
+        text-shadow: 1px 1px 1px $yellow;
+    }
+
+    &__button{
+        @include button;
+        width: 80%;
+        height: unset;
+    }
+
+}
+
