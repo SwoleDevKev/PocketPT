@@ -34,7 +34,7 @@ function DayOverview (){
 		}
 
 		axios
-			.get("http://localhost:8085/api/clients/current", {
+			.get(`${API_URL}/api/clients/current`, {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}

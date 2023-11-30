@@ -3,6 +3,7 @@ import Input from "../../components/Input/Input";
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { API_URL } from '../../util';
 
 function Login() {
     const [error, setError] = useState("");
@@ -12,7 +13,7 @@ function Login() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-		axios.post("http://localhost:8085/api/clients/login", {
+		axios.post(`${API_URL}/api/clients/login`, {
             email: event.target.email.value,
             password: event.target.password.value
         })

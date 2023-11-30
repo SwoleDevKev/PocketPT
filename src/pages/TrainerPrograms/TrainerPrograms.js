@@ -44,7 +44,7 @@ function TrainerPrograms (){
 		}
 
 		axios
-			.get("http://localhost:8085/api/trainers/current", {
+			.get(`${API_URL}/api/trainers/current`, {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}

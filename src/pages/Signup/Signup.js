@@ -4,6 +4,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Input from "../../components/Input/Input";
 import InputUpgrade from "../../components/InputUpgrade/InputUpgrade";
+import { API_URL } from "../../util";
 
 function Signup () {
     const [error, setError] = useState("");
@@ -13,7 +14,7 @@ function Signup () {
 
     useEffect(()=>{
         async function getTrainers(){
-          const response = await axios.get('http://localhost:8085/api/trainers')
+          const response = await axios.get(`${API_URL}/api/trainers`)
           console.log(response.data)
           setTrainers(response.data)
         }
@@ -23,7 +24,7 @@ function Signup () {
         event.preventDefault();
 
         axios
-            .post("http://localhost:8085/api/clients/register", {
+            .post(`${API_URL}/api/clients/register`, {
                 email: event.target.email.value,
                 password: event.target.password.value,
                 first_name: event.target.first_name.value,

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Input from "../../components/Input/Input";
 import InputUpgrade from "../../components/InputUpgrade/InputUpgrade";
+import { API_URL } from "../../util";
 
 function TrainerSignup () {
     const [error, setError] = useState("");
@@ -13,7 +14,7 @@ function TrainerSignup () {
         event.preventDefault();
 
         axios
-            .post("http://localhost:8085/api/trainers/register", {
+            .post(`${API_URL}/api/trainers/register`, {
                 email: event.target.email.value,
                 password: event.target.password.value,
                 first_name: event.target.first_name.value,
