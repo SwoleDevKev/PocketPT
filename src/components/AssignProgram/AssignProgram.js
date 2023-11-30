@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Input from "../Input/Input";
 import { API_URL } from "../../util";
 import './AssignProgram.scss'
 import { useNavigate } from "react-router-dom";
@@ -32,7 +31,7 @@ function AssignProgram ({programId, clientId, modal, setModal}){
         if (!clientProgram){
             alert('you must select a program')
         } else{
-            const response = await axios.patch(`${API_URL}/api/clients/${clientId}`,{"program_id": clientProgram});
+             await axios.patch(`${API_URL}/api/clients/${clientId}`,{"program_id": clientProgram});
             alert('New Program set') 
             navigate('/trainer/home')
             
