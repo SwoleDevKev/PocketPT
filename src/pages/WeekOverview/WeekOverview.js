@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
+import { API_URL } from '../../util';
 
 
 
@@ -21,7 +22,7 @@ function WeekOverview () {
 		}
 
 		axios
-			.get("http://localhost:8085/api/clients/current", {
+			.get(`${API_URL}/api/clients/current`, {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}

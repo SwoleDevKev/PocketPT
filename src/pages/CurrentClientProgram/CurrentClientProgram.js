@@ -6,6 +6,7 @@ import { Link, useParams } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import TrainerMain from '../../components/TrainerMain/TrainerMain';
 import TrainerFooter from '../../components/TrainerFooter/TrainerFooter';
+import { API_URL } from '../../util';
 
 
 
@@ -23,7 +24,7 @@ function CurrentClientProgram () {
 		}
 
 		axios
-			.get("http://localhost:8085/api/trainers/current", {
+			.get(`${API_URL}/api/trainers/current`, {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}

@@ -4,7 +4,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import TrainerFooter from '../../components/TrainerFooter/TrainerFooter';
 import UploadAndDisplayImage from '../../components/UploadAndDisplayImage/UploadAndDisplayImage';
-import { defaultAvatar } from '../../util';
+import { API_URL, defaultAvatar } from '../../util';
 import './TrainerProfile.scss'
 
 
@@ -22,7 +22,7 @@ function TrainerProfile (){
 		}
 
 		axios
-			.get("http://localhost:8085/api/trainers/current", {
+			.get(`${API_URL}/api/trainers/current`, {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}

@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { defaultAvatar } from '../../util';
+import { API_URL, defaultAvatar } from '../../util';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import './ClientProfile.scss'
@@ -23,7 +23,7 @@ function ClientProfile (){
 		}
 
 		axios
-			.get("http://localhost:8085/api/clients/current", {
+			.get(`${API_URL}/api/clients/current`, {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}
