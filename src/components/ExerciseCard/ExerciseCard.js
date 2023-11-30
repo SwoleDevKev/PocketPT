@@ -15,7 +15,6 @@ function ExerciseCard({ exercise }) {
 
     }
 
-
     const [videoModalVisibility, setVideoModalVisibility] = useState(false)
 
     function handleModalVisibility() {
@@ -24,7 +23,6 @@ function ExerciseCard({ exercise }) {
         } else {
             setVideoModalVisibility(false)
         }
-
     }
 
     return (

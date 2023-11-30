@@ -17,6 +17,7 @@ import DailyWorkouts from './pages/DailyWorkouts/DailyWorkouts';
 import Journal from './pages/Journal/Journal';
 import TrainerProfile from './pages/TrainerProfile/TrainerProfile';
 import ClientProfile from './components/ClientProfile/ClientProfile';
+import BuildDailyWorkout from './components/BuildDailyWorkout/BuildDailyWorkout';
 
 
 
@@ -35,6 +36,7 @@ function App() {
           <Route path='/workout/:id' element={<DayOverview  />}></Route>
           <Route path="/journal" element={<Journal />} />
           <Route path="/profile" element={<ClientProfile />} />
+          
 					
 
 
@@ -45,6 +47,7 @@ function App() {
           <Route path='/trainer/client/:clientId/:programId' element={<CurrentClientProgram  />}></Route>
           <Route path="/trainer/workouts" element={<DailyWorkouts />} />
           <Route path="/trainer/profile" element={<TrainerProfile />} />
+          <Route path="/trainer/add-exercise" element={<BuildDailyWorkout />} />
 
           
       </Routes>

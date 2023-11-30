@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import TrainerMain from '../../components/TrainerMain/TrainerMain';
+import TrainerFooter from '../../components/TrainerFooter/TrainerFooter';
 
 
 
@@ -36,19 +37,7 @@ function CurrentClientProgram () {
 				setFailedAuth(true)
 			})
 
-		// Demonstrate using auth on single ro/Users/jburton/Desktop/GitLabDemos/lecture-demos-and-reviews/week-10/client-side-auth/mdismatsek/server/routes/users.jsute
-		axios
-			.get("http://localhost:8085/api/trainers", {
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
-			})
-			.then((response) => {
-				console.log('user auth', response);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		
 	}, []);
 
 
@@ -75,7 +64,8 @@ function CurrentClientProgram () {
         <>
             <Header />
 
-            <TrainerMain clientId={clientId} programId={programId}/>
+            <TrainerMain clientId={clientId} programId={programId || 1}/>
+			<TrainerFooter />
         </>
     )
 }

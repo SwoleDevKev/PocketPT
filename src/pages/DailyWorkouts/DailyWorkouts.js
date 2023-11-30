@@ -104,8 +104,8 @@ function DailyWorkouts (){
                 )})
                 
                 }
-                {modalVisibility && <BuildDailyWorkout workout={currentWorkout}/>}
             </div>
+            {modalVisibility && <BuildDailyWorkout setModalVisibility={setModalVisibility} workout={currentWorkout}/>}
             <TrainerFooter />
         </>
     )

@@ -15,7 +15,6 @@ function DayCard({dailyWorkout, dayNum}){
         async function getWorkoutDays(){
             const response = await axios.get(`${API_URL}/api/exercises/${dailyWorkout['daily-workout_id']}`)
             setExercises(response.data)
-            console.log(response.data)
         }
         getWorkoutDays()
     },[])

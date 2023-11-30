@@ -1,8 +1,21 @@
 @use '../../styles/variables' as *;
 @use '../../styles/mixins' as *;
 
-.main{
+.trainer-main{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     &__heading {
         @include section-padding;
     }
+
+    &__button{
+        @include button;
+        width: 70%;
+    }
+}
+
+
+.trainer-main{
+
 }

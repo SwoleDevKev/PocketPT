@@ -4,7 +4,6 @@ const UploadAndDisplayImage = () => {
 
   const [selectedImage, setSelectedImage] = useState(null);
 
-  console.log(selectedImage);
   return (
     <div>
       <h1>Upload</h1>
@@ -28,7 +27,6 @@ const UploadAndDisplayImage = () => {
         type="file"
         name="myImage"
         onChange={(event) => {
-          console.log(event.target.files[0]);
           setSelectedImage(event.target.files[0]);
         }}
       />

@@ -5,7 +5,7 @@ import { API_URL } from '../../util'
 import './BuildDailyWorkout.scss'
 
 
-function BuildDailyWorkout ({workout}){
+function BuildDailyWorkout ({workout, setModalVisibility }){
 
     const navigate = useNavigate()
 
@@ -18,9 +18,9 @@ function BuildDailyWorkout ({workout}){
             "exercise_id": exercise.id,
             
         })
-        alert('done')
 
         alert(`added ${exercise.exercise_name}`)
+        navigate(-1)
     }
 
     useEffect(()=>{
@@ -31,9 +31,10 @@ function BuildDailyWorkout ({workout}){
 
         getAllVideos()
     },[])
-    console.log(exerciseBank);
     return(
-        <>
+        <section className='list'>
+            <h3 className='list__heading' >{`Add Exercises for ${workout['daily-workout_name']}`}</h3>
+            <p className='list__cancel' onClick={ ()=>{ setModalVisibility(false)} }>X</p>
             {exerciseBank.map((exercise)=>{
 
             {const splitLink = exercise.video_link.split('=');
@@ -48,7 +49,7 @@ function BuildDailyWorkout ({workout}){
             )
                 
             } )}
-        </>
+        </section>
     )
 }
 

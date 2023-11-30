@@ -16,7 +16,6 @@ function RemoveExercises ({workout}){
     let videoId = ''
 
     const removeExercise = async (exercise)=>{
-        console.log(exercise, workout)
         const response = await axios.delete(`${API_URL}/api/workouts/${exercise.id}`)
         alert('done')
 
@@ -41,7 +40,6 @@ function RemoveExercises ({workout}){
 
         getCurrentVideos()
     },[])
-    console.log(exerciseBank);
     return(
         <>
         <button className='workout-card__button' onClick={()=>{ handleDeleteModal(workout)}}> View Exercises</button>
@@ -55,10 +53,10 @@ function RemoveExercises ({workout}){
             } return(
                 <>
                 {
-                <div className='listItem' onClick={ ()=>{removeExercise(exercise)}}>
+                <div className='listItem' >
                     <img className='listItem__image' src={`http://i3.ytimg.com/vi/${videoId}/hqdefault.jpg`}/>
                     <p className='listItem__name'>{exercise.exercise_name}</p>
-                    <button className='listItem__button'>delete</button>
+                    <button className='listItem__button' onClick={ ()=>{removeExercise(exercise)}}>delete</button>
                 </div>
                 }
                 </>

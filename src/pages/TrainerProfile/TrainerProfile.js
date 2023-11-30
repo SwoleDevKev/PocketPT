@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import TrainerFooter from '../../components/TrainerFooter/TrainerFooter';
 import UploadAndDisplayImage from '../../components/UploadAndDisplayImage/UploadAndDisplayImage';
@@ -12,6 +12,7 @@ import './TrainerProfile.scss'
 function TrainerProfile (){
     const [user, setUser] = useState(null);
 	const [failedAuth, setFailedAuth] = useState(false);
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		const token = sessionStorage.getItem('token')
@@ -43,7 +44,8 @@ function TrainerProfile (){
 	const handleLogout = () => {
 		sessionStorage.removeItem("token");
 		setUser(null);
-		setFailedAuth(true);
+		setFailedAuth(true)
+		navigate('/trainer/login');
 	};
 
 	if (failedAuth) {
