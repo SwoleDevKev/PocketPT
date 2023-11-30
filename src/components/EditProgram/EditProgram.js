@@ -4,25 +4,22 @@ import { API_URL } from "../../util"
 import './EditProgram.scss'
 
 
-function EditProgram({program}) {
+function EditProgram({ program, setEditProgramModal }) {
 
-
-    
 
     const [weeklyPrograms, setWeeklyPrograms] = useState(null)
-    const [week1 , setWeek1] = useState(null)
-    const [week2 , setWeek2] = useState(null)
-    const [week3 , setWeek3] = useState(null)
-    const [week4 , setWeek4] = useState(null)
+    const [week1, setWeek1] = useState(null)
+    const [week2, setWeek2] = useState(null)
+    const [week3, setWeek3] = useState(null)
+    const [week4, setWeek4] = useState(null)
 
-    useEffect(()=>{
-        async function getWeeklyPrograms(){
-           const response = await axios.get(`${API_URL}/api/programs/weekly`)
-           console.log(response)
-           setWeeklyPrograms(response.data)
+    useEffect(() => {
+        async function getWeeklyPrograms() {
+            const response = await axios.get(`${API_URL}/api/programs/weekly`)
+            setWeeklyPrograms(response.data)
         }
         getWeeklyPrograms()
-    },[])
+    }, [])
 
     const handleChangeWeek1 = (event) => {
         setWeek1(event.target.value)
@@ -37,15 +34,29 @@ function EditProgram({program}) {
         setWeek4(event.target.value)
     }
 
-    const handleSubmit = async (event)=>{
-        event.preventDefault()
-        const response = await axios.put(`${API_URL}/api/programs`,{
-                "program_id": program.id, 
-                 week1,
+    const handleSubmit = async (event) => {
+        event.preventDefault(); 
+
+        if (week1 || week2 || week3 || week4) {
+            const response = await axios.put(`${API_URL}/api/programs`, {
+                "program_id": program.id,
+                week1,
                 week2,
                 week3,
                 week4
-        })
+            })
+            
+            if (response) {
+                alert('succsessfully updated program')
+                setEditProgramModal(false)
+    
+            }
+        } else {
+            alert('no updates made, nothing to save ')
+        }
+         
+        
+       
     }
 
     return (
@@ -69,7 +80,7 @@ function EditProgram({program}) {
                     ))}
                 </select>
             </div>
-            
+
             <div className="program-edit__entry-container">
                 <label className='edit__label' htmlFor='program'>Week2 workouts</label>
                 <select
@@ -122,11 +133,11 @@ function EditProgram({program}) {
                     ))}
                 </select>
             </div>
-            
 
-            
 
-            
+
+
+
 
 
             <button className="Assign__button">

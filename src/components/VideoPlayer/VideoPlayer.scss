@@ -51,6 +51,8 @@
     &__video{
         width: 100%;
         aspect-ratio: 16/9;
+        max-height: 50vh;
+        
     }
     &__cancel{
         width: fit-content;
@@ -66,6 +68,10 @@
         justify-content: center;
         align-items: center;
         font-family: 'Titillium Bold';
+
+        &:hover{
+            cursor: pointer;
+        }
     }
 
 }

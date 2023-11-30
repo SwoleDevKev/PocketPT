@@ -13,8 +13,12 @@ function TrainerMain({programId, clientId}){
 
 
     const handleModal = () =>{
-        console.log('ok');
-        setEditModalVisibility(true)
+        if(!editModalVisibility){
+          setEditModalVisibility(true)
+        } else{
+          setEditModalVisibility(false)
+
+        }
     }
 
     useEffect( () => {
@@ -30,17 +34,20 @@ function TrainerMain({programId, clientId}){
 
 
     if (program){
-      console.log(program);
+      
         return(
         
-            <>
-              <h1 className='main__heading'>Get Started</h1>
-              <button onClick={handleModal}>Assign different Program</button>
-              {editModalVisibility && <AssignProgram clientId={clientId} programId={programId}/>}
+            <section className='trainer-main-container'>
+              <div className='trainer-main'>
+                  <h1 className='trainer-main__heading'>Get Started</h1>
+                  <button className='trainer-main__button' onClick={handleModal}>Assign different Program</button>
+
+              </div>
+              {editModalVisibility && <AssignProgram setModal={setEditModalVisibility} modal={editModalVisibility} clientId={clientId} programId={programId}/>}
               {program && program.map((week, index)=>{
                 return <WeekCard week={week} index={index} weekNum={index+1} />
               })}
-            </>
+            </section>
           ) 
     } else {
         return (

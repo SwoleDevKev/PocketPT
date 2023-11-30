@@ -2,40 +2,54 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Input from "../Input/Input";
 import { API_URL } from "../../util";
+import './AssignProgram.scss'
+import { useNavigate } from "react-router-dom";
 
-function AssignProgram ({programId, clientId}){
+function AssignProgram ({programId, clientId, modal, setModal}){
 
     const [programs, setPrograms] = useState(null)
-    const [clientProgram, setClientProgram] = useState(programId)
+    const [clientProgram, setClientProgram] = useState(null)
+    const navigate = useNavigate();
 
     useEffect(()=>{
        async function getPrograms(){
            const response = await axios.get(`${API_URL}/api/programs`)
-           console.log(response.data)
            setPrograms(response.data)
         }
         getPrograms()
     },[])
 
     function handleChangeProgram(event){
+        
         setClientProgram(event.target.value) 
+        
+
     }
     async function handleSubmit(event){
 
         event.preventDefault()
 
-        console.log(clientProgram);
-        const response = await axios.patch(`${API_URL}/api/clients/${clientId}`,{"program_id": clientProgram});
+        if (!clientProgram){
+            alert('you must select a program')
+        } else{
+            const response = await axios.patch(`${API_URL}/api/clients/${clientId}`,{"program_id": clientProgram});
+            alert('New Program set') 
+            navigate('/trainer/home')
+            
+
+
+        }
+        
 
     }
 
     return (
-        <form className="" onSubmit={handleSubmit}>
-            <h1 className="">Assign Program</h1>
+        <form className="assign" onSubmit={handleSubmit}>
+            
 
-            <label className='edit__label' htmlFor='program'>Assign program</label>
+            <label className='assign__label' htmlFor='program'>Assign program</label>
             <select
-                        className=''
+                        className='assign__select'
                         name="program"
                         id="program"
                         defaultValue={programId}

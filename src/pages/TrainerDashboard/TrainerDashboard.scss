@@ -12,4 +12,16 @@
 
 .client-container{
     height: 100%;
+
+    @include tablet {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+}
+.client {
+    @include tablet {
+        width: 45%;
+        height: fit-content;
+    }
 }

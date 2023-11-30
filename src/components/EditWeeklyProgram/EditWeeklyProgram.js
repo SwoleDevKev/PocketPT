@@ -17,7 +17,6 @@ function EditWeeklyProgram({program}) {
     useEffect(()=>{
         async function getWeeklyPrograms(){
            const response = await axios.get(`${API_URL}/api/workouts`)
-           console.log(response)
            setWeeklyPrograms(response.data)
         }
         getWeeklyPrograms()
@@ -63,7 +62,6 @@ function EditWeeklyProgram({program}) {
         }
        
     }
-    console.log('before return',program)
 
     return (
         <form className="program-edit" onSubmit={handleSubmit}>

@@ -32,6 +32,10 @@
     }
     &__image{
         height: 35%;
+
+        &:hover{
+            cursor: pointer;
+        }
     }
     &__content{
         display: flex;

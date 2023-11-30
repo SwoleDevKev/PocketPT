@@ -6,7 +6,6 @@ import './WeeklyProgramCard.scss'
 
 function WeeklyProgramCard({program}){
 
-    console.log(program);
     const [editWorkoutModal , setEditWorkoutModal] = useState(false)
 
     const handleProgramModal = ()=>{

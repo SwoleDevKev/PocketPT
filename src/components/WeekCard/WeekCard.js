@@ -44,7 +44,7 @@ function WeekCard({week, weekNum, index}){
             </div>
         </section>
         {dayCardVisibility && programDays.map((day, index)=>{
-           console.log(day); return <DayCard dailyWorkout={day} dayNum={index+1}/> 
+            return <DayCard dailyWorkout={day} dayNum={index+1}/> 
         })}
     </>
     )

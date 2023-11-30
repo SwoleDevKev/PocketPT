@@ -1,6 +1,6 @@
-import "./Input.scss";
+import "./InputUpgrade.scss";
 
-function Input({ label, name, type }) {
+function InputUpgrade({ label, name, type }) {
     return (
         <div className="form-field">
             <label htmlFor={name} className="form-field__label">
@@ -11,4 +11,4 @@ function Input({ label, name, type }) {
     );
 }
 
-export default Input;
+export default InputUpgrade;

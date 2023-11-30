@@ -10,12 +10,15 @@
     text-decoration: none;
 
     &__heading{
+        @include page-header-padding;
         text-align: center;
         text-transform: uppercase;
         color: $yellow;
         text-shadow: 1px 1px 1px $dark-blue;
 
         &--link{
+
+            padding: 0;
             &:hover{
                 cursor: pointer;
                 color: $light-blue;
