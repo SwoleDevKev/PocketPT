@@ -1,10 +1,7 @@
 import './App.scss';
-import { BrowserRouter, Routes, Route, Navigate, useNavigate, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import ProgramOverview from './pages/WeekOverview/WeekOverview';
 import DayOverview from './pages/DayOverview/DayOverview'
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import {API_URL} from './util'
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import CurrentClientProgram from './pages/CurrentClientProgram/CurrentClientProgram';
