@@ -23,7 +23,7 @@ function WeeklyProgramCard({program}){
                 <p className="program-card__details" >{program['weekly-program_details']}</p>
             </div>
             <button className="program-card__button" onClick={handleProgramModal}>Edit this program</button>
-            {editWorkoutModal && <EditWeeklyProgram program={program}/>}
+            {editWorkoutModal && <EditWeeklyProgram Modal={setEditWorkoutModal} program={program}/>}
         </section>
     )
 }

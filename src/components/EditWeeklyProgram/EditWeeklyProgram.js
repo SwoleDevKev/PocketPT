@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { API_URL } from "../../util"
 
 
-function EditWeeklyProgram({program}) {
+function EditWeeklyProgram({program, Modal}) {
 
     const [weeklyPrograms, setWeeklyPrograms] = useState(null)
     const [day1 , setday1] = useState(null)
@@ -57,9 +57,14 @@ function EditWeeklyProgram({program}) {
                 day6,
                 day7
         })
+        if (response) {
+            alert('succsessfully updated program')
+            Modal(false)
         } else {
             alert('all values cannot be empty')
         }
+
+    }
        
     }
 
