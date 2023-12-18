@@ -2,18 +2,15 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { API_URL } from "../../util"
 import ProgramCard from "../../components/programCard/ProgramCard"
-import WorkoutCard from "../../components/WorkoutCard/WorkoutCard"
 import './TrainerPrograms.scss'
 import WeeklyProgramCard from "../../components/WeeklyProgramCard/WeeklyProgramCard"
 import { Link } from "react-router-dom"
-import Footer from "../../components/Footer/Footer"
 import Header from "../../components/Header/Header"
 import TrainerFooter from "../../components/TrainerFooter/TrainerFooter"
 
 function TrainerPrograms (){
 
     const [programs, setPrograms] = useState(null)
-    const [workouts, setWorkouts] = useState(null)
     const [weeklyPrograms, setWeeklyPrograms] = useState(null)
 
     useEffect(()=>{
@@ -104,10 +101,18 @@ function TrainerPrograms (){
                     )
                 })}
             </section>
+            
+            <h2 className="program__heading" >Daily Workouts</h2>
 
-            <Link  className="program" to="/trainer/workouts">
-                <h2 className="program__heading program__heading--link" >View Daily Workouts</h2>
-            </Link>
+            <div className="program-container">
+                <Link  className="program" to="/trainer/workouts">
+                    <h2 className="program__heading program__heading--link" >Default Daily Workouts</h2>
+                </Link>
+                <Link  className="program" to="/trainer/custom-workouts">
+                    <h2 className="program__heading program__heading--link" >Custom Daily Workouts</h2>
+                </Link>
+            </div>
+           
             <TrainerFooter />
             
         </>

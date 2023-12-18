@@ -1,7 +1,10 @@
 @use '../../styles/mixins' as *;
 @use '../../styles/variables' as *;
 
-
+.program-container{
+    display:flex;
+    justify-content: space-around;
+}
 
 .program{
 

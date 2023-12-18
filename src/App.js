@@ -15,7 +15,7 @@ import Journal from './pages/Journal/Journal';
 import TrainerProfile from './pages/TrainerProfile/TrainerProfile';
 import ClientProfile from './components/ClientProfile/ClientProfile';
 import BuildDailyWorkout from './components/BuildDailyWorkout/BuildDailyWorkout';
-
+import CustomWorkouts from './pages/CustomWorkouts/CustomWorkouts'
 
 
 function App() {
@@ -41,6 +41,7 @@ function App() {
 					<Route path="trainer/signup" element={<TrainerSignup />} />
           <Route path="/trainer/home" element={<TrainerDashboard />} />
           <Route path="/trainer/programs" element={<TrainerPrograms />} />
+          <Route path='/trainer/custom-workouts' element={<CustomWorkouts/>}></Route>
           <Route path='/trainer/client/:clientId/:programId' element={<CurrentClientProgram  />}></Route>
           <Route path="/trainer/workouts" element={<DailyWorkouts />} />
           <Route path="/trainer/profile" element={<TrainerProfile />} />
