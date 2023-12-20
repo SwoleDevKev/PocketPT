@@ -1,9 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import BuildDailyWorkout from '../../components/BuildDailyWorkout/BuildDailyWorkout';
 import ClientCard from '../../components/ClientCard/ClientCard'
-import Header from '../../components/Header/Header';
 import TrainerFooter from '../../components/TrainerFooter/TrainerFooter';
 import WelcomeHeader from '../../components/WelcomeHeader/WelcomeHeader';
 import { API_URL } from '../../util';
@@ -64,11 +62,6 @@ function TrainerDashboard (){
         }
     },[user])
 
-	const handleLogout = () => {
-		sessionStorage.removeItem("token");
-		setUser(null);
-		setFailedAuth(true);
-	};
 
 	if (failedAuth) {
 		return (

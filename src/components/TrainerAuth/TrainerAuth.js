@@ -1,20 +1,7 @@
-import './CurrentClientProgram.scss'
-import Main from '../../components/Main/Main'
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
-import Header from '../../components/Header/Header';
-import TrainerMain from '../../components/TrainerMain/TrainerMain';
-import TrainerFooter from '../../components/TrainerFooter/TrainerFooter';
-import { API_URL } from '../../util';
-
-
-
-function CurrentClientProgram () {
-
+function Authorization (){
+    
     const [user, setUser] = useState(null);
 	const [failedAuth, setFailedAuth] = useState(false);
-    const {clientId, programId} = useParams()
 
 	useEffect(() => {
 		const token = sessionStorage.getItem('token')
@@ -60,15 +47,4 @@ function CurrentClientProgram () {
 			</main>
 		);
 	}
-
-    return (
-        <>
-            <Header />
-
-            <TrainerMain clientId={clientId} programId={programId || 1}/>
-			<TrainerFooter />
-        </>
-    )
 }
-
-export default CurrentClientProgram

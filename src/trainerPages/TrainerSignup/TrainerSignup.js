@@ -2,7 +2,6 @@ import "./TrainerSignup.scss";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Input from "../../components/Input/Input";
 import InputUpgrade from "../../components/InputUpgrade/InputUpgrade";
 import { API_URL } from "../../util";
 

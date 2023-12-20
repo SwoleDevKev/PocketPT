@@ -1,18 +1,21 @@
-import './WeekOverview.scss'
-import WelcomeHeader from '../../components/WelcomeHeader/WelcomeHeader'
-import Main from '../../components/Main/Main'
+import './CurrentClientProgram.scss'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import Footer from '../../components/Footer/Footer';
+import { Link, useParams } from 'react-router-dom';
+import Header from '../../components/Header/Header';
+import TrainerMain from '../../components/TrainerMain/TrainerMain';
+import TrainerFooter from '../../components/TrainerFooter/TrainerFooter';
 import { API_URL } from '../../util';
 
 
 
-function WeekOverview () {
+function CurrentClientProgram () {
+
+	const {clientId, programId} = useParams()
 
     const [user, setUser] = useState(null);
 	const [failedAuth, setFailedAuth] = useState(false);
+    
 
 	useEffect(() => {
 		const token = sessionStorage.getItem('token')
@@ -22,12 +25,13 @@ function WeekOverview () {
 		}
 
 		axios
-			.get(`${API_URL}/api/clients/current`, {
+			.get(`${API_URL}/api/trainers/current`, {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}
 			})
 			.then((response) => {
+				console.log(response.data);
 				setUser(response.data)
 			})
 			.catch((error) => {
@@ -35,13 +39,9 @@ function WeekOverview () {
 				setFailedAuth(true)
 			})
 
+		
 	}, []);
 
-	const handleLogout = () => {
-		sessionStorage.removeItem("token");
-		setUser(null);
-		setFailedAuth(true);
-	};
 
 	if (failedAuth) {
 		return (
@@ -64,11 +64,12 @@ function WeekOverview () {
 
     return (
         <>
-            <WelcomeHeader name={user.first_name}/>
-            <Main programId={user.program_id}/>
-            <Footer />
+            <Header />
+
+            <TrainerMain clientId={clientId} programId={programId || 1}/>
+			<TrainerFooter />
         </>
     )
 }
 
-export default WeekOverview
+export default CurrentClientProgram

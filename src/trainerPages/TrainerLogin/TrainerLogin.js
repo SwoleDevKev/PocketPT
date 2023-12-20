@@ -1,5 +1,4 @@
 import './TrainerLogin.scss';
-import Input from "../../components/Input/Input";
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
@@ -23,6 +22,7 @@ function TrainerLogin() {
 		})
         .catch((error) => {
             setSuccess(false);
+            console.log(error);
             setError(error.response.data);
         });
         

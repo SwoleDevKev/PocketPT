@@ -1,10 +1,9 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { API_URL, defaultAvatar } from '../../util';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
 import './ClientProfile.scss'
 
 

@@ -21,7 +21,7 @@ function CustomWorkouts (){
 
   useEffect(()=>{
     async function getWorkouts(){
-        const response = await axios.get(`${API_URL}/api/workouts`)
+        const response = await axios.get(`${API_URL}/api/workouts/new`)
         console.log(response.data)
         setWorkouts(response.data)
      }
@@ -120,7 +120,7 @@ function CustomWorkouts (){
                 </div>
             </div>
             {modalVisibility && <BuildDailyWorkout setModalVisibility={setModalVisibility} workout={currentWorkout}/>}
-            {addModalVisibility && <CreateDailyWorkout setModalVisibility={setAddModalVisibility} />}
+            {addModalVisibility && <CreateDailyWorkout setModalVisibility={setAddModalVisibility} user={user} />}
 
             <TrainerFooter />
         </>

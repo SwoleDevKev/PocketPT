@@ -1,13 +1,23 @@
-import { useNavigate } from "react-router-dom"
+import axios from "axios";
+import { API_URL } from "../../util";
 import Input from "../Input/Input"
 import "./CreateDailyWorkout.scss"
 
 
-function CreateDailyWorkout ({setAddModalVisibility}){
+function CreateDailyWorkout ({setAddModalVisibility, user}){
 
-    const handleWorkoutSubmit = (event)=>{
-        event.preventDefault()
+    const handleWorkoutSubmit = async (event)=>{
+        event.preventDefault();
+      
 
+        const newWorkout = {
+            "trainer_id" : user.id ,
+            "dailyWorkout_name" : event.target.name.value,
+            "dailyWorkout_details" : event.target.details.value
+        }
+
+       const response = await axios.post(`${API_URL}/api/workouts/new`, newWorkout);
+       console.log(response);
         
     }
 

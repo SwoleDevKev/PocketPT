@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import TrainerFooter from '../../components/TrainerFooter/TrainerFooter';
-import UploadAndDisplayImage from '../../components/UploadAndDisplayImage/UploadAndDisplayImage';
 import { API_URL, defaultAvatar } from '../../util';
 import './TrainerProfile.scss'
 

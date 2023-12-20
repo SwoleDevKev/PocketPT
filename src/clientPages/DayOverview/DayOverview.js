@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import './DayOverview.scss'
 import ExerciseCard from '../../components/ExerciseCard/ExerciseCard'
 import Header from '../../components/Header/Header';
@@ -20,7 +20,7 @@ function DayOverview (){
           setExercises(response.data)
         }
         getExercises()
-    },[])
+    },[id])
     const navigate = useNavigate()
 
     const [user, setUser] = useState(null);

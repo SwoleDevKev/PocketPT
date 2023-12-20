@@ -1,8 +1,7 @@
 import "./Signup.scss";
 import { useEffect, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import Input from "../../components/Input/Input";
 import InputUpgrade from "../../components/InputUpgrade/InputUpgrade";
 import { API_URL } from "../../util";
 
