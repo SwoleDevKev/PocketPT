@@ -1,7 +1,6 @@
-const API_URL = `http://localhost:8085`
-const API_KEY = `AIzaSyC-CwdgJEu98oSRi3lCPN82aiHUuH0Fa3g`
+const API_URL = `https://pocket-pt-b3b114968383.herokuapp.com`
+const defaultAvatar = `${API_URL}/images/profile.png`
 
 
 
-
-export {API_URL, API_KEY}
+export {API_URL, defaultAvatar}

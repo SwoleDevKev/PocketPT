@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Input from "../../components/Input/Input";
+import InputUpgrade from "../../components/InputUpgrade/InputUpgrade";
+import { API_URL } from "../../util";
 
 function TrainerSignup () {
     const [error, setError] = useState("");
@@ -12,7 +14,7 @@ function TrainerSignup () {
         event.preventDefault();
 
         axios
-            .post("http://localhost:8085/api/trainers/register", {
+            .post(`${API_URL}/api/trainers/register`, {
                 email: event.target.email.value,
                 password: event.target.password.value,
                 first_name: event.target.first_name.value,
@@ -31,15 +33,20 @@ function TrainerSignup () {
     };
 
     return (
+
+        <>
+        <div className="signup-top">
+            <Link to='/' className="circle"><p className="circle__text">&#8592; Home</p></Link>
+        </div>
         <main className="signup-page">
             <form className="signup" onSubmit={handleSubmit}>
                 <h1 className="signup__title">Trainer Sign up</h1>
 
-                <Input type="text" name="first_name" label="First name" />
-                <Input type="text" name="last_name" label="Last name" />
-                <Input type="text" name="phone" label="Phone" />
-                <Input type="text" name="email" label="Email" />
-                <Input type="password" name="password" label="Password" />
+                <InputUpgrade type="text" name="first_name" label="First name" />
+                <InputUpgrade type="text" name="last_name" label="Last name" />
+                <InputUpgrade type="text" name="phone" label="Phone" />
+                <InputUpgrade type="text" name="email" label="Email" />
+                <InputUpgrade type="password" name="password" label="Password" />
 
                 <button className="signup__button">Sign up</button>
 
@@ -47,9 +54,11 @@ function TrainerSignup () {
                 {error && <div className="signup__message">{error}</div>}
             </form>
             <p>
-                Have an account? <Link to="/trainer/login">Log in</Link>
-            </p>
+                Have an account? 
+            </p> 
+            <Link className="signup__link" to="/trainer/login">Log in</Link>
         </main>
+        </>
     );
 }
 

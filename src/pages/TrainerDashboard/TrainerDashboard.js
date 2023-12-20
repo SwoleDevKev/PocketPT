@@ -6,6 +6,7 @@ import ClientCard from '../../components/ClientCard/ClientCard'
 import Header from '../../components/Header/Header';
 import TrainerFooter from '../../components/TrainerFooter/TrainerFooter';
 import WelcomeHeader from '../../components/WelcomeHeader/WelcomeHeader';
+import { API_URL } from '../../util';
 import './TrainerDashboard.scss'
 
 
@@ -23,7 +24,7 @@ function TrainerDashboard (){
 		}
 
 		axios
-			.get("http://localhost:8085/api/trainers/current", {
+			.get(`${API_URL}/api/trainers/current`, {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}
@@ -37,7 +38,6 @@ function TrainerDashboard (){
 				setFailedAuth(true)
 			})
 
-		// Demonstrate using auth on single ro/Users/jburton/Desktop/GitLabDemos/lecture-demos-and-reviews/week-10/client-side-auth/mdismatsek/server/routes/users.jsute
         
 		
 	}, []);
@@ -49,7 +49,7 @@ function TrainerDashboard (){
         if (user){
             console.log('check',user);
             axios
-			.get(`http://localhost:8085/api/trainers/${user.id}`, {
+			.get(`${API_URL}/api/trainers/${user.id}`, {
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},
@@ -99,16 +99,20 @@ function TrainerDashboard (){
 
 
 
-    console.log('check2',clients);
+   
     return (
         <>
-            <Header />
+            <WelcomeHeader user={user}/>
+			<h1 className='dashboard__heading'>Client Dashboard</h1>
+            <div className='client-container'>
             {clients && clients.map((user)=>{
                 return(
                     <ClientCard key={user.id} client={user} program_id={user.program_id}/>
                 )
             })}
-            <TrainerFooter />
+            </div>
+            
+            <TrainerFooter user={user}/>
         </>
     )
 }

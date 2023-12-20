@@ -17,7 +17,6 @@ function EditWorkout({program}) {
     useEffect(()=>{
         async function getWeeklyPrograms(){
            const response = await axios.get(`${API_URL}/api/programs/weekly`)
-           console.log(response)
            setWeeklyPrograms(response.data)
         }
         getWeeklyPrograms()

@@ -3,7 +3,6 @@
 .custom-checkbox-label {
     position: relative;
     cursor: pointer;
-    font-family: 'Arial', sans-serif;
     font-size: 14px;
     overflow: hidden; /* This will hide the content outside the box */
   }
@@ -20,20 +19,20 @@
     content: '\2713'; /* Unicode checkmark character */
     font-size: 24px;
     padding-left: 2px;
-    padding-bottom: 1px;
+    padding-bottom: 3px;
     color: transparent !important;
     background: #fef2e000;
     display: block;
     width: 24px;
     height: 24px;
-    border: 1px solid black;
+    border: 1px solid $white;
     margin-right: 7px;
-    left: 7px; /* Adjust based on your design */
-    top: 2px; /* Adjust based on your design */
+    position: relative;
+    top: 4px; /* Adjust based on your design */
   }
   
   .custom-checkbox-input:checked:before {
-    color: black !important;
+    color: $white !important;
   }
   
   

@@ -4,6 +4,8 @@ import Main from '../../components/Main/Main'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Footer from '../../components/Footer/Footer';
+import { API_URL } from '../../util';
 
 
 
@@ -20,13 +22,12 @@ function WeekOverview () {
 		}
 
 		axios
-			.get("http://localhost:8085/api/clients/current", {
+			.get(`${API_URL}/api/clients/current`, {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}
 			})
 			.then((response) => {
-				console.log(response.data);
 				setUser(response.data)
 			})
 			.catch((error) => {
@@ -34,19 +35,6 @@ function WeekOverview () {
 				setFailedAuth(true)
 			})
 
-		// Demonstrate using auth on single ro/Users/jburton/Desktop/GitLabDemos/lecture-demos-and-reviews/week-10/client-side-auth/mdismatsek/server/routes/users.jsute
-		axios
-			.get("http://localhost:8085/api/clients", {
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
-			})
-			.then((response) => {
-				console.log('user auth', response);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
 	}, []);
 
 	const handleLogout = () => {
@@ -76,22 +64,9 @@ function WeekOverview () {
 
     return (
         <>
-            <WelcomeHeader />
-            <main className="dashboard">
-			<h1 className="dashboard__title">Dashboard</h1>
-			<p>
-				Welcome back, {user.first_name} {user.last_name}
-			</p>
-			<h2>My Profile</h2>
-			<p>Email: {user.email}</p>
-			<p>Phone: {user.phone}</p>
-			<p>Address: {user.address}</p>
-
-			<button className="dashboard__logout" onClick={handleLogout}>
-				Log out
-			</button>
-		    </main>
+            <WelcomeHeader name={user.first_name}/>
             <Main programId={user.program_id}/>
+            <Footer />
         </>
     )
 }

@@ -1,0 +1,33 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+
+.assign{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    &__button{
+        @include button;
+        width: 25%;
+        background-color: $light-blue;
+        color: $yellow;
+
+        &:hover{
+            background-color: rgba($light-blue, $alpha: .9);
+            border: 2px solid $light-blue;
+        }
+    }
+
+    &__heading{
+        text-align: center;
+    }
+
+    &__label{
+        text-align: center;
+    }
+    &__select{
+        margin: 0 2rem;
+    }
+}

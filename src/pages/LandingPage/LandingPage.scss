@@ -1,0 +1,129 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+
+@keyframes drop {
+    from {
+      transform: translatey(-100%);
+    }
+  
+    to {
+      transform: translatey(0%);
+    }
+  }
+
+
+.landing-top{
+    display: flex;
+    flex-direction: column;
+    border-radius:  20% 20% 0 0;
+    height:60vh;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+
+    @include tablet {
+        width: 40%;
+        height: 100vh;
+     }
+
+
+    
+    &__image{
+        height: 100%;
+
+        @include tablet {
+            width: 100%
+        }
+
+        &--inner{
+            height: 30%;
+            position: absolute;
+            padding-left: 10px;
+            animation: 3s infinite drop;
+
+            @include tablet {
+                width: 70%;
+            }
+            
+        }
+    }
+    &__image-container{
+        height: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    
+    }
+    &__heading{
+        font-family: 'Titillium bold';
+        font-size: 48px;
+        color: $dark-blue;
+    }
+    &__span{
+        color: $yellow;
+    }
+
+    &__link{
+        text-decoration: none;
+        text-align: center;
+        color: blue;
+
+        &:hover {
+           cursor: pointer; 
+        }
+    }
+}
+.landing {
+    background-color: $white;
+    @include tablet {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+}
+
+.landing-bottom{
+    display: flex;
+    flex-direction: column;
+    border-radius:  10% 10% 0 0;
+    background-color: $dark-blue;
+    height: 40vh;
+    justify-content: center;
+    align-items: center;
+
+    @include tablet {
+       width: 40%;
+       height: 50vh;
+       border-radius: 10%;
+
+    }
+
+    &__link{
+        text-decoration: none;
+        text-align: center;
+        @include button;
+        color: $white;
+        border-radius: 10px;
+        width:50%;
+        font-family: 'Titillium bold';
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include tablet {
+            width: 75%;
+        }
+
+        &:hover {
+           cursor: pointer; 
+        }
+    }
+
+    &__link--alt{
+        background-color: transparent;
+        border: 2px solid $yellow;
+    }
+}

@@ -4,11 +4,12 @@
 .footer {
     display: flex;
     height: 10vh;
-    background-color: rgba($color: $dark-blue, $alpha: .9);
+    background-color: $dark-blue;
     justify-content: space-between;
-    position: fixed;
+    position: sticky;
     bottom: 0;
     width: 100%;
+    z-index: 2;
 
     &__link{
         display: flex;

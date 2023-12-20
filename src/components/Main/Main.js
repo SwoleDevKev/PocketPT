@@ -22,12 +22,12 @@ function Main({programId}){
     if (program){
         return(
         
-            <>
+            <div className='main'>
               <h1 className='main__heading'>Get Started</h1>
               {program && program.map((week, index)=>{
-                return <WeekCard week={week} weekNum={index+1} />
+                return <WeekCard week={week} weekNum={index+1} index={index} />
               })}
-            </>
+            </div>
           ) 
     } else {
         return (

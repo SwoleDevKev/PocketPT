@@ -1,8 +1,10 @@
 import "./Signup.scss";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Input from "../../components/Input/Input";
+import InputUpgrade from "../../components/InputUpgrade/InputUpgrade";
+import { API_URL } from "../../util";
 
 function Signup () {
     const [error, setError] = useState("");
@@ -12,7 +14,7 @@ function Signup () {
 
     useEffect(()=>{
         async function getTrainers(){
-          const response = await axios.get('http://localhost:8085/api/trainers')
+          const response = await axios.get(`${API_URL}/api/trainers`)
           console.log(response.data)
           setTrainers(response.data)
         }
@@ -22,7 +24,7 @@ function Signup () {
         event.preventDefault();
 
         axios
-            .post("http://localhost:8085/api/clients/register", {
+            .post(`${API_URL}/api/clients/register`, {
                 email: event.target.email.value,
                 password: event.target.password.value,
                 first_name: event.target.first_name.value,
@@ -41,27 +43,37 @@ function Signup () {
             });
     };
 
+
     return (
+
+        <>
+        <div className="signup-top">
+            <Link to='/' className="circle"><p className="circle__text">&#8592; Home</p></Link>
+        </div>
         <main className="signup-page">
             <form className="signup" onSubmit={handleSubmit}>
                 <h1 className="signup__title">Client Sign up</h1>
 
-                <Input type="text" name="first_name" label="First name" />
-                <Input type="text" name="last_name" label="Last name" />
-                <Input type="text" name="phone" label="Phone" />
-                <Input type="text" name="email" label="Email" />
-                <Input type="password" name="password" label="Password" />
-                <label>Trainers</label>
-                <select name="trainer_id" >
-                <option value='' disabled selected>Please select</option>
-                    {trainers && trainers.map((trainer)=>{
-                        return(
-                            <option key={trainer.id} value={trainer.id}>
-                        {trainer.first_name +' '+trainer.last_name} </option>
-                        )
-                        
-                    })}
-                </select>
+                <InputUpgrade type="text" name="first_name" label="First name" />
+                <InputUpgrade type="text" name="last_name" label="Last name" />
+                <InputUpgrade type="text" name="phone" label="Phone" />
+                <InputUpgrade type="text" name="email" label="Email" />
+                <InputUpgrade type="password" name="password" label="Password" />
+                
+                <div className="field">
+                    
+                    <label className="field__label" >Trainer</label>
+                    <select name="trainer_id" className="field__input">
+                    <option value='' disabled selected>Please select</option>
+                        {trainers && trainers.map((trainer)=>{
+                            return(
+                                <option key={trainer.id} value={trainer.id}>
+                            {trainer.first_name +' '+trainer.last_name} </option>
+                            )
+                            
+                        })}
+                    </select>
+                </div>
 
                 <button className="signup__button">Sign up</button>
 
@@ -69,9 +81,11 @@ function Signup () {
                 {error && <div className="signup__message">{error}</div>}
             </form>
             <p>
-                Have an account? <Link to="/login">Log in</Link>
+                Have an account? 
             </p>
+            <Link className="signup__link" to="/login">Log in</Link>
         </main>
+        </>
     );
 }
 

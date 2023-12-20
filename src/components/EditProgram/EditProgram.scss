@@ -1,0 +1,10 @@
+.program-edit{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    &__entry-container{
+        display: flex;
+        justify-content: space-around;
+    }
+}

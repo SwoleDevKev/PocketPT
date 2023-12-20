@@ -1,0 +1,16 @@
+@use '../../styles/mixins' as * ;
+@use '../../styles/variables' as * ;
+
+
+
+.custom-workout{
+    &__button-container{
+        display: flex;
+        justify-content: center
+    }
+    &__button{
+        @include button;
+        width: 50%;
+        
+    }
+}

@@ -6,7 +6,6 @@ import './WeeklyProgramCard.scss'
 
 function WeeklyProgramCard({program}){
 
-    console.log(program);
     const [editWorkoutModal , setEditWorkoutModal] = useState(false)
 
     const handleProgramModal = ()=>{
@@ -18,13 +17,13 @@ function WeeklyProgramCard({program}){
     }
 
     return(
-        <section>
-            <div>
-                <h3>{program['weekly-program_name']}</h3>
-                <p>{program['weekly-program_details']}</p>
+        <section className="program-card">
+            <div className="program-card__content">
+                <h3 className="program-card__heading">{program['weekly-program_name']}</h3>
+                <p className="program-card__details" >{program['weekly-program_details']}</p>
             </div>
-            <button onClick={handleProgramModal}>Edit this program</button>
-            {editWorkoutModal && <EditWeeklyProgram program={program}/>}
+            <button className="program-card__button" onClick={handleProgramModal}>Edit this program</button>
+            {editWorkoutModal && <EditWeeklyProgram Modal={setEditWorkoutModal} program={program}/>}
         </section>
     )
 }

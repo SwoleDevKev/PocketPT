@@ -1,0 +1,31 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as * ;
+
+
+
+.dashboard{
+    @include section-padding;
+
+    &__title{
+        text-align: center;
+        
+    }
+    &__avatar-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__avatar{
+        height:48px;
+        width: 48px;
+        margin-bottom: 1rem;
+    }
+
+    &__content{
+        color: $dark-blue;
+    }
+
+    &__logout{
+        @include button;
+    }
+}

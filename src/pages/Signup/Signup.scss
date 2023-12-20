@@ -1,29 +1,45 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
 .signup-page {
-    background-color: #f5f5f5;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
+    border-radius:  10% 10% 0 0;
+    background-color: $dark-blue;
+    justify-content: center;
+    align-items: center;
+
+    @include tablet {
+        width: 50%;
+        margin: auto;
+    }
+        
+
+    p,a {
+        text-decoration: none;
+        color: $white;
+    }
 }
 
 .signup {
     display: flex;
     flex-direction: column;
-    width: 22rem;
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
     border-radius: 0.5rem;
-    padding: 2rem 1.5rem;
     margin-bottom: 1rem;
+    width: 100%;
+    background-color: $dark-blue;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
 
     &__title {
         margin-top: 0;
         margin-bottom: 1.5rem;
         text-align: center;
         font-size: 1.5rem;
-        border-bottom: 5px solid #ffcf00;
         padding-bottom: 0.5rem;
         align-self: center;
     }
@@ -50,4 +66,58 @@
         padding: 0.75rem;
         margin-top: 2rem;
     }
+
+    &__link{
+        padding-bottom: 2rem ;
+    }
 }
+
+.signup-top{
+    height:20vh;
+    position: relative;
+}
+
+
+
+.circle{
+    height:150px;
+    width: 150px;
+    border-radius: 50%;
+    background-color: $yellow;
+    position: relative;
+    bottom:30px;
+    right: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+
+    &__text{
+        color: $white;
+    }
+}
+
+
+
+
+
+.signup {
+    
+
+    
+
+    &__button {
+        @include button;
+        width: 50%;
+        border-radius: 0.5rem;
+
+    }
+
+    &__message {
+        border-left: 5px solid #ddd;
+        padding: 0.75rem;
+        margin-top: 2rem;
+    }
+}
+
+

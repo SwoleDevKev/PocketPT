@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import { API_URL } from '../../util'
 import EditProgram from '../EditProgram/EditProgram'
 import './ProgramCard.scss'
 
@@ -15,15 +17,20 @@ function ProgramCard({program}){
             setEditProgramModal(false)
         }
     }
-
+    useEffect(()=>{
+        const getProgramWorkouts = async () =>{
+            await axios.get(`${API_URL}/api/workouts/${program.id}`)
+        };
+        getProgramWorkouts()
+    },[])
     return(
-        <section>
-            <div>
-                <h3>{program.program_name}</h3>
-                <p>{program.program_details}</p>
+        <section className='program-card'>
+            <div className='program-card__content'>
+                <h3 className='program-card__heading'>{program.program_name}</h3>
+                <p className='program-card__details'>{program.program_details}</p>
             </div>
-            <button onClick={handleProgramModal}>Edit this program</button>
-            {editProgramModal && <EditProgram program={program}/>}
+            <button className='program-card__button' onClick={handleProgramModal}>Edit this program</button>
+            {editProgramModal && <EditProgram setEditProgramModal={setEditProgramModal} program={program}/>}
         </section>
     )
 }

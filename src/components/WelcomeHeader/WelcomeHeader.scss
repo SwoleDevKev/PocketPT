@@ -13,25 +13,28 @@
     
     &__welcome-block{
         display: flex; 
-        justify-content: space-around;
-        width: 50%;
+        width: 70%;
         align-items: center;
 
     }
     &__heading{
-        @include page-header-font;
+        @include subheader-font;
+        font-family: 'Titillium';
+
     }
 
     &__icon{
+        width:36px;
         min-height: 36px;
         min-width: 36px;
-        max-height: 36px;
-        max-width: 36px;
+        max-height: 48px;
+        max-width: 48px;
         border-radius: 50%;
         display: flex;
         background-color: $white;
         justify-content: center;
         align-items: center;
+        margin-right: .5rem;
     }
     &__logo-container{
         order: -1;

@@ -3,9 +3,8 @@ import Input from "../Input/Input"
 import "./CreateDailyWorkout.scss"
 
 
-function CreateDailyWorkout (){
+function CreateDailyWorkout ({setAddModalVisibility}){
 
-    navigate = useNavigate()
     const handleWorkoutSubmit = (event)=>{
         event.preventDefault()
 

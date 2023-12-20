@@ -2,7 +2,11 @@
 @use '../../styles/mixins' as *;
 
 .main{
+    height: fit-content;
+    min-height: 80vh;
     &__heading {
         @include section-padding;
+        text-align: center;
     }
 }
+
