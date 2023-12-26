@@ -1,26 +1,26 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
 import { API_URL } from '../../util'
 import './BuildDailyWorkout.scss'
 
 
-function BuildDailyWorkout ({workout, setModalVisibility }){
+function BuildDailyWorkout ({workout, setModalVisibility , exList, setExList}){
 
-    const navigate = useNavigate()
 
     const [exerciseBank, setExerciseBank ]= useState([])
+
     let videoId = ''
 
     const addExercise = async (exercise)=>{
-        const response = await axios.post(`${API_URL}/api/workouts`,{
-            "dailyWorkout_id": workout.id,
-            "exercise_id": exercise.id,
-            
+         await axios.post(`${API_URL}/api/workouts`,{
+            "daily_workout_id": workout.id,
+            "exercise_id": exercise.id,  
         })
 
         alert(`added ${exercise.exercise_name}`)
-        navigate(-1)
+        exList ? setExList(false) : setExList(true)
+        setModalVisibility(false)
+
     }
 
     useEffect(()=>{

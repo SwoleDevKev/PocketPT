@@ -1,32 +1,28 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
 import { API_URL } from '../../util'
-import './RemoveExercises.scss'
+import './ViewExercisesCustom.scss'
 
 
-function RemoveExercises ({workout}){
+function ViewExercisesCustom ({workout, exList, setExList }){
     
-
-    const navigate = useNavigate()
-
     const [deleteModalVisibility, setDeleteModalVisibility] = useState(null)
-    const [deleteWorkout, setDeleteWorkout] = useState(null)
     const [exerciseBank, setExerciseBank ]= useState([])
+
     let videoId = ''
 
     const removeExercise = async (exercise)=>{
         const response = await axios.delete(`${API_URL}/api/workouts/${exercise.id}`)
         alert('done')
-
         alert(`removed ${exercise.exercise_name}`)
+
+        exList ? setExList(false) : setExList(true)
     }
 
     const handleDeleteModal = (workout)=>{
         
         if (!deleteModalVisibility) {
         setDeleteModalVisibility(true);
-        setDeleteWorkout(workout);
         } else {
             setDeleteModalVisibility(false);
         }
@@ -34,12 +30,12 @@ function RemoveExercises ({workout}){
 
     useEffect(()=>{
         async function getCurrentVideos(){
-            const response = await axios.get(`${API_URL}/api/exercises/${workout.id}`)
+            const response = await axios.get(`${API_URL}/api/exercises/custom/${workout.id}`)
             setExerciseBank(response.data)
         }
 
         getCurrentVideos()
-    },[])
+    },[exList])
     return(
         <>
         <button className='workout-card__button' onClick={()=>{ handleDeleteModal(workout)}}> View Exercises</button>
@@ -70,4 +66,4 @@ function RemoveExercises ({workout}){
     
 }
 
-export default RemoveExercises
+export default ViewExercisesCustom

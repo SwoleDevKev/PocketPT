@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import BuildDailyWorkout from '../../components/BuildDailyWorkout/BuildDailyWorkout'
 import CreateDailyWorkout from '../../components/CreateDailyWorkout/CreateDailyWorkout'
 import Header from '../../components/Header/Header'
-import RemoveExercises from '../../components/RemoveExercises/RemoveExercises'
+import ViewExercisesCustom from '../../components/ViewExercisesCustom/ViewExercisesCustom'
 import TrainerFooter from '../../components/TrainerFooter/TrainerFooter'
 import { API_URL } from '../../util'
 
@@ -17,6 +17,8 @@ function CustomWorkouts (){
     const [addModalVisibility, setAddModalVisibility] = useState(null)
 
     const [currentWorkout, setCurrentWorkout] = useState(null)
+    const [exList, setExList ]= useState(null)
+
 
 
   useEffect(()=>{
@@ -107,7 +109,7 @@ function CustomWorkouts (){
                         <h3 className='workout-card__heading'>{workout['daily-workout_name']}</h3>
                         <p className='workout-card__details'>{workout['daily-workout_details']}</p>
                         <button className='workout-card__button' onClick={()=>{ handleModal(workout)}} >Add Exercises</button>
-                        <RemoveExercises workout={workout}/>
+                        <ViewExercisesCustom exList={exList} setExList={setExList} workout={workout}/>
                     </div>
                     
                     
@@ -119,7 +121,7 @@ function CustomWorkouts (){
                     <button onClick={handleAddModal} className='custom-workout__button'>Add New Workout</button>
                 </div>
             </div>
-            {modalVisibility && <BuildDailyWorkout setModalVisibility={setModalVisibility} workout={currentWorkout}/>}
+            {modalVisibility && <BuildDailyWorkout  exList={exList} setExList={setExList} setModalVisibility={setModalVisibility} workout={currentWorkout}/>}
             {addModalVisibility && <CreateDailyWorkout setModalVisibility={setAddModalVisibility} user={user} />}
 
             <TrainerFooter />

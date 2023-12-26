@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import BuildDailyWorkout from '../../components/BuildDailyWorkout/BuildDailyWorkout'
 import Header from '../../components/Header/Header'
-import RemoveExercises from '../../components/RemoveExercises/RemoveExercises'
+import RemoveExercises from '../../components/ViewExercises/ViewExercises'
 import TrainerFooter from '../../components/TrainerFooter/TrainerFooter'
 import { API_URL } from '../../util'
 import './DailyWorkouts.scss'
@@ -24,14 +24,15 @@ function DailyWorkouts (){
      getWorkouts()
  },[])
 
-    const handleModal = (workout)=>{
-        if (!modalVisibility) {
-            setModalVisibility(true);
-            setCurrentWorkout(workout);
-        } else {
-            setModalVisibility(false);
-        }
-    }
+    // Finalize
+    // const handleModal = (workout)=>{
+    //     if (!modalVisibility) {
+    //         setModalVisibility(true);
+    //         setCurrentWorkout(workout);
+    //     } else {
+    //         setModalVisibility(false);
+    //     }
+    // }
 
     const [user, setUser] = useState(null);
 	const [failedAuth, setFailedAuth] = useState(false);
