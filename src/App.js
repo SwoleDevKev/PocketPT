@@ -1,21 +1,21 @@
 import './App.scss';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
-import ProgramOverview from './pages/WeekOverview/WeekOverview';
-import DayOverview from './pages/DayOverview/DayOverview'
-import Login from './pages/Login/Login';
-import Signup from './pages/Signup/Signup';
-import CurrentClientProgram from './pages/CurrentClientProgram/CurrentClientProgram';
-import TrainerLogin from './pages/TrainerLogin/TrainerLogin';
-import TrainerSignup from './pages/TrainerSignup/TrainerSignup';
-import LandingPage from './pages/LandingPage/LandingPage';
-import TrainerDashboard from './pages/TrainerDashboard/TrainerDashboard';
-import TrainerPrograms from './pages/TrainerPrograms/TrainerPrograms';
-import DailyWorkouts from './pages/DailyWorkouts/DailyWorkouts';
-import Journal from './pages/Journal/Journal';
-import TrainerProfile from './pages/TrainerProfile/TrainerProfile';
-import ClientProfile from './components/ClientProfile/ClientProfile';
+import ProgramOverview from './clientPages/WeekOverview/WeekOverview';
+import DayOverview from './clientPages/DayOverview/DayOverview'
+import Login from './clientPages/Login/Login';
+import Signup from './clientPages/Signup/Signup';
+import CurrentClientProgram from './trainerPages/CurrentClientProgram/CurrentClientProgram';
+import TrainerLogin from './trainerPages/TrainerLogin/TrainerLogin';
+import TrainerSignup from './trainerPages/TrainerSignup/TrainerSignup';
+import LandingPage from './trainerPages/LandingPage/LandingPage';
+import TrainerDashboard from './trainerPages/TrainerDashboard/TrainerDashboard';
+import TrainerPrograms from './trainerPages/TrainerPrograms/TrainerPrograms';
+import DailyWorkouts from './trainerPages/DailyWorkouts/DailyWorkouts';
+import Journal from './clientPages/Journal/Journal';
+import TrainerProfile from './trainerPages/TrainerProfile/TrainerProfile';
+import ClientProfile from './clientPages/ClientProfile/ClientProfile';
 import BuildDailyWorkout from './components/BuildDailyWorkout/BuildDailyWorkout';
-import CustomWorkouts from './pages/CustomWorkouts/CustomWorkouts'
+import CustomWorkouts from './trainerPages/CustomWorkouts/CustomWorkouts'
 
 
 function App() {

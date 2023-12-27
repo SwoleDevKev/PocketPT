@@ -1,4 +1,4 @@
-const API_URL = `https://pocket-pt-b3b114968383.herokuapp.com`
+const API_URL = `http://localhost:8085`
 const defaultAvatar = `${API_URL}/images/profile.png`
 
 

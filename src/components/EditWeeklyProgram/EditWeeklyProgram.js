@@ -114,7 +114,7 @@ function EditWeeklyProgram({program, Modal}) {
 
 
             <div className="weekly-program-edit">
-                <label className='edit__label' htmlFor='program'>day3 workouts</label>
+                <label className='edit__label' htmlFor='program'>day 3 workouts</label>
                 <select
                     className='item-availability__input item-availability__input--select'
                     name="weekly-program"
@@ -128,6 +128,7 @@ function EditWeeklyProgram({program, Modal}) {
                             {program['daily-workout_name']}
                         </option>
                     ))}
+                    
                 </select>
 
             </div>
@@ -154,7 +155,7 @@ function EditWeeklyProgram({program, Modal}) {
 
 
             <div className="weekly-program-edit">
-                <label className='edit__label' htmlFor='program'>day5 workouts</label>
+                <label className='edit__label' htmlFor='program'>day 5 workouts</label>
                 <select
                     className='item-availability__input item-availability__input--select'
                     name="weekly-program"
