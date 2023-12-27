@@ -15,20 +15,22 @@ function CustomWorkouts (){
     const [workouts, setWorkouts] = useState(null)
     const [modalVisibility, setModalVisibility] = useState(null)
     const [addModalVisibility, setAddModalVisibility] = useState(null)
-
     const [currentWorkout, setCurrentWorkout] = useState(null)
     const [exList, setExList ]= useState(null)
+    const [user, setUser] = useState(null);
+	const [failedAuth, setFailedAuth] = useState(false);
 
 
 
   useEffect(()=>{
     async function getWorkouts(){
-        const response = await axios.get(`${API_URL}/api/workouts/new`)
+        console.log(user);
+        const response = await axios.get(`${API_URL}/api/workouts/new/${user?.id}`)
         console.log(response.data)
         setWorkouts(response.data)
      }
      getWorkouts()
- },[])
+ },[user])
 
     const handleModal = (workout)=>{
         if (!modalVisibility) {
@@ -46,8 +48,7 @@ function CustomWorkouts (){
         }
     }
 
-    const [user, setUser] = useState(null);
-	const [failedAuth, setFailedAuth] = useState(false);
+   
 
 	useEffect(() => {
 		const token = sessionStorage.getItem('token')

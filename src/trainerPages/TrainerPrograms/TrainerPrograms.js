@@ -12,6 +12,10 @@ function TrainerPrograms (){
 
     const [programs, setPrograms] = useState(null)
     const [weeklyPrograms, setWeeklyPrograms] = useState(null)
+    const [customWeeklyPrograms, setCustomWeeklyPrograms] = useState([])
+    const [user, setUser] = useState(null);
+	const [failedAuth, setFailedAuth] = useState(false);
+
 
     useEffect(()=>{
        async function getPrograms(){
@@ -30,8 +34,17 @@ function TrainerPrograms (){
          getWeeklyPrograms()
      },[])
 
-    const [user, setUser] = useState(null);
-	const [failedAuth, setFailedAuth] = useState(false);
+     useEffect(()=>{
+        async function getCustomWeeklyPrograms(){
+            console.log(user);
+            const response = await axios.get(`${API_URL}/api/programs/weekly/custom/${user?.id}`)
+            console.log(response.data)
+            setCustomWeeklyPrograms(response.data)
+         }
+         getCustomWeeklyPrograms()
+     },[user])
+
+    
 
 	useEffect(() => {
 		const token = sessionStorage.getItem('token')
@@ -95,6 +108,11 @@ function TrainerPrograms (){
             <section className="program">
 
                 <h2 className="program__heading" >Weekly Programs</h2>
+                {customWeeklyPrograms && customWeeklyPrograms.map((program)=>{
+                    return(
+                        <WeeklyProgramCard key={program.id} program={program}/>
+                    )
+                })}
                 {weeklyPrograms && weeklyPrograms.map((program)=>{
                     return(
                         <WeeklyProgramCard key={program.id} program={program}/>
