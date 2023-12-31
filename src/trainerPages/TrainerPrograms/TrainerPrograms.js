@@ -119,6 +119,7 @@ function TrainerPrograms (){
                     )
                 })}
             </section>
+            <button className="btn btn-primary">Create Weekly Program</button>
             
             <h2 className="program__heading" >Daily Workouts</h2>
 
