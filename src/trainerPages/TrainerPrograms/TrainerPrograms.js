@@ -9,6 +9,7 @@ import Header from "../../components/Header/Header"
 import TrainerFooter from "../../components/TrainerFooter/TrainerFooter"
 import {Modal} from 'react-bootstrap'
 import {Button} from 'react-bootstrap'
+import Input from "../../components/Input/Input"
 
 
 function TrainerPrograms() {
@@ -144,8 +145,16 @@ function TrainerPrograms() {
                     <Modal.Title>Create A Program</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    I will not close if you click outside me. Do not even try to press
-                    escape key.
+                    <form>
+                    <Input />
+                    <Input />
+                    <Input />
+                    <Input />
+                    <Input />
+                    <Input />
+                    <Input />
+                    </form>
+                    
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
