@@ -1,6 +1,6 @@
-import "./Input.scss";
+import "./InputSelect.scss";
 
-function Input({ label, name, type }) {
+function InputSelect({ label, name, type,  }) {
     return (
         // <div className="field">
         //     <label htmlFor={name} className="field__label">
@@ -15,10 +15,10 @@ function Input({ label, name, type }) {
                     name={name}
                     id={name}
                     defaultValue={''}
-                    onChange={handleChangeday1}
+                    onChange={'handleChangeday1'}
                 >
                     <option value='' disabled selected>Please select</option>
-                    {weeklyPrograms?.map((program) => (
+                    {"weeklyPrograms"?.map((program) => (
                         <option key={program.id} value={program.id}>
                             {program['daily-workout_name']}
                         </option>
@@ -29,4 +29,4 @@ function Input({ label, name, type }) {
     );
 }
 
-export default Input;
+export default InputSelect;
