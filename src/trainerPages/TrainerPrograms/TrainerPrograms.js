@@ -54,7 +54,11 @@ function TrainerPrograms() {
     }, [user])
 
 
-    const handlePostWeeklyProgram = () => {
+    const handlePostWeeklyProgram = async (event) => {
+        event.preventDefault()
+        const response = await axios.post(`${API_URL}/api/programs/weekly/custom/${user?.id}`, {weekly_program_name: event.target.name.value, weekly_program_details: event.target.details.value})
+        console.log(response)
+        setShow(false)
 
     }
 
@@ -141,27 +145,24 @@ function TrainerPrograms() {
                 backdrop="static"
                 keyboard={false}
             >
-                <Modal.Header closeButton>
-                    <Modal.Title>Create A Program</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <form>
-                    <Input />
-                    <Input />
-                    <Input />
-                    <Input />
-                    <Input />
-                    <Input />
-                    <Input />
-                    </form>
-                    
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handlePostWeeklyProgram}>Understood</Button>
-                </Modal.Footer>
+                <form onSubmit={handlePostWeeklyProgram}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Create A Program</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        
+                            <Input name={'name'} label={"Name"}/>
+                            <Input name={'details'} label={"Details"}/>
+                        
+                        
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                        <Button variant="primary" type="submit">Create</Button>
+                    </Modal.Footer>
+                </form>
             </Modal>
 
             <h2 className="program__heading" >Daily Workouts</h2>
