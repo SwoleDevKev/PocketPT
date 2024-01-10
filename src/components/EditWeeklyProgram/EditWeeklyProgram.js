@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { API_URL } from "../../util"
 
 
-function EditWeeklyProgram({program, Modal}) {
+function EditWeeklyProgram({program, Modal, trainer_id}) {
 
     const [weeklyPrograms, setWeeklyPrograms] = useState(null)
     const [day1 , setday1] = useState(null)
@@ -16,7 +16,7 @@ function EditWeeklyProgram({program, Modal}) {
 
     useEffect(()=>{
         async function getWeeklyPrograms(){
-           const response = await axios.get(`${API_URL}/api/workouts`)
+           const response = await axios.get(`${API_URL}/api/workouts/new/${trainer_id}`)
            setWeeklyPrograms(response.data)
         }
         getWeeklyPrograms()
@@ -70,7 +70,7 @@ function EditWeeklyProgram({program, Modal}) {
 
     return (
         <form className="program-edit" onSubmit={handleSubmit}>
-            <h1 className="login__title">{`Edit ${program['weekly-program_name']}`}</h1>
+            <h1 className="login__title">{`Edit ${program['weekly_program_name']}`}</h1>
 
             <div className="weekly-program-edit">
 
