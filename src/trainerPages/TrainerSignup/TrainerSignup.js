@@ -1,6 +1,6 @@
 import "./TrainerSignup.scss";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import InputUpgrade from "../../components/InputUpgrade/InputUpgrade";
 import { API_URL } from "../../util";
@@ -8,6 +8,8 @@ import { API_URL } from "../../util";
 function TrainerSignup () {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
+    const navigate = useNavigate();
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -29,6 +31,21 @@ function TrainerSignup () {
                 setSuccess(false);
                 setError(error.response.data);
             });
+        axios
+            .post(`${API_URL}/api/trainers/login`, {
+                email: event.target.email.value,
+                password: event.target.password.value
+            })
+            .then((response)=> {
+                sessionStorage.setItem('token', response.data.token)
+			    navigate('/trainer/home')
+            })
+            .catch((error) => {
+                setSuccess(false);
+                console.log(error);
+                setError(error.response.data);
+            });
+        
     };
 
     return (

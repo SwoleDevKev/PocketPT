@@ -6,14 +6,18 @@ import { API_URL } from '../../util'
 
 function Main({programId}){
 
-    const [program, setProgram] = useState(null)
+    const [program, setProgram] = useState([])
+    
+    
     useEffect( () => {
 
         async function getProgram(){
-            const response = await axios.get(`${API_URL}/api/programs/${programId || 1}`)
+            const response = await axios.get(`${API_URL}/api/programs/${programId}`)
             setProgram(response.data)
         }
-        getProgram()
+        if(programId){
+          getProgram()
+        }  
     
     
       },[])
