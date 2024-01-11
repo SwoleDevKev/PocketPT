@@ -4,9 +4,9 @@ import { API_URL } from '../../util'
 import './BuildDailyWorkout.scss'
 
 
-function BuildDailyWorkout ({workout, setModalVisibility , exList, setExList}){
+function BuildDailyWorkout ({workout, setModalVisibility , exList, setExList, trainer_id}){
 
-
+    console.log("TRAINER ID :",trainer_id);
     const [exerciseBank, setExerciseBank ]= useState([])
 
     let videoId = ''
@@ -14,7 +14,8 @@ function BuildDailyWorkout ({workout, setModalVisibility , exList, setExList}){
     const addExercise = async (exercise)=>{
          await axios.post(`${API_URL}/api/workouts`,{
             "daily_workout_id": workout.id,
-            "exercise_id": exercise.id,  
+            "exercise_id": exercise.id, 
+            "trainer_id": trainer_id
         })
 
         alert(`added ${exercise.exercise_name}`)

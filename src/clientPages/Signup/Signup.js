@@ -1,6 +1,6 @@
 import "./Signup.scss";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import InputUpgrade from "../../components/InputUpgrade/InputUpgrade";
 import { API_URL } from "../../util";
@@ -9,6 +9,7 @@ function Signup () {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
     const [trainers, setTrainers] = useState(null)
+    const navigate = useNavigate();
 
 
     useEffect(()=>{
@@ -19,11 +20,12 @@ function Signup () {
         }
         getTrainers()
     },[])
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
-        axios
-            .post(`${API_URL}/api/clients/register`, {
+        try{
+
+            const response = await axios.post(`${API_URL}/api/clients/register`, {
                 email: event.target.email.value,
                 password: event.target.password.value,
                 first_name: event.target.first_name.value,
@@ -31,15 +33,27 @@ function Signup () {
                 phone: event.target.phone.value,
                 trainer_id: event.target.trainer_id.value
             })
-            .then(() => {
                 setSuccess(true);
                 setError("");
-                event.target.reset();
+        } catch (error) {
+            setSuccess(false);
+            setError(error.response.data);
+        }
+            
+        try {
+           const response =  await axios.post(`${API_URL}/api/clients/login`, {
+                email: event.target.email.value,
+                password: event.target.password.value
             })
-            .catch((error) => {
-                setSuccess(false);
-                setError(error.response.data);
-            });
+            sessionStorage.setItem('token', response.data.token)
+            navigate('/client')
+        } catch (error) {
+            setSuccess(false);
+            setError(error.response.data);
+        }
+        
+            
+            
     };
 
 
