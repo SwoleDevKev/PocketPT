@@ -66,7 +66,7 @@ function CurrentClientProgram () {
         <>
             <Header />
 
-            <TrainerMain clientId={clientId} programId={programId || 1}/>
+            <TrainerMain clientId={clientId} programId={programId}/>
 			<TrainerFooter />
         </>
     )

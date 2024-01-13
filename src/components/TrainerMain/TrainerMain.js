@@ -3,7 +3,6 @@ import WeekCard from '../WeekCard/WeekCard'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { API_URL } from '../../util'
-import { Link } from 'react-router-dom'
 import AssignProgram from '../AssignProgram/AssignProgram'
 
 function TrainerMain({programId, clientId}){
@@ -24,14 +23,24 @@ function TrainerMain({programId, clientId}){
     useEffect( () => {
 
         async function getProgram(){
-            const response = await axios.get(`${API_URL}/api/programs/${programId || 1}`)
+            const response = await axios.get(`${API_URL}/api/programs/${programId}`)
             setProgram(response.data)
         }
-        getProgram()
-    
-    
+        if (programId !== 'null' ){
+          getProgram()
+        }
       },[])
 
+      if (programId === 'null') {
+        return(
+          <>
+            <h2>client has no program set</h2>
+            <button className='trainer-main__button' onClick={handleModal}>Assign different Program</button>
+          </>
+         
+        )
+      }
+    
 
     if (program){
       
@@ -49,7 +58,9 @@ function TrainerMain({programId, clientId}){
               })}
             </section>
           ) 
-    } else {
+    }
+    else {
+      console.log(programId);
         return (
             <h2>Loading .........</h2>
         )

@@ -5,7 +5,10 @@
     display:flex;
     justify-content: space-around;
 }
-
+.btn-container{
+    display: flex;
+    justify-content: center
+}
 .program{
 
     @include section-padding;
