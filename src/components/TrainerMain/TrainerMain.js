@@ -24,7 +24,10 @@ function TrainerMain({programId, clientId}){
 
         async function getProgram(){
             const response = await axios.get(`${API_URL}/api/programs/${programId}`)
-            setProgram(response.data)
+
+            const filteredArr = response.data.filter((week)=> !!week)
+            console.log(filteredArr);
+            setProgram(filteredArr)
         }
         if (programId !== 'null' ){
           getProgram()
@@ -36,6 +39,7 @@ function TrainerMain({programId, clientId}){
           <>
             <h2>client has no program set</h2>
             <button className='trainer-main__button' onClick={handleModal}>Assign different Program</button>
+            {editModalVisibility && <AssignProgram setModal={setEditModalVisibility} modal={editModalVisibility} clientId={clientId} programId={programId}/>}
           </>
          
         )
@@ -53,6 +57,7 @@ function TrainerMain({programId, clientId}){
 
               </div>
               {editModalVisibility && <AssignProgram setModal={setEditModalVisibility} modal={editModalVisibility} clientId={clientId} programId={programId}/>}
+              <h3>{program[0].program_name}</h3>
               {program && program.map((week, index)=>{
                 return <WeekCard week={week} index={index} weekNum={index+1} />
               })}

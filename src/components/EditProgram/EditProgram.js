@@ -8,10 +8,10 @@ function EditProgram({ program, setEditProgramModal }) {
 
 
     const [weeklyPrograms, setWeeklyPrograms] = useState(null)
-    const [week1, setWeek1] = useState(null)
-    const [week2, setWeek2] = useState(null)
-    const [week3, setWeek3] = useState(null)
-    const [week4, setWeek4] = useState(null)
+    const [week_1, setWeek_1] = useState(null)
+    const [week_2, setWeek_2] = useState(null)
+    const [week_3, setWeek_3] = useState(null)
+    const [week_4, setWeek_4] = useState(null)
 
     useEffect(() => {
         async function getWeeklyPrograms() {
@@ -22,28 +22,28 @@ function EditProgram({ program, setEditProgramModal }) {
     }, [])
 
     const handleChangeWeek1 = (event) => {
-        setWeek1(event.target.value)
+        setWeek_1(event.target.value)
     }
     const handleChangeWeek2 = (event) => {
-        setWeek2(event.target.value)
+        setWeek_2(event.target.value)
     }
     const handleChangeWeek3 = (event) => {
-        setWeek3(event.target.value)
+        setWeek_3(event.target.value)
     }
     const handleChangeWeek4 = (event) => {
-        setWeek4(event.target.value)
+        setWeek_4(event.target.value)
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault(); 
 
-        if (week1 || week2 || week3 || week4) {
+        if (week_1 || week_2 || week_3 || week_4) {
             const response = await axios.put(`${API_URL}/api/programs`, {
                 "program_id": program.id,
-                week1,
-                week2,
-                week3,
-                week4
+                week_1,
+                week_2,
+                week_3,
+                week_4
             })
             
             if (response) {
@@ -67,8 +67,8 @@ function EditProgram({ program, setEditProgramModal }) {
                 <label className='edit__label' htmlFor='program'>Week1 workouts</label>
                 <select
                     className='item-availability__input item-availability__input--select'
-                    name="week1"
-                    id="week1"
+                    name="week_1"
+                    id="week_1"
                     defaultValue={''}
                     onChange={handleChangeWeek1}
                 >
@@ -85,8 +85,8 @@ function EditProgram({ program, setEditProgramModal }) {
                 <label className='edit__label' htmlFor='program'>Week2 workouts</label>
                 <select
                     className='item-availability__input item-availability__input--select'
-                    name="weekly-program"
-                    id="weekly-program"
+                    name="week_2"
+                    id="week_2"
                     defaultValue={''}
                     onChange={handleChangeWeek2}
                 >
@@ -103,8 +103,8 @@ function EditProgram({ program, setEditProgramModal }) {
                 <label className='edit__label' htmlFor='program'>Week3 workouts</label>
                 <select
                     className='item-availability__input item-availability__input--select'
-                    name="weekly-program"
-                    id="weekly-program"
+                    name="week_3"
+                    id="week_3"
                     defaultValue={''}
                     onChange={handleChangeWeek3}
                 >
@@ -120,8 +120,8 @@ function EditProgram({ program, setEditProgramModal }) {
                 <label className='edit__label' htmlFor='program'>Week4 workouts</label>
                 <select
                     className='item-availability__input item-availability__input--select'
-                    name="weekly-program"
-                    id="weekly-program"
+                    name="week_4"
+                    id="week_4"
                     defaultValue={''}
                     onChange={handleChangeWeek4}
                 >
