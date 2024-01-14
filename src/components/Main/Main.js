@@ -17,13 +17,14 @@ function Main({programId}){
         }
         if(programId){
           getProgram()
-        }  
+        }
+      
     
     
       },[])
 
-
-    if (program){
+      console.log(programId);
+    if (program && programId){
         return(
         
             <div className='main'>
@@ -33,7 +34,16 @@ function Main({programId}){
               })}
             </div>
           ) 
-    } else {
+    } else if(!programId){
+      return(
+        <div className='main'>
+        <h1 className='main__heading'>No Program Set</h1>
+        {program && program.map((week, index)=>{
+          return <WeekCard week={week} weekNum={index+1} index={index} />
+        })}
+      </div>
+      )
+    }else {
         return (
             <h2>Loading .........</h2>
         )

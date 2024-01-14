@@ -3,7 +3,6 @@ import WeekCard from '../WeekCard/WeekCard'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { API_URL } from '../../util'
-import { Link } from 'react-router-dom'
 import AssignProgram from '../AssignProgram/AssignProgram'
 
 function TrainerMain({programId, clientId}){
@@ -24,14 +23,28 @@ function TrainerMain({programId, clientId}){
     useEffect( () => {
 
         async function getProgram(){
-            const response = await axios.get(`${API_URL}/api/programs/${programId || 1}`)
-            setProgram(response.data)
+            const response = await axios.get(`${API_URL}/api/programs/${programId}`)
+
+            const filteredArr = response.data.filter((week)=> !!week)
+            console.log(filteredArr);
+            setProgram(filteredArr)
         }
-        getProgram()
-    
-    
+        if (programId !== 'null' ){
+          getProgram()
+        }
       },[])
 
+      if (programId === 'null') {
+        return(
+          <>
+            <h2>client has no program set</h2>
+            <button className='trainer-main__button' onClick={handleModal}>Assign different Program</button>
+            {editModalVisibility && <AssignProgram setModal={setEditModalVisibility} modal={editModalVisibility} clientId={clientId} programId={programId}/>}
+          </>
+         
+        )
+      }
+    
 
     if (program){
       
@@ -44,12 +57,15 @@ function TrainerMain({programId, clientId}){
 
               </div>
               {editModalVisibility && <AssignProgram setModal={setEditModalVisibility} modal={editModalVisibility} clientId={clientId} programId={programId}/>}
+              <h3>{program[0].program_name}</h3>
               {program && program.map((week, index)=>{
                 return <WeekCard week={week} index={index} weekNum={index+1} />
               })}
             </section>
           ) 
-    } else {
+    }
+    else {
+      console.log(programId);
         return (
             <h2>Loading .........</h2>
         )

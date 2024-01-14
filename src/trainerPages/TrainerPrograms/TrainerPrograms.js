@@ -132,8 +132,10 @@ function TrainerPrograms() {
                     )
                 })}
             </section>
-
-            <button onClick={handleShowMonthly} className="btn btn-primary">Create Monthly Program</button>
+            
+            <div className="btn-container">
+                <button onClick={handleShowMonthly} className="btn btn-primary">Create Monthly Program</button>
+            </div>
 
             <Modal
                 show={showMonthly}
@@ -170,7 +172,9 @@ function TrainerPrograms() {
                     )
                 })}
             </section>
-            <button onClick={handleShow} className="btn btn-primary">Create Weekly Program</button>
+            <div className="btn-container">
+                <button onClick={handleShow} className="btn btn-primary">Create Weekly Program</button>
+            </div>
 
             <Modal
                 show={show}
