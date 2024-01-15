@@ -59,6 +59,7 @@ function TrainerMain({programId, clientId}){
               {editModalVisibility && <AssignProgram setModal={setEditModalVisibility} modal={editModalVisibility} clientId={clientId} programId={programId}/>}
               <h3>{program[0].program_name}</h3>
               {program && program.map((week, index)=>{
+                console.log(week)
                 return <WeekCard week={week} index={index} weekNum={index+1} />
               })}
             </section>

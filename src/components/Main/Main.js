@@ -23,7 +23,7 @@ function Main({programId}){
     
       },[])
 
-      console.log(programId);
+      console.log(program);
     if (program && programId){
         return(
         

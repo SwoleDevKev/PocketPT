@@ -14,7 +14,7 @@ function WeekCard({week, weekNum, index}){
 
      useEffect(()=>{
         async function getWorkoutDays(){
-            const response = await axios.get(`${API_URL}/api/workouts/${week['weekly-program_id']}`)
+            const response = await axios.get(`${API_URL}/api/workouts/custom/${week?.id}`)
             setProgramDays(response.data)
         }
         getWorkoutDays()
