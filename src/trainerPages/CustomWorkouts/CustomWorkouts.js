@@ -39,7 +39,7 @@ function CustomWorkouts (){
             setModalVisibility(false);
         }
     }
-    const handleAddModal = ()=>{
+    const handleAddWorkoutModal = ()=>{
         if (!addModalVisibility) {
             setAddModalVisibility(true);
         } else {
@@ -118,7 +118,7 @@ function CustomWorkouts (){
                 
                 }
                 <div className='custom-workout__button-container'>
-                    <button onClick={handleAddModal} className='custom-workout__button'>Add New Workout</button>
+                    <button onClick={handleAddWorkoutModal} className='custom-workout__button'>Add New Workout</button>
                 </div>
             </div>
             {modalVisibility && <BuildDailyWorkout trainer_id={user.id} exList={exList} setExList={setExList} setModalVisibility={setModalVisibility} workout={currentWorkout}/>}
