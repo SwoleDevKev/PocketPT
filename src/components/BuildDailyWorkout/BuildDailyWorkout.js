@@ -1,7 +1,10 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { Modal } from 'react-bootstrap';
 import { API_URL } from '../../util'
+import Input from '../Input/Input';
 import './BuildDailyWorkout.scss'
+import { API_KEY } from '../../util';
 
 
 function BuildDailyWorkout ({workout, setModalVisibility , exList, setExList, trainer_id}){
@@ -9,6 +12,8 @@ function BuildDailyWorkout ({workout, setModalVisibility , exList, setExList, tr
     console.log("TRAINER ID :",trainer_id);
     const [exerciseBank, setExerciseBank ]= useState([])
     const [createExerciseModal, setCreateExerciseModal] = useState(false)
+    const [showCreateExModal, setShowCreateExModal] = useState(false)
+    const [videoResults, setVideoResults] = useState([])
 
     let videoId = ''
 
@@ -33,6 +38,14 @@ function BuildDailyWorkout ({workout, setModalVisibility , exList, setExList, tr
 
         getAllVideos()
     },[])
+    
+   async function handleGetNewExercises (event) {
+         event.preventDefault()
+       const response = await axios.get(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&part=snippet&q=${event.target.search.value}`)
+       console.log(response.data);
+       setVideoResults(response.data.items)
+    }
+
     return(
         <>
         <section className='list'>
@@ -53,10 +66,33 @@ function BuildDailyWorkout ({workout, setModalVisibility , exList, setExList, tr
             
         } )}
             <div className='list__button-container'>
-                <button className='list__button' onClick={()=>{}}>Create New Exercise</button>
+                <button className='list__button' onClick={()=>{setShowCreateExModal(true)}}>Create New Exercise</button>
             </div>
         </section>
-        {createExerciseModal && <></>}
+        <Modal show={showCreateExModal} fullscreen={true} onHide={() => setShowCreateExModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Search for New Exercise</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <form onSubmit={handleGetNewExercises}>
+                <Input type='text' label='search' name='search'></Input>
+            </form>
+            <ul>
+
+            {videoResults?.map((el)=>{
+                return(
+                    <li>
+                   <div><img src={el.snippet.thumbnails.medium.url}/></div> 
+                   <div>
+                        <h4>{el.snippet.title}</h4>
+                   </div>
+                </li>
+                )
+                
+            })}
+            </ul>
+        </Modal.Body>
+      </Modal>
         
         </>
     )
