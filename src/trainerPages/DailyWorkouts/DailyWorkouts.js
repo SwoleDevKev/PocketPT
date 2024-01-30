@@ -24,18 +24,10 @@ function DailyWorkouts (){
      getWorkouts()
  },[])
 
-    // Finalize
-    // const handleModal = (workout)=>{
-    //     if (!modalVisibility) {
-    //         setModalVisibility(true);
-    //         setCurrentWorkout(workout);
-    //     } else {
-    //         setModalVisibility(false);
-    //     }
-    // }
 
     const [user, setUser] = useState(null);
 	const [failedAuth, setFailedAuth] = useState(false);
+    const [workoutList, setWorkoutList] = useState(true)
 
 	useEffect(() => {
 		const token = sessionStorage.getItem('token')
@@ -61,7 +53,7 @@ function DailyWorkouts (){
 
         
 		
-	}, []);
+	}, [workoutList]);
 
 
 	if (failedAuth) {
@@ -105,7 +97,7 @@ function DailyWorkouts (){
                 
                 }
             </div>
-            {modalVisibility && <BuildDailyWorkout setModalVisibility={setModalVisibility} workout={currentWorkout}/>}
+            {modalVisibility && <BuildDailyWorkout setWorkoutList={setWorkoutList} setModalVisibility={setModalVisibility} workout={currentWorkout}/>}
             <TrainerFooter />
         </>
     )

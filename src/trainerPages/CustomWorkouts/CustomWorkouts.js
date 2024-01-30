@@ -17,6 +17,8 @@ function CustomWorkouts (){
     const [addModalVisibility, setAddModalVisibility] = useState(null)
     const [currentWorkout, setCurrentWorkout] = useState(null)
     const [exList, setExList ]= useState(null)
+    const [workoutList, setWorkoutList ]= useState(null)
+    const [showDaily, setShowDaily] = useState(false);
     const [user, setUser] = useState(null);
 	const [failedAuth, setFailedAuth] = useState(false);
 
@@ -29,7 +31,7 @@ function CustomWorkouts (){
         setWorkouts(response.data)
      }
      getWorkouts()
- },[user])
+ },[user,workoutList])
 
     const handleModal = (workout)=>{
         if (!modalVisibility) {
@@ -118,11 +120,12 @@ function CustomWorkouts (){
                 
                 }
                 <div className='custom-workout__button-container'>
-                    <button onClick={handleAddWorkoutModal} className='custom-workout__button'>Add New Workout</button>
+                    <button onClick={setShowDaily} className='custom-workout__button'>Add New Workout</button>
                 </div>
             </div>
             {modalVisibility && <BuildDailyWorkout trainer_id={user.id} exList={exList} setExList={setExList} setModalVisibility={setModalVisibility} workout={currentWorkout}/>}
-            {addModalVisibility && <CreateDailyWorkout setModalVisibility={setAddModalVisibility} user={user} />}
+            {showDaily && <CreateDailyWorkout exList={workoutList} setExList={setWorkoutList}
+ setShowDaily={setShowDaily} user={user} />}
 
             <TrainerFooter />
         </>

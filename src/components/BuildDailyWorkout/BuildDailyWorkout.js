@@ -38,6 +38,10 @@ function BuildDailyWorkout ({workout, setModalVisibility , exList, setExList, tr
 
         getAllVideos()
     },[])
+
+    const handleAddExercise = async function (){
+        await axios.post(`${API_URL}`)
+    }
     
    async function handleGetNewExercises (event) {
          event.preventDefault()
@@ -81,12 +85,14 @@ function BuildDailyWorkout ({workout, setModalVisibility , exList, setExList, tr
 
             {videoResults?.map((el)=>{
                 return(
-                    <li>
-                   <div><img src={el.snippet.thumbnails.medium.url}/></div> 
-                   <div>
-                        <h4>{el.snippet.title}</h4>
-                   </div>
-                </li>
+                    <li onClick={()=>{
+                        handleAddExercise(el.id.videoId)
+                    }}>
+                        <div><img src={el.snippet.thumbnails.medium.url}/></div> 
+                        <div>
+                                <h4>{el.snippet.title}</h4>
+                        </div>
+                    </li>
                 )
                 
             })}
