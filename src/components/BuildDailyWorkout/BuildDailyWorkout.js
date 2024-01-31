@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Modal } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import { API_URL } from '../../util'
 import Input from '../Input/Input';
 import './BuildDailyWorkout.scss'
@@ -11,8 +11,9 @@ function BuildDailyWorkout ({workout, setModalVisibility , exList, setExList, tr
 
     console.log("TRAINER ID :",trainer_id);
     const [exerciseBank, setExerciseBank ]= useState([])
-    const [createExerciseModal, setCreateExerciseModal] = useState(false)
     const [showCreateExModal, setShowCreateExModal] = useState(false)
+    const [showSearch, setShowSearch] = useState(true)
+
     const [videoResults, setVideoResults] = useState([])
 
     let videoId = ''
@@ -43,12 +44,18 @@ function BuildDailyWorkout ({workout, setModalVisibility , exList, setExList, tr
         await axios.post(`${API_URL}`)
     }
     
-   async function handleGetNewExercises (event) {
+   async function handlePostNewExercise (event) {
          event.preventDefault()
-       const response = await axios.get(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&part=snippet&q=${event.target.search.value}`)
-       console.log(response.data);
-       setVideoResults(response.data.items)
+    //    const response = await axios.get(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&part=snippet&q=${event.target.search.value}`)
+    //    console.log(response.data);
+    //    setVideoResults(response.data.items)
     }
+    async function handleGetNewExercises (event) {
+        event.preventDefault()
+      const response = await axios.get(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&part=snippet&q=${event.target.search.value}`)
+      console.log(response.data);
+      setVideoResults(response.data.items)
+   }
 
     return(
         <>
@@ -75,12 +82,24 @@ function BuildDailyWorkout ({workout, setModalVisibility , exList, setExList, tr
         </section>
         <Modal show={showCreateExModal} fullscreen={true} onHide={() => setShowCreateExModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Search for New Exercise</Modal.Title>
+          <Modal.Title>Create New Exercise</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <form onSubmit={handleGetNewExercises}>
-                <Input type='text' label='search' name='search'></Input>
+            <form onSubmit={handlePostNewExercise}>
+                <Input label='Name' name='name'></Input>
+                <Input  onFocus={()=>{setShowSearch(true)}} type='text' label='Add video' name='search'></Input>
+                <Button>Create</Button>
             </form>
+            <Modal show={showSearch} fullscreen={true} onHide={() => setShowSearch(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Search for Video</Modal.Title>
+                    <Modal.Body>
+                        <form onSubmit={handleGetNewExercises}>
+                            <Input onClick={()=>{}} type='text' label='Add video' name='search'></Input>
+                        </form>
+                    </Modal.Body>
+                </Modal.Header>
+            </Modal>
             <ul>
 
             {videoResults?.map((el)=>{
