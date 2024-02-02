@@ -67,7 +67,7 @@ function TrainerPrograms() {
     }
     const handlePostMonthlyProgram = async (event) => {
         event.preventDefault()
-        const response = await axios.post(`${API_URL}/api/programs/weekly/custom/${user?.id}`, {program_name: event.target.name.value, program_details: event.target.details.value})
+        const response = await axios.post(`${API_URL}/api/programs/monthly/custom/${user?.id}`, {program_name: event.target.name.value, program_details: event.target.details.value})
         console.log(response)
         setShowMonthly(false)
     }

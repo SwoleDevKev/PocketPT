@@ -1,0 +1,43 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.day-card{
+    @include section-padding;
+    text-decoration: none;
+    height:20vh;
+    display: flex;
+    align-items: center;
+    background-color: $dark-blue;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+
+    &::before{
+        box-sizing: border-box;
+        content: ' ';
+        width: 100%;
+        height:20vh;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: $light-blue;
+        @include divider;
+    }
+    &__content{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-evenly;
+        width: 100%;
+        z-index: 1;
+        color: $white;
+
+    }
+    &__span{
+        color: $yellow;
+    }
+
+
+}

@@ -1,0 +1,12 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables'as *;
+.day-overview{
+    &__heading{
+        text-align: center;
+        @include page-header-padding;
+    }
+
+    &__button{
+        @include button
+    }
+}

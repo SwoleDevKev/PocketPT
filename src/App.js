@@ -16,6 +16,7 @@ import TrainerProfile from './trainerPages/TrainerProfile/TrainerProfile';
 import ClientProfile from './clientPages/ClientProfile/ClientProfile';
 import BuildDailyWorkout from './components/BuildDailyWorkout/BuildDailyWorkout';
 import CustomWorkouts from './trainerPages/CustomWorkouts/CustomWorkouts'
+import DayOverviewEdit from './trainerPages/DayOverviewEdit/DayOverviewEdit';
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
           <Route path='/trainer/custom-workouts' element={<CustomWorkouts/>}></Route>
           <Route path='/trainer/client/:clientId/:programId' element={<CurrentClientProgram  />}></Route>
           <Route path="/trainer/workouts" element={<DailyWorkouts />} />
+          <Route path='/trainer/workout/:id' element={<DayOverviewEdit  />}></Route>
           <Route path="/trainer/profile" element={<TrainerProfile />} />
           <Route path="/trainer/add-exercise" element={<BuildDailyWorkout />} />
 

@@ -1,15 +1,14 @@
 import './WeekCard.scss'
 import dropDown from '../../assets/icons/dropDown.svg'
 import { useEffect, useState } from 'react'
-import DayCard from '../DayCard/DayCard'
 import axios from 'axios'
 import { API_URL } from '../../util'
+import TrainerDayCard from '../TrainerDayCard/TrainerDayCard'
 
 function WeekCard({week, weekNum, index}){
 
     const [dayCardVisibility, setDayCardVisibility] = useState(false)
     const [programDays, setProgramDays] = useState([])
-    const [totalExercises, setTotalExercises] = useState(0)
     
 
      useEffect(()=>{
@@ -44,7 +43,7 @@ function WeekCard({week, weekNum, index}){
             </div>
         </section>
         {dayCardVisibility && programDays.map((day, index)=>{
-            return <DayCard dailyWorkout={day} dayNum={index+1}/> 
+            return <TrainerDayCard dailyWorkout={day} dayNum={index+1}/> 
         })}
     </>
     )
