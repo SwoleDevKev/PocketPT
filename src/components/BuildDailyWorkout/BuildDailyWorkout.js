@@ -1,8 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState, useRef } from 'react'
-import { Button, Modal } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { API_URL, API_KEY } from '../../util'
-import Input from '../Input/Input';
 import './BuildDailyWorkout.scss'
 
 function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, trainer_id }) {
@@ -11,6 +10,8 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
     const [showSearch, setShowSearch] = useState(false);
     const formRef = useRef();
     const inputRef = useRef(null);
+    const [name, setName] = useState('')
+    const [exerciseImage, setExerciseImage] = useState('')
     const [videoResults, setVideoResults] = useState([]);
 
     let videoId = ''
@@ -48,8 +49,12 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
         }
     };
 
-    const handleAddExercise = async function () {
-        await axios.post(`${API_URL}`)
+    const handleAddExercise = async function (videoId, videoName, videoImage) {
+        setShowSearch(false)
+        setExerciseImage(videoImage)
+        formRef.current.search.value = videoName
+
+        // await axios.post(`${API_URL}`)
     }
 
     async function handlePostNewExercise(event) {
@@ -67,7 +72,9 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
             console.error('Error fetching new exercises:', error);
         }
     };
-
+    const handleChangeName = (event) => {
+        setName(event.target.value)
+      };
 
     return (
         <>
@@ -93,29 +100,44 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
                     <button className='list__button' onClick={() => { setShowCreateExModal(true) }}>Create New Exercise</button>
                 </div>
             </section>
-            <div style={{ display: showCreateExModal ? 'block' : 'none', position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'white', zIndex: 1050 }}>
-                <div>
-                    <button onClick={() => { setShowCreateExModal(false); }}>Close</button>
-                </div>
-                <div>
-                    <form onSubmit={handlePostNewExercise}>
-                        <Input label='Name' name='name'></Input>
-                        <button onClick={() => { setShowSearch(!showSearch); }} className='btn btn-primary'>Toggle Search</button>
-                        <div className="field" style={{ display: showSearch ? 'block' : 'none' }}>
-                            <label htmlFor={'search'} className="field__label">Add video</label>
-                            <input
-                                ref={inputRef}
-                                type='text'
-                                id='none'
-                                name='search'
-                                className="field__input"
-                                onClick={(e) => { e.stopPropagation(); }}
-                            />
-                        </div>
-                        <Button type="submit">Create</Button>
-                    </form>
-                </div>
-            </div>
+            {showCreateExModal && <div className='exerciseModal'>
+                                        <div className='exerciseModal__heading-container'>
+                                            <h4 className='exerciseModal__heading'>Create New Exercise</h4>
+                                            <span className='exerciseModal__close btn-close' onClick={() => { setShowCreateExModal(false)}}></span>
+                                        </div>
+                                        <div className='exerciseModal__body'>
+                                            <form ref={formRef} onSubmit={handlePostNewExercise}>
+                                                <div className="field" >
+                                                    <label htmlFor='name' className="field__label">Name</label>
+                                                    <input
+                                                        onChange={handleChangeName}
+                                                        type='text'
+                                                        id='name'
+                                                        name='name'
+                                                        className="field__input"
+                                                        onClick={(e) => { e.stopPropagation(); }}
+                                                    />
+                                                </div>
+                                                <div className="field" >
+                                                    <label htmlFor={'search'} className="field__label">Add video</label>
+                                                    <div className='field__inputAndImage'>
+                                                        <input
+                                                            onFocus={() => { setShowSearch(true) }}
+                                                            type='text'
+                                                            id='search'
+                                                            name='search'
+                                                            className="field__input field__input--small "
+                                                            onClick={(e) => { e.stopPropagation(); }}
+                                                            
+                                                        />
+                                                        <img className='field__image' src={exerciseImage} />
+                                                    </div>
+                                                    
+                                                </div>
+                                                <Button type="submit">Create</Button>
+                                            </form>
+                                        </div>
+            </div>}
             {showSearch && <section className='searchModal'>
                 <div className='searchModal__heading-container'>
 
@@ -123,13 +145,14 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
                     <span className='searchModal__close btn-close' onClick={() => { setShowSearch(false) }}></span>
                 </div>
                 <div className='searchModal__body'>
-                    <form ref={formRef} className='searchModal__form' onSubmit={handleGetNewExercises}>
+                    <form className='searchModal__form' onSubmit={handleGetNewExercises}>
                         <div className="field">
                             <label htmlFor='search' className="field__label">Add a video</label>
                             <input
                                 ref={inputRef}
                                 className='field__input'
                                 type='text'
+                                defaultValue={name}
                                 id='search'
                                 name='search'
                                 onClick={(e) => e.stopPropagation()}
@@ -144,7 +167,7 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
                         {videoResults?.map((el) => {
                             return (
                                 <li onClick={() => {
-                                    handleAddExercise(el.id.videoId)
+                                    handleAddExercise(el.id.videoId, el.snippet.title, el.snippet.thumbnails.medium.url )
                                 }}>
                                     <div><img src={el.snippet.thumbnails.medium.url} /></div>
                                     <div>
