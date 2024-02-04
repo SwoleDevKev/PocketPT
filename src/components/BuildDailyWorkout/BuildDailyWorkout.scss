@@ -73,7 +73,8 @@
 }
 
 .searchModal{
-    position: absolute;
+    position: fixed;
+    overflow-y: scroll;
     z-index: 5;
     width:100vw;
     height: 100vh;

@@ -12,6 +12,7 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
     const inputRef = useRef(null);
     const [name, setName] = useState('')
     const [exerciseImage, setExerciseImage] = useState('')
+    const [video_link, setVideo_link] = useState('')
     const [videoResults, setVideoResults] = useState([]);
 
     let videoId = ''
@@ -52,6 +53,7 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
     const handleAddExercise = async function (videoId, videoName, videoImage) {
         setShowSearch(false)
         setExerciseImage(videoImage)
+        setVideo_link(videoId)
         formRef.current.search.value = videoName
 
         // await axios.post(`${API_URL}`)
@@ -59,9 +61,8 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
 
     async function handlePostNewExercise(event) {
         event.preventDefault()
-        //    const response = await axios.get(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&part=snippet&q=${event.target.search.value}`)
-        //    console.log(response.data);
-        //    setVideoResults(response.data.items)
+        const exercise_name = event.target.name.value
+        const response = await axios.post(`${API_URL}/api/exercises`,{ trainer_id, exercise_name, video_link })
     }
     const handleGetNewExercises = async (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
