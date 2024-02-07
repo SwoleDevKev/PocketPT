@@ -103,7 +103,7 @@ function CustomWorkouts (){
             <Header />
             <div className='workout'>
 
-                <h1 className='workout__heading'>Custom Daily Workouts</h1>
+                <h1 className='workout__heading'>Daily Workouts</h1>
                 { workouts?.map((workout) => { return(
                     
                     <>
@@ -119,8 +119,8 @@ function CustomWorkouts (){
                 )})
                 
                 }
-                <div className='custom-workout__button-container'>
-                    <button onClick={setShowDaily} className='custom-workout__button'>Add New Workout</button>
+                <div className='workout__button-container'>
+                    <button onClick={setShowDaily} className='workout__button'>Add New Workout</button>
                 </div>
             </div>
             {modalVisibility && <BuildDailyWorkout trainer_id={user.id} exList={exList} setExList={setExList} setModalVisibility={setModalVisibility} workout={currentWorkout}/>}

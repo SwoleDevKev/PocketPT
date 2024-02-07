@@ -2,8 +2,13 @@
 @use '../../styles/variables' as * ;
 
 
+.workout{
+    min-height: 80vh;
 
-.custom-workout{
+    &__heading{
+        @include page-header-padding;
+        text-align: center
+    }
     &__button-container{
         display: flex;
         justify-content: center
@@ -14,3 +19,4 @@
         
     }
 }
+
