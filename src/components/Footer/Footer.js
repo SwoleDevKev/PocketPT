@@ -5,7 +5,7 @@ import profile from '../../assets/icons/profile.png'
 import { Link } from 'react-router-dom'
 
 
-function Footer (path1,path2,path3){
+function Footer (){
     return(
         <div className='footer'>
             <Link to='/journal' className='footer__link'>

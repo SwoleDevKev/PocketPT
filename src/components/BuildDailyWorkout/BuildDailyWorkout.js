@@ -56,7 +56,6 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
         setVideo_link(videoId)
         formRef.current.search.value = videoName
 
-        // await axios.post(`${API_URL}`)
     }
 
     async function handlePostNewExercise(event) {
@@ -85,10 +84,15 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
                 {exerciseBank.map((exercise) => {
 
                     {
-                        const splitLink = exercise.video_link.split('=');
-                        const videoIdAndQuery = splitLink[1]
-                        videoId = videoIdAndQuery.split('&')[0]
+                         videoId = exercise.video_link
 
+                        if (videoId.includes('=')){
+                            const splitLink = exercise.video_link.split('=');
+                            const videoIdAndQuery = splitLink[1]
+                            videoId = videoIdAndQuery.split('&')[0]
+                        }
+                        
+                        console.log(videoId);
                     } return (
                         <div className='list__item' onClick={() => { addExercise(exercise) }}>
                             <img className='list__image' src={`http://i3.ytimg.com/vi/${videoId}/hqdefault.jpg`} />
