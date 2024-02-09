@@ -10,9 +10,11 @@
     bottom: 0;
     width: 100%;
     z-index: 2;
+    padding-top: .5rem;
 
     &__link{
         display: flex;
+        height: 100%;
         width: 30%;
         align-items: center;
         justify-content: center;
@@ -27,12 +29,13 @@
         justify-content: center;
     }
     &__pic{
-        height: 36px;
-        width: 36px;
+        height: 60%;
 
     }
     &__pic-text{
+        height: 40%;
         text-align: center;
         color: $light-grey;
+        margin: 0;
     }
 }

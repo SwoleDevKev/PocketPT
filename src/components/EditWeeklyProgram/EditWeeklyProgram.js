@@ -6,6 +6,7 @@ import { API_URL } from "../../util"
 function EditWeeklyProgram({program, Modal, trainer_id}) {
 
     const [weeklyPrograms, setWeeklyPrograms] = useState(null)
+    const [dailyWorkouts, setDailyWorkouts] = useState()
     const [day1 , setday1] = useState(null)
     const [day2 , setday2] = useState(null)
     const [day3 , setday3] = useState(null)
@@ -21,6 +22,16 @@ function EditWeeklyProgram({program, Modal, trainer_id}) {
         }
         getWeeklyPrograms()
     },[])
+
+    useEffect(()=>{
+        async function getDailyWorkouts(){
+           const response = await axios.get(`${API_URL}/api/workouts/edit/${program.id}`)
+           setDailyWorkouts(response.data)
+        }
+        getDailyWorkouts()
+    },[])
+
+ 
 
     const handleChangeday1 = (event) => {
         setday1(event.target.value)
@@ -67,151 +78,38 @@ function EditWeeklyProgram({program, Modal, trainer_id}) {
     }
        
     }
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
     return (
         <form className="program-edit" onSubmit={handleSubmit}>
             <h1 className="login__title">{`Edit ${program['weekly_program_name']}`}</h1>
 
-            <div className="weekly-program-edit">
-
-                <label className='edit__label' htmlFor='program'>Monday</label>
-                <select
-                    className='item-availability__input item-availability__input--select'
-                    name="day1"
-                    id="day1"
-                    defaultValue={''}
-                    onChange={handleChangeday1}
-                >
-                    <option value='' disabled selected>Please select</option>
-                    {weeklyPrograms?.map((program) => (
-                        <option key={program.id} value={program.id}>
-                            {program['daily-workout_name']}
-                        </option>
-                    ))}
-                </select>
-            </div>
+            {days.map((day,index) => {
 
 
 
-            <div className="weekly-program-edit">
-                <label className='edit__label' htmlFor='program'>Tuesday</label>
-                <select
-                    className='item-availability__input item-availability__input--select'
-                    name="weekly-program"
-                    id="weekly-program"
-                    defaultValue={''}
-                    onChange={handleChangeday2}
-                >
-                    <option value='' disabled selected>Please select</option>
-                    {weeklyPrograms?.map((program) => (
-                        <option key={program.id} value={program.id}>
-                            {program['daily-workout_name']}
-                        </option>
-                    ))}
-                </select>
+                console.log(`program.${day.toLowerCase()}`);
+                return (
+                    <div className="weekly-program-edit">
 
-            </div>
-
-
-            <div className="weekly-program-edit">
-                <label className='edit__label' htmlFor='program'>Wednesday</label>
-                <select
-                    className='item-availability__input item-availability__input--select'
-                    name="weekly-program"
-                    id="weekly-program"
-                    defaultValue={''}
-                    onChange={handleChangeday3}
-                >
-                    <option value='' disabled selected>Please select</option>
-                    {weeklyPrograms?.map((program) => (
-                        <option key={program.id} value={program.id}>
-                            {program['daily-workout_name']}
-                        </option>
-                    ))}
-                    
-                </select>
-
-            </div>
-
-
-            <div className="weekly-program-edit">
-                <label className='edit__label' htmlFor='program'>Thursday</label>
-                <select
-                    className='item-availability__input item-availability__input--select'
-                    name="weekly-program"
-                    id="weekly-program"
-                    defaultValue={''}
-                    onChange={handleChangeday4}
-                >
-                    <option value='' disabled selected>Please select</option>
-                    {weeklyPrograms?.map((program) => (
-                        <option key={program.id} value={program.id}>
-                            {program['daily-workout_name']}
-                        </option>
-                    ))}
-                </select>
-
-            </div>
-
-
-            <div className="weekly-program-edit">
-                <label className='edit__label' htmlFor='program'>Friday</label>
-                <select
-                    className='item-availability__input item-availability__input--select'
-                    name="weekly-program"
-                    id="weekly-program"
-                    defaultValue={''}
-                    onChange={handleChangeday5}
-                >
-                    <option value='' disabled selected>Please select</option>
-                    {weeklyPrograms?.map((program) => (
-                        <option key={program.id} value={program.id}>
-                            {program['daily-workout_name']}
-                        </option>
-                    ))}
-                </select>
-
-            </div>
-
-
-            <div className="weekly-program-edit">
-                <label className='edit__label' htmlFor='program'>Saturday</label>
-                <select
-                    className='item-availability__input item-availability__input--select'
-                    name="weekly-program"
-                    id="weekly-program"
-                    defaultValue={''}
-                    onChange={handleChangeday6}
-                >
-                    <option value='' disabled selected>Please select</option>
-                    {weeklyPrograms?.map((program) => (
-                        <option key={program.id} value={program.id}>
-                            {program['daily-workout_name']}
-                        </option>
-                    ))}
-                </select>
-
-            </div>
-
-
-            <div className="weekly-program-edit">
-                <label className='edit__label' htmlFor='program'>Sunday</label>
-                <select
-                    className='item-availability__input item-availability__input--select'
-                    name="weekly-program"
-                    id="weekly-program"
-                    defaultValue={''}
-                    onChange={handleChangeday7}
-                >
-                    <option value='' disabled selected>Please select</option>
-                    {weeklyPrograms?.map((program) => (
-                        <option key={program.id} value={program.id}>
-                            {program['daily-workout_name']}
-                        </option>
-                    ))}
-                </select>
-
-            </div>
+                        <label className='edit__label' htmlFor='program'>{day}</label>
+                        <select
+                            className='item-availability__input item-availability__input--select'
+                            name={`day${index+1}`}
+                            id={`day${index+1}`}
+                            defaultValue={`program.${day.toLowerCase()}`|| ''}
+                            onChange={`handleChangeday${index+1}`}
+                        >
+                            <option value='' disabled selected>Please select</option>
+                            {weeklyPrograms?.map((program) => (
+                                <option key={program.id} value={program.id}>
+                                    {program['daily-workout_name']}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                )
+            })}
 
             <button className="Assign__button">
                 Save

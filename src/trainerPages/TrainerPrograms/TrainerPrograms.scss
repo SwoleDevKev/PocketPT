@@ -2,8 +2,7 @@
 @use '../../styles/variables' as *;
 
 .program-container{
-    display:flex;
-    justify-content: space-around;
+    min-height:100%
 }
 .btn-container{
     display: flex;

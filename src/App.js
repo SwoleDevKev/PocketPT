@@ -10,7 +10,6 @@ import TrainerSignup from './trainerPages/TrainerSignup/TrainerSignup';
 import LandingPage from './trainerPages/LandingPage/LandingPage';
 import TrainerDashboard from './trainerPages/TrainerDashboard/TrainerDashboard';
 import TrainerPrograms from './trainerPages/TrainerPrograms/TrainerPrograms';
-import DailyWorkouts from './trainerPages/DailyWorkouts/DailyWorkouts';
 import Journal from './clientPages/Journal/Journal';
 import TrainerProfile from './trainerPages/TrainerProfile/TrainerProfile';
 import ClientProfile from './clientPages/ClientProfile/ClientProfile';
@@ -42,9 +41,8 @@ function App() {
 					<Route path="trainer/signup" element={<TrainerSignup />} />
           <Route path="/trainer/home" element={<TrainerDashboard />} />
           <Route path="/trainer/programs" element={<TrainerPrograms />} />
-          <Route path='/trainer/custom-workouts' element={<CustomWorkouts/>}></Route>
+          <Route path='/trainer/workouts' element={<CustomWorkouts/>}></Route>
           <Route path='/trainer/client/:clientId/:programId' element={<CurrentClientProgram  />}></Route>
-          <Route path="/trainer/workouts" element={<DailyWorkouts />} />
           <Route path='/trainer/workout/:id' element={<DayOverviewEdit  />}></Route>
           <Route path="/trainer/profile" element={<TrainerProfile />} />
           <Route path="/trainer/add-exercise" element={<BuildDailyWorkout />} />
