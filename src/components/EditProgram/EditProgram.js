@@ -8,6 +8,7 @@ function EditProgram({ program, setEditProgramModal }) {
 
 
     const [weeklyPrograms, setWeeklyPrograms] = useState(null)
+    const [currentWeeklyPrograms, setCurrentWeeklyPrograms] = useState(null)
     const [week_1, setWeek_1] = useState(null)
     const [week_2, setWeek_2] = useState(null)
     const [week_3, setWeek_3] = useState(null)
@@ -20,6 +21,9 @@ function EditProgram({ program, setEditProgramModal }) {
         }
         getWeeklyPrograms()
     }, [])
+    
+
+   
 
     const handleChangeWeek1 = (event) => {
         setWeek_1(event.target.value)

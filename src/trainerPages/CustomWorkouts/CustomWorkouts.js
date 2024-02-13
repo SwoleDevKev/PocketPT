@@ -125,7 +125,7 @@ function CustomWorkouts (){
             </div>
             {modalVisibility && <BuildDailyWorkout trainer_id={user.id} exList={exList} setExList={setExList} setModalVisibility={setModalVisibility} workout={currentWorkout}/>}
             {showDaily && <CreateDailyWorkout exList={workoutList} setExList={setWorkoutList}
- setShowDaily={setShowDaily} user={user} />}
+            setShowDaily={setShowDaily} user={user} />}
 
             <TrainerFooter />
         </>

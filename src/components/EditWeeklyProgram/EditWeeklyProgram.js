@@ -33,27 +33,36 @@ function EditWeeklyProgram({program, Modal, trainer_id}) {
 
  
 
-    const handleChangeday1 = (event) => {
-        setday1(event.target.value)
+    const handleChangeday = (event, index) => {
+
+        switch (index) {
+            case 1:
+                setday1(event.target.value)
+                
+                break;
+            case 2:
+                setday2(event.target.value)
+                break;
+            case 3:
+                setday3(event.target.value)
+                break;
+            case 4:
+                setday4(event.target.value)
+                break;
+            case 5:
+                setday5(event.target.value)
+                break;
+            case 6:
+                setday6(event.target.value)
+                break;
+            case 7:
+                setday7(event.target.value)
+                break;
+            
+            
+        }
     }
-    const handleChangeday2 = (event) => {
-        setday2(event.target.value)
-    }
-    const handleChangeday3 = (event) => {
-        setday3(event.target.value)
-    }
-    const handleChangeday4 = (event) => {
-        setday4(event.target.value)
-    }
-    const handleChangeday5 = (event) => {
-        setday5(event.target.value)
-    }
-    const handleChangeday6 = (event) => {
-        setday6(event.target.value)
-    }
-    const handleChangeday7 = (event) => {
-        setday7(event.target.value)
-    }
+
 
     const handleSubmit = async (event)=>{
         event.preventDefault()
@@ -78,17 +87,15 @@ function EditWeeklyProgram({program, Modal, trainer_id}) {
     }
        
     }
-    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 
     return (
         <form className="program-edit" onSubmit={handleSubmit}>
             <h1 className="login__title">{`Edit ${program['weekly_program_name']}`}</h1>
 
             {days.map((day,index) => {
+                console.log(program[`${day}`]);
 
-
-
-                console.log(`program.${day.toLowerCase()}`);
                 return (
                     <div className="weekly-program-edit">
 
@@ -97,13 +104,13 @@ function EditWeeklyProgram({program, Modal, trainer_id}) {
                             className='item-availability__input item-availability__input--select'
                             name={`day${index+1}`}
                             id={`day${index+1}`}
-                            defaultValue={`program.${day.toLowerCase()}`|| ''}
-                            onChange={`handleChangeday${index+1}`}
+                            value={program[`${day}`]||''}
+                            onChange={(e)=>{handleChangeday(e,index+1)}}
                         >
-                            <option value='' disabled selected>Please select</option>
-                            {weeklyPrograms?.map((program) => (
-                                <option key={program.id} value={program.id}>
-                                    {program['daily-workout_name']}
+                            <option value='' disabled >Please select</option>
+                            {weeklyPrograms?.map((weeklyProgram) => (
+                                <option key={program.id}  value={weeklyProgram.id}>
+                                    {weeklyProgram['daily-workout_name']}
                                 </option>
                             ))}
                         </select>

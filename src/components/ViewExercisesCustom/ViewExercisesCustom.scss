@@ -7,19 +7,29 @@
 }
 
 .listItem{
-    &__image{
-        margin-right: 1rem;
-    }
-    &__name{
-        width:60%;
-    }
+    height: 10vh;
+    display: flex;
+    margin-bottom:1rem ;
+    align-items: center; 
 
-    &__button{
-        @include button;
-        width: unset;
-        &:hover{
-            background-color: $red;
-            color: $white;
-        }
+
+    @include tablet {
+       width: 50%;
     }
+&__image{
+    height:100%;
+    margin-right: 1rem;
+}
+&__name{
+    width:60%;
+}
+
+&__button{
+    @include button;
+    width: unset;
+    &:hover{
+        background-color: $red;
+        color: $white;
+    }
+}
 }
