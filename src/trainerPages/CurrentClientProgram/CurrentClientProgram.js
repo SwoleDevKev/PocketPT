@@ -31,11 +31,9 @@ function CurrentClientProgram () {
 				}
 			})
 			.then((response) => {
-				console.log(response.data);
 				setUser(response.data)
 			})
 			.catch((error) => {
-				console.log(error);
 				setFailedAuth(true)
 			})
 

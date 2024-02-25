@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState, useRef } from 'react'
 import { Button } from 'react-bootstrap';
-import { API_URL, API_KEY } from '../../util'
+import { API_URL, youtubeAPI_URL} from '../../util'
 import './BuildDailyWorkout.scss'
 
 function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, trainer_id }) {
@@ -12,6 +12,7 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
     const inputRef = useRef(null);
     const [name, setName] = useState('')
     const [exerciseImage, setExerciseImage] = useState('')
+    const [videoTitle, setVideoTitle] = useState('')
     const [video_link, setVideo_link] = useState('')
     const [videoResults, setVideoResults] = useState([]);
 
@@ -52,8 +53,10 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
 
     const handleAddExercise = async function (videoId, videoName, videoImage) {
         setShowSearch(false)
+        setVideoTitle(videoName)
         setExerciseImage(videoImage)
         setVideo_link(videoId)
+
         formRef.current.search.value = videoName
 
     }
@@ -61,12 +64,12 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
     async function handlePostNewExercise(event) {
         event.preventDefault()
         const exercise_name = event.target.name.value
-        const response = await axios.post(`${API_URL}/api/exercises`,{ trainer_id, exercise_name, video_link })
+        await axios.post(`${API_URL}/api/exercises`,{ trainer_id, exercise_name, video_link })
     }
     const handleGetNewExercises = async (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
         try {
-            const response = await axios.get(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&part=snippet&q=${event.target.search.value}`);
+            const response = await axios.get(`${youtubeAPI_URL}${event.target.search.value}`);
             setVideoResults(response.data.items);
         } catch (error) {
             console.error('Error fetching new exercises:', error);
@@ -83,19 +86,17 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
                 <p className='list__cancel' onClick={() => { setModalVisibility(false) }}>X</p>
                 {exerciseBank.map((exercise) => {
 
-                    {
-                         videoId = exercise.video_link
+                    videoId = exercise.video_link
 
-                        if (videoId.includes('=')){
-                            const splitLink = exercise.video_link.split('=');
-                            const videoIdAndQuery = splitLink[1]
-                            videoId = videoIdAndQuery.split('&')[0]
-                        }
-                        
-                        console.log(videoId);
-                    } return (
+                    if (videoId.includes('=')){
+                        const splitLink = exercise.video_link.split('=');
+                        const videoIdAndQuery = splitLink[1]
+                        videoId = videoIdAndQuery.split('&')[0]
+                    }
+                       
+                    return (
                         <div className='list__item' onClick={() => { addExercise(exercise) }}>
-                            <img className='list__image' src={`http://i3.ytimg.com/vi/${videoId}/hqdefault.jpg`} />
+                            <img className='list__image' alt={exercise.exercise_name} src={`http://i3.ytimg.com/vi/${videoId}/hqdefault.jpg`} />
                             <p>{exercise.exercise_name}</p>
                         </div>
                     )
@@ -135,7 +136,7 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
                                                             onClick={(e) => { e.stopPropagation(); }}
                                                             
                                                         />
-                                                        <img className='field__image' src={exerciseImage} />
+                                                        <img className='field__image' alt={videoTitle} src={exerciseImage} />
                                                     </div>
                                                     
                                                 </div>
@@ -174,7 +175,7 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
                                 <li onClick={() => {
                                     handleAddExercise(el.id.videoId, el.snippet.title, el.snippet.thumbnails.medium.url )
                                 }}>
-                                    <div><img src={el.snippet.thumbnails.medium.url} /></div>
+                                    <div><img alt={el.snippet.title} src={el.snippet.thumbnails.medium.url} /></div>
                                     <div>
                                         <h4>{el.snippet.title}</h4>
                                     </div>

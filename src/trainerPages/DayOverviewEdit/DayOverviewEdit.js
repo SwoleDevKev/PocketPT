@@ -1,26 +1,27 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import './DayOverviewEdit.scss'
 import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../util';
 import ExerciseCardEdit from '../../components/ExerciseCardEdit/ExerciseCardEdit';
+import TrainerFooter from '../../components/TrainerFooter/TrainerFooter';
 
 
 function DayOverviewEdit (){
 
     const [exercises, setExercises] = useState()
+	const [details, setDetails] = useState(false)
     const {id} = useParams()
     
     useEffect(()=>{
         async function getExercises(){
-          const response =  await axios.get(`${API_URL}/api/exercises/${id}`)
+          const response =  await axios.get(`${API_URL}/api/exercises/custom/${id}`)
 
           setExercises(response.data)
         }
         getExercises()
-    },[id])
+    },[id, details])
     const navigate = useNavigate()
 
     const [user, setUser] = useState(null);
@@ -40,11 +41,9 @@ function DayOverviewEdit (){
 				}
 			})
 			.then((response) => {
-				console.log(response.data);
 				setUser(response.data)
 			})
 			.catch((error) => {
-				console.log(error);
 				setFailedAuth(true)
 			})
 
@@ -76,10 +75,10 @@ function DayOverviewEdit (){
             <Header />
             <h1 className='day-overview__heading'>Let's get it</h1>
             {exercises && exercises.map((exercise)=>{
-              return  <ExerciseCardEdit exercise={exercise}/>
+              return  <ExerciseCardEdit details={details} setDetails={setDetails} exercise={exercise}/>
             })}
             <button onClick={()=>{ navigate('/client') }} className='day-overview__button'>Done</button>
-            <Footer />
+            <TrainerFooter />
         </>
     )
 }

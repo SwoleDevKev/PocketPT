@@ -15,7 +15,6 @@ import Input from "../../components/Input/Input"
 function TrainerPrograms() {
 
     const [programs, setPrograms] = useState(null)
-    const [weeklyPrograms, setWeeklyPrograms] = useState(null)
     const [customWeeklyPrograms, setCustomWeeklyPrograms] = useState([])
     const [user, setUser] = useState(null);
     const [failedAuth, setFailedAuth] = useState(false);
@@ -38,20 +37,10 @@ function TrainerPrograms() {
         getPrograms()
     }, [])
 
-    useEffect(() => {
-        async function getWeeklyPrograms() {
-            const response = await axios.get(`${API_URL}/api/programs/weekly`)
-            console.log(response.data)
-            setWeeklyPrograms(response.data)
-        }
-        getWeeklyPrograms()
-    }, [])
 
     useEffect(() => {
         async function getCustomWeeklyPrograms() {
-            console.log(user);
             const response = await axios.get(`${API_URL}/api/programs/weekly/custom/${user?.id}`)
-            console.log(response.data)
             setCustomWeeklyPrograms(response.data)
         }
         getCustomWeeklyPrograms()
@@ -60,15 +49,13 @@ function TrainerPrograms() {
 
     const handlePostWeeklyProgram = async (event) => {
         event.preventDefault()
-        const response = await axios.post(`${API_URL}/api/programs/weekly/custom/${user?.id}`, {weekly_program_name: event.target.name.value, weekly_program_details: event.target.details.value})
-        console.log(response)
+          await axios.post(`${API_URL}/api/programs/weekly/custom/${user?.id}`, {weekly_program_name: event.target.name.value, weekly_program_details: event.target.details.value})
         setShow(false)
 
     }
     const handlePostMonthlyProgram = async (event) => {
         event.preventDefault()
-        const response = await axios.post(`${API_URL}/api/programs/monthly/custom/${user?.id}`, {program_name: event.target.name.value, program_details: event.target.details.value})
-        console.log(response)
+          await axios.post(`${API_URL}/api/programs/monthly/custom/${user?.id}`, {program_name: event.target.name.value, program_details: event.target.details.value})
         setShowMonthly(false)
     }
 
@@ -88,11 +75,9 @@ function TrainerPrograms() {
                 }
             })
             .then((response) => {
-                console.log(response.data);
                 setUser(response.data)
             })
             .catch((error) => {
-                console.log(error);
                 setFailedAuth(true)
             })
 

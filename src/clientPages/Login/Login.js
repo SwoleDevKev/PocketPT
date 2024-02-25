@@ -37,7 +37,7 @@ function Login() {
                     <h1 className="login__title">Client Log in</h1>
 
                     <Input type="text" name="email" label="Email" />
-                    <Input type="password" name="password" label="Password" />
+                    <Input type="password" auto='on' name="password" label="Password" />
 
                     <button className="login__button">
                         Log in

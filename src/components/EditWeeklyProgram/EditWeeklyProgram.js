@@ -6,14 +6,15 @@ import { API_URL } from "../../util"
 function EditWeeklyProgram({program, Modal, trainer_id}) {
 
     const [weeklyPrograms, setWeeklyPrograms] = useState(null)
-    const [dailyWorkouts, setDailyWorkouts] = useState()
-    const [day1 , setday1] = useState(null)
-    const [day2 , setday2] = useState(null)
-    const [day3 , setday3] = useState(null)
-    const [day4 , setday4] = useState(null)
-    const [day5 , setday5] = useState(null)
-    const [day6 , setday6] = useState(null)
-    const [day7 , setday7] = useState(null)
+    const [dayValues, setDayValues] = useState([
+        program?.monday || 0,
+        program?.tuesday || 0,
+        program?.wednesday || 0,
+        program?.thursday || 0,
+        program?.friday || 0,
+        program?.saturday || 0,
+        program?.sunday || 0
+    ]);
 
     useEffect(()=>{
         async function getWeeklyPrograms(){
@@ -21,61 +22,29 @@ function EditWeeklyProgram({program, Modal, trainer_id}) {
            setWeeklyPrograms(response.data)
         }
         getWeeklyPrograms()
-    },[])
-
-    useEffect(()=>{
-        async function getDailyWorkouts(){
-           const response = await axios.get(`${API_URL}/api/workouts/edit/${program.id}`)
-           setDailyWorkouts(response.data)
-        }
-        getDailyWorkouts()
-    },[])
+    },[trainer_id])
 
  
 
     const handleChangeday = (event, index) => {
-
-        switch (index) {
-            case 1:
-                setday1(event.target.value)
-                
-                break;
-            case 2:
-                setday2(event.target.value)
-                break;
-            case 3:
-                setday3(event.target.value)
-                break;
-            case 4:
-                setday4(event.target.value)
-                break;
-            case 5:
-                setday5(event.target.value)
-                break;
-            case 6:
-                setday6(event.target.value)
-                break;
-            case 7:
-                setday7(event.target.value)
-                break;
-            
-            
-        }
+        const updatedDayValues = [...dayValues];
+        updatedDayValues[index] = event.target.value;
+        setDayValues(updatedDayValues);
     }
 
 
     const handleSubmit = async (event)=>{
         event.preventDefault()
-        if(day1 || day2 || day3 || day4 || day5 || day6 || day7){
+       
             const response = await axios.put(`${API_URL}/api/programs/weekly`,{
                 "weeklyProgram_id": program.id, 
-                day1,
-                day2,
-                day3,
-                day4,
-                day5,
-                day6,
-                day7
+                day1: dayValues[0],
+                day2: dayValues[1],
+                day3: dayValues[2],
+                day4: dayValues[3],
+                day5: dayValues[4],
+                day6: dayValues[5],
+                day7: dayValues[6]
         })
         if (response) {
             alert('succsessfully updated program')
@@ -86,7 +55,7 @@ function EditWeeklyProgram({program, Modal, trainer_id}) {
 
     }
        
-    }
+    
     const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 
     return (
@@ -94,7 +63,6 @@ function EditWeeklyProgram({program, Modal, trainer_id}) {
             <h1 className="login__title">{`Edit ${program['weekly_program_name']}`}</h1>
 
             {days.map((day,index) => {
-                console.log(program[`${day}`]);
 
                 return (
                     <div className="weekly-program-edit">
@@ -104,12 +72,12 @@ function EditWeeklyProgram({program, Modal, trainer_id}) {
                             className='item-availability__input item-availability__input--select'
                             name={`day${index+1}`}
                             id={`day${index+1}`}
-                            value={program[`${day}`]||''}
-                            onChange={(e)=>{handleChangeday(e,index+1)}}
+                            value={dayValues[index]}
+                            onChange={(e)=>{handleChangeday(e,index)}}
                         >
-                            <option value='' disabled >Please select</option>
+                            <option value={0} disabled >Rest Day</option>
                             {weeklyPrograms?.map((weeklyProgram) => (
-                                <option key={program.id}  value={weeklyProgram.id}>
+                                <option key={weeklyProgram.id}  value={weeklyProgram.id}>
                                     {weeklyProgram['daily-workout_name']}
                                 </option>
                             ))}

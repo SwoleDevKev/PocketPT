@@ -15,7 +15,6 @@ function Signup () {
     useEffect(()=>{
         async function getTrainers(){
           const response = await axios.get(`${API_URL}/api/trainers`)
-          console.log(response.data)
           setTrainers(response.data)
         }
         getTrainers()
@@ -25,7 +24,7 @@ function Signup () {
 
         try{
 
-            const response = await axios.post(`${API_URL}/api/clients/register`, {
+            await axios.post(`${API_URL}/api/clients/register`, {
                 email: event.target.email.value,
                 password: event.target.password.value,
                 first_name: event.target.first_name.value,

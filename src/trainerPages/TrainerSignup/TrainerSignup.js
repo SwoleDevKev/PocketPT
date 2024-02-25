@@ -42,7 +42,6 @@ function TrainerSignup () {
             })
             .catch((error) => {
                 setSuccess(false);
-                console.log(error);
                 setError(error.response.data);
             });
         

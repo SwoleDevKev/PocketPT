@@ -27,11 +27,9 @@ function TrainerProfile (){
 				}
 			})
 			.then((response) => {
-				console.log(response.data);
 				setUser(response.data)
 			})
 			.catch((error) => {
-				console.log(error);
 				setFailedAuth(true)
 			})
 
@@ -77,7 +75,7 @@ function TrainerProfile (){
 			<div className="dashboard__content">
 				<h2 className="dashboard__heading" >My Profile</h2>
 				<div className="dashboard__avatar-container">
-					<img className="dashboard__avatar" src={user.trainer_avatar || defaultAvatar}/>
+					<img className="dashboard__avatar" alt='account profile' src={user.trainer_avatar || defaultAvatar}/>
 				</div>
 				<p>Name: {`${user.first_name} ${user.last_name}`}</p>
 				<p>Email: {user.email}</p>

@@ -31,7 +31,6 @@ function WeekOverview () {
 				setUser(response.data)
 			})
 			.catch((error) => {
-				console.log(error);
 				setFailedAuth(true)
 			})
 
