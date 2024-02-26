@@ -17,12 +17,7 @@ function ProgramCard({program}){
             setEditProgramModal(false)
         }
     }
-    useEffect(()=>{
-        const getProgramWorkouts = async () =>{
-            await axios.get(`${API_URL}/api/workouts/${program.id}`)
-        };
-        getProgramWorkouts()
-    },[])
+   
     return(
         <section className='program-card'>
             <div className='program-card__content'>

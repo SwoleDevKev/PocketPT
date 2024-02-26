@@ -28,11 +28,9 @@ function TrainerDashboard (){
 				}
 			})
 			.then((response) => {
-				console.log(response.data);
 				setUser(response.data)
 			})
 			.catch((error) => {
-				console.log(error);
 				setFailedAuth(true)
 			})
 
@@ -45,7 +43,6 @@ function TrainerDashboard (){
         const token = sessionStorage.getItem('token');
 
         if (user){
-            console.log('check',user);
             axios
 			.get(`${API_URL}/api/trainers/${user.id}`, {
 				headers: {
@@ -53,11 +50,9 @@ function TrainerDashboard (){
 				},
 			})
 			.then((response) => {
-				console.log('all my clients', response);
                 setClients(response.data)
 			})
 			.catch((error) => {
-				console.log(error);
 			});
         }
     },[user])

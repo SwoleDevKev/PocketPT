@@ -42,9 +42,8 @@ function ViewExercisesCustom ({workout, exList, setExList }){
         {deleteModalVisibility && <div className='exercises-modal'>
             {exerciseBank.map((exercise)=>{
 
-            {const splitLink = exercise.video_link.split('=');
-            const videoIdAndQuery = splitLink[1]
-             videoId = videoIdAndQuery.split('&')[0]
+            {
+             videoId = exercise.video_link
         
             } return(
                 <>

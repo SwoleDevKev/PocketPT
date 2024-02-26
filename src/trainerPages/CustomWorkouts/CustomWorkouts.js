@@ -14,7 +14,6 @@ function CustomWorkouts (){
 
     const [workouts, setWorkouts] = useState(null)
     const [modalVisibility, setModalVisibility] = useState(null)
-    const [addModalVisibility, setAddModalVisibility] = useState(null)
     const [currentWorkout, setCurrentWorkout] = useState(null)
     const [exList, setExList ]= useState(null)
     const [workoutList, setWorkoutList ]= useState(null)
@@ -27,7 +26,6 @@ function CustomWorkouts (){
   useEffect(()=>{
     async function getWorkouts(){
         const response = await axios.get(`${API_URL}/api/workouts/new/${user?.id}`)
-        console.log(response.data)
         setWorkouts(response.data)
      }
      getWorkouts()
@@ -39,13 +37,6 @@ function CustomWorkouts (){
             setCurrentWorkout(workout);
         } else {
             setModalVisibility(false);
-        }
-    }
-    const handleAddWorkoutModal = ()=>{
-        if (!addModalVisibility) {
-            setAddModalVisibility(true);
-        } else {
-            setAddModalVisibility(false);
         }
     }
 
@@ -65,11 +56,9 @@ function CustomWorkouts (){
 				}
 			})
 			.then((response) => {
-				console.log(response.data);
 				setUser(response.data)
 			})
 			.catch((error) => {
-				console.log(error);
 				setFailedAuth(true)
 			})
 
@@ -96,7 +85,6 @@ function CustomWorkouts (){
 			</main>
 		);
 	}
-    console.log(user.id)
     return (
         <>
 
@@ -125,7 +113,7 @@ function CustomWorkouts (){
             </div>
             {modalVisibility && <BuildDailyWorkout trainer_id={user.id} exList={exList} setExList={setExList} setModalVisibility={setModalVisibility} workout={currentWorkout}/>}
             {showDaily && <CreateDailyWorkout exList={workoutList} setExList={setWorkoutList}
- setShowDaily={setShowDaily} user={user} />}
+            setShowDaily={setShowDaily} user={user} />}
 
             <TrainerFooter />
         </>

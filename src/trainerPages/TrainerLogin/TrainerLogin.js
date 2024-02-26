@@ -22,7 +22,6 @@ function TrainerLogin() {
 		})
         .catch((error) => {
             setSuccess(false);
-            console.log(error);
             setError(error.response.data);
         });
         
@@ -49,7 +48,7 @@ function TrainerLogin() {
                         <label htmlFor='password' className="login-field__label">
                         Password
                         </label>
-                        <input type='password' id='password' name='password' className="login-field__input" />
+                        <input type='password' autoComplete='on' id='password' name='password' className="login-field__input" />
                      </div>
                     
                     <button className="login__button">

@@ -11,13 +11,12 @@ function TrainerDayCard({dailyWorkout}){
 
      useEffect(()=>{
         async function getWorkoutDays(){
-            const response = await axios.get(`${API_URL}/api/exercises/${dailyWorkout['id']}`)
+            const response = await axios.get(`${API_URL}/api/exercises/custom/${dailyWorkout['id']}`)
             setExercises(response.data)
         }
         getWorkoutDays()
-    },[])
+    },[dailyWorkout])
 
-    console.log(dailyWorkout)
     return(
     <Link className='day-card' to={`/trainer/workout/${dailyWorkout.id}`}>
         <div className='day-card__content'>

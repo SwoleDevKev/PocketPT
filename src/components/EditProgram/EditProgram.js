@@ -8,10 +8,10 @@ function EditProgram({ program, setEditProgramModal }) {
 
 
     const [weeklyPrograms, setWeeklyPrograms] = useState(null)
-    const [week_1, setWeek_1] = useState(null)
-    const [week_2, setWeek_2] = useState(null)
-    const [week_3, setWeek_3] = useState(null)
-    const [week_4, setWeek_4] = useState(null)
+    const [week_1, setWeek_1] = useState(program?.week_1 || '')
+    const [week_2, setWeek_2] = useState(program?.week_2 || '')
+    const [week_3, setWeek_3] = useState(program?.week_3 || '')
+    const [week_4, setWeek_4] = useState(program?.week_4 || '')
 
     useEffect(() => {
         async function getWeeklyPrograms() {
@@ -20,6 +20,7 @@ function EditProgram({ program, setEditProgramModal }) {
         }
         getWeeklyPrograms()
     }, [])
+    
 
     const handleChangeWeek1 = (event) => {
         setWeek_1(event.target.value)
@@ -33,7 +34,26 @@ function EditProgram({ program, setEditProgramModal }) {
     const handleChangeWeek4 = (event) => {
         setWeek_4(event.target.value)
     }
+   
+    // const handleChangeWeek = (event, index) => {
 
+    //     switch (index) {
+    //         case 1:
+    //             setWeek_1(event.target.value)
+    //             break;
+    //         case 2:
+    //             setWeek_2(event.target.value)
+    //             break;
+    //         case 3:
+    //             setWeek_3(event.target.value)
+    //             break;
+    //         case 4:
+    //             setWeek_4(event.target.value)
+    //             break;
+            
+            
+    //     }
+    // }
     const handleSubmit = async (event) => {
         event.preventDefault(); 
 
@@ -58,87 +78,81 @@ function EditProgram({ program, setEditProgramModal }) {
         
        
     }
+   
 
     return (
         <form className="program-edit" onSubmit={handleSubmit}>
             <h1 className="login__title">{`Edit ${program.program_name}`}</h1>
 
+
             <div className="program-edit__entry-container">
-                <label className='edit__label' htmlFor='program'>Week1 workouts</label>
+                <label className='program-edit__label' htmlFor='program'>Week 1 workouts</label>
                 <select
-                    className='item-availability__input item-availability__input--select'
-                    name="week_1"
-                    id="week_1"
-                    defaultValue={''}
+                    className='program-edit__input '
+                    name={week_1}
+                    id={week_1}
+                    value={week_1}
                     onChange={handleChangeWeek1}
                 >
-                    <option value='' disabled selected>Please select</option>
-                    {weeklyPrograms?.map((program) => (
-                        <option key={program.id} value={program.id}>
-                            {program['weekly-program_name']}
+                    <option value='' disabled >Please select</option>
+                    {weeklyPrograms?.map((weeklyProgram) => (
+                        <option key={weeklyProgram.id} value={weeklyProgram.id}>
+                            {weeklyProgram.weekly_program_name}
                         </option>
                     ))}
                 </select>
             </div>
-
             <div className="program-edit__entry-container">
-                <label className='edit__label' htmlFor='program'>Week2 workouts</label>
+                <label className='program-edit__label' htmlFor='program'>Week 2 workouts</label>
                 <select
-                    className='item-availability__input item-availability__input--select'
-                    name="week_2"
-                    id="week_2"
-                    defaultValue={''}
+                    className='program-edit__input '
+                    name={week_2}
+                    id={week_2}
+                    value={week_2}
                     onChange={handleChangeWeek2}
                 >
-                    <option value='' disabled selected>Please select</option>
-                    {weeklyPrograms?.map((program) => (
-                        <option key={program.id} value={program.id}>
-                            {program['weekly-program_name']}
+                    <option value='' disabled >Please select</option>
+                    {weeklyPrograms?.map((weeklyProgram) => (
+                        <option key={weeklyProgram.id} value={weeklyProgram.id}>
+                            {weeklyProgram.weekly_program_name}
                         </option>
                     ))}
                 </select>
             </div>
-
             <div className="program-edit__entry-container">
-                <label className='edit__label' htmlFor='program'>Week3 workouts</label>
+                <label className='program-edit__label' htmlFor='program'>Week 3 workouts</label>
                 <select
-                    className='item-availability__input item-availability__input--select'
-                    name="week_3"
-                    id="week_3"
-                    defaultValue={''}
+                    className='program-edit__input '
+                    name={week_3}
+                    id={week_3}
+                    value={week_3}
                     onChange={handleChangeWeek3}
                 >
-                    <option value='' disabled selected>Please select</option>
-                    {weeklyPrograms?.map((program) => (
-                        <option key={program.id} value={program.id}>
-                            {program['weekly-program_name']}
+                    <option value='' disabled >Please select</option>
+                    {weeklyPrograms?.map((weeklyProgram) => (
+                        <option key={weeklyProgram.id} value={weeklyProgram.id}>
+                            {weeklyProgram.weekly_program_name}
                         </option>
                     ))}
                 </select>
             </div>
             <div className="program-edit__entry-container">
-                <label className='edit__label' htmlFor='program'>Week4 workouts</label>
+                <label className='program-edit__label' htmlFor='program'>Week 4 workouts</label>
                 <select
-                    className='item-availability__input item-availability__input--select'
-                    name="week_4"
-                    id="week_4"
-                    defaultValue={''}
+                    className='program-edit__input '
+                    name={week_4}
+                    id={week_4}
+                    value={week_4}
                     onChange={handleChangeWeek4}
                 >
-                    <option value='' disabled selected>Please select</option>
-                    {weeklyPrograms?.map((program) => (
-                        <option key={program.id} value={program.id}>
-                            {program['weekly-program_name']}
+                    <option value='' disabled >Please select</option>
+                    {weeklyPrograms?.map((weeklyProgram) => (
+                        <option key={weeklyProgram.id} value={weeklyProgram.id}>
+                            {weeklyProgram.weekly_program_name}
                         </option>
                     ))}
                 </select>
             </div>
-
-
-
-
-
-
 
             <button className="Assign__button">
                 Save

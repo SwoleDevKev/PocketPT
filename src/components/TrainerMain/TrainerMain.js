@@ -25,14 +25,13 @@ function TrainerMain({programId, clientId}){
         async function getProgram(){
             const response = await axios.get(`${API_URL}/api/programs/${programId}`)
 
-            const filteredArr = response.data.filter((week)=> !!week)
-            console.log(filteredArr);
+            const filteredArr = response.data 
             setProgram(filteredArr)
         }
         if (programId !== 'null' ){
           getProgram()
         }
-      },[])
+      },[programId])
 
       if (programId === 'null') {
         return(
@@ -45,9 +44,25 @@ function TrainerMain({programId, clientId}){
         )
       }
     
+    if (program?.workouts.length === 0){
+      return(
+        
+        <section className='trainer-main-container'>
+          <div className='trainer-main'>
+              <h1 className='trainer-main__heading'><span>{program?.program_info.program_name} </span>Program is empty</h1>
+              <button className='trainer-main__button' onClick={handleModal}>Assign different Program</button>
+
+          </div>
+          {editModalVisibility && <AssignProgram setModal={setEditModalVisibility} modal={editModalVisibility} clientId={clientId} programId={programId}/>}
+          <h3>{program[0]?.program_name}</h3>
+          {program && program?.workouts.map((week, index)=>{
+            return <WeekCard week={week} index={index} weekNum={index+1} />
+          })}
+        </section>
+      ) 
+    }
 
     if (program){
-      
         return(
         
             <section className='trainer-main-container'>
@@ -57,16 +72,14 @@ function TrainerMain({programId, clientId}){
 
               </div>
               {editModalVisibility && <AssignProgram setModal={setEditModalVisibility} modal={editModalVisibility} clientId={clientId} programId={programId}/>}
-              <h3>{program[0].program_name}</h3>
-              {program && program.map((week, index)=>{
-                console.log(week)
+              <h3>{program.program_info.program_name}</h3>
+              {program && program.workouts.map((week, index)=>{
                 return <WeekCard week={week} index={index} weekNum={index+1} />
               })}
             </section>
           ) 
     }
     else {
-      console.log(programId);
         return (
             <h2>Loading .........</h2>
         )

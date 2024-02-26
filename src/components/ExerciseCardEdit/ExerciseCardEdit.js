@@ -4,9 +4,11 @@ import VideoPlayer from '../VideoPlayer/VideoPlayer';
 import { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import Input from '../Input/Input';
+import axios from 'axios';
+import { API_URL } from '../../util';
 
 
-function ExerciseCardEdit({ exercise }) {
+function ExerciseCardEdit({ details, setDetails, exercise }) {
     const link = exercise.video_link
     let videoId = link
 
@@ -31,8 +33,18 @@ function ExerciseCardEdit({ exercise }) {
         }
     }
 
-    function handleEditExerciseDetails(event){
+    async function handleEditExerciseDetails(event){
         event.preventDefault()
+        const reps = event.target.reps.value 
+        const sets = event.target.sets.value 
+        const weight = event.target.weight.value
+        const rest = event.target.rest.value 
+        const note = event.target.note.value || ''
+        
+        await axios.put(`${API_URL}/api/exercises/${exercise.id}`, {
+            reps,sets,weight,rest,note
+        })
+        details ? setDetails(false) : setDetails(true)
 
     }
 
@@ -46,7 +58,7 @@ function ExerciseCardEdit({ exercise }) {
                 <h2 className='exercise__heading'>{exercise.exercise_name}</h2>
                 
                 <div className='exercise__image-container'>
-                    <img className='exercise__image' src={`http://i3.ytimg.com/vi/${videoId}/maxresdefault.jpg`} onClick={handleModalVisibility} />
+                    <img className='exercise__image' alt={`video thumbnail of ${exercise.exercise_name}`} src={`http://i3.ytimg.com/vi/${videoId}/maxresdefault.jpg`} onClick={handleModalVisibility} />
                 </div>
                 
 
@@ -68,12 +80,15 @@ function ExerciseCardEdit({ exercise }) {
             >
                 <form onSubmit={handleEditExerciseDetails}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Create A Monthly Program</Modal.Title>
+                        <Modal.Title>{exercise.exercise_name} Details</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         
-                            <Input name={'name'} label={"Name"}/>
-                            <Input name={'details'} label={"Details"}/>
+                            <Input name={'sets'} label={'sets'}/>
+                            <Input name={'reps'} label={'reps'}/>
+                            <Input name={'weight'} label={'weight'}/>
+                            <Input name={'rest'} label={'Rest'}/>
+                            <Input name={'note'} label={'Note'}/>
                         
                         
                     </Modal.Body>

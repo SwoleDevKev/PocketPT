@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import EditWeeklyProgram from '../EditWeeklyProgram/EditWeeklyProgram'
-import EditWorkout from '../EditWorkout/EditWorkout'
 import './WeeklyProgramCard.scss'
 
 
