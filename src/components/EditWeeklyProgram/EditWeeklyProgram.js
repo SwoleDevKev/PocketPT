@@ -1,4 +1,5 @@
 import axios from "axios"
+import './EditWeeklyProgram.scss'
 import { useEffect, useState } from "react"
 import { API_URL } from "../../util"
 
@@ -59,17 +60,17 @@ function EditWeeklyProgram({program, Modal, trainer_id}) {
     const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 
     return (
-        <form className="program-edit" onSubmit={handleSubmit}>
-            <h1 className="login__title">{`Edit ${program['weekly_program_name']}`}</h1>
+        <form className="weekly-program-edit" onSubmit={handleSubmit}>
+            <h3 className="weekly-program-edit__title">{`Edit ${program['weekly_program_name']}`}</h3>
 
             {days.map((day,index) => {
 
                 return (
-                    <div className="weekly-program-edit">
+                    <div className="weekly-program-edit__input-container">
 
-                        <label className='edit__label' htmlFor='program'>{day}</label>
+                        <label className='weekly-program-edit__label' htmlFor='program'>{day}</label>
                         <select
-                            className='item-availability__input item-availability__input--select'
+                            className='weekly-program-edit__input'
                             name={`day${index+1}`}
                             id={`day${index+1}`}
                             value={dayValues[index]}
@@ -85,10 +86,12 @@ function EditWeeklyProgram({program, Modal, trainer_id}) {
                     </div>
                 )
             })}
-
-            <button className="Assign__button">
-                Save
-            </button>
+            <div className="weekly-program-edit__button-container">
+                <button className="weekly-program-edit__button">
+                    Save
+                </button>
+            </div>
+            
 
         </form>
     )

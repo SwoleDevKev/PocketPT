@@ -1,0 +1,33 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+
+.weekly-program-edit{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+
+    &__input-container{
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 1rem;
+    }
+    &__label, &__input{
+        width:40%;
+    }
+    &__input{
+        border-radius: 5px;
+    }
+    &__button{
+        @include button;
+        width: 25%;
+        background-color: $light-blue;
+        color: $yellow;
+
+        &:hover{
+            background-color: rgba($light-blue, $alpha: .9);
+            border: 2px solid $light-blue;
+        }
+    }
+}

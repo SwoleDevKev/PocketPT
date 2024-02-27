@@ -154,9 +154,11 @@ function EditProgram({ program, setEditProgramModal }) {
                 </select>
             </div>
 
-            <button className="Assign__button">
-                Save
-            </button>
+            <div className="program-edit__button-container">
+                <button className="program-edit__button">
+                    Save
+                </button>
+            </div>
 
         </form>
     )
