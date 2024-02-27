@@ -12,7 +12,7 @@
     background-color: white;
     z-index: 3;
     overflow-x: hidden;
-    padding: 2rem;
+    padding:5rem 2rem;
     padding-top: 5rem;
 
     @include tablet {
@@ -72,7 +72,7 @@
     }
 }
 
-.searchModal{
+.search-modal{
     position: fixed;
     overflow-y: scroll;
     z-index: 5;
@@ -93,6 +93,18 @@
     }
     &__body{
         padding: 1rem;
+    }
+    &__list{
+        list-style: none;
+        margin-top: 2rem;
+    }
+    &__list-item{
+        display: flex;
+        height: 10vh;
+        margin: 0.5rem 0;
+    }
+    &__video-title{
+        padding-left: 1rem ;
     }
 }
 
