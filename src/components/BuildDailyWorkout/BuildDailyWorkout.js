@@ -144,14 +144,14 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
                                             </form>
                                         </div>
             </div>}
-            {showSearch && <section className='searchModal'>
-                <div className='searchModal__heading-container'>
+            {showSearch && <section className='search-modal'>
+                <div className='search-modal__heading-container'>
 
-                    <h4 className='searchModal__heading'>Search for Video</h4>
-                    <span className='searchModal__close btn-close' onClick={() => { setShowSearch(false) }}></span>
+                    <h4 className='search-modal__heading'>Search for Video </h4>
+                    <span className='search-modal__close btn-close' onClick={() => { setShowSearch(false) }}></span>
                 </div>
-                <div className='searchModal__body'>
-                    <form className='searchModal__form' onSubmit={handleGetNewExercises}>
+                <div className='search-modal__body'>
+                    <form className='search-modal__form' onSubmit={handleGetNewExercises}>
                         <div className="field">
                             <label htmlFor='search' className="field__label">Add a video</label>
                             <input
@@ -168,16 +168,24 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
                         <button type="submit" className="btn btn-primary">Search</button> {/* Search button added */}
                     </form>
 
-                    <ul>
+                    <ul className='search-modal__list'>
 
                         {videoResults?.map((el) => {
+
+                            const htmlString = el.snippet.title
+                            
+                            const parser = new DOMParser();
+                            const htmlTitle = parser.parseFromString(htmlString, 'text/html').body.textContent;
+
+                            console.log(htmlTitle);
+
                             return (
-                                <li onClick={() => {
+                                <li className='search-modal__list-item' onClick={() => {
                                     handleAddExercise(el.id.videoId, el.snippet.title, el.snippet.thumbnails.medium.url )
                                 }}>
-                                    <div><img alt={el.snippet.title} src={el.snippet.thumbnails.medium.url} /></div>
+                                    <img className='search-modal__image' alt={el.snippet.title} src={el.snippet.thumbnails.medium.url} />
                                     <div>
-                                        <h4>{el.snippet.title}</h4>
+                                        <h4 className='search-modal__video-title'>{htmlTitle}</h4>
                                     </div>
                                 </li>
                             )

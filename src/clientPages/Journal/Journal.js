@@ -60,7 +60,7 @@ function Journal () {
             <Header />
             <div className='journal-container'>
 				<h1>Journal Coming soon </h1>
-				<h3>New Years Update Releasing 01/01/2024</h3>
+				<h3>Stay Tuned for our summer UPDATE</h3>
 			</div>
           
             <Footer />

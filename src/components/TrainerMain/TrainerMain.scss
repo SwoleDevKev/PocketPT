@@ -2,9 +2,13 @@
 @use '../../styles/mixins' as *;
 
 .trainer-main{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+
+    &__container{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+   
     &__heading {
         @include section-padding;
     }
@@ -13,9 +17,10 @@
         @include button;
         width: 70%;
     }
+    &__title{
+        text-align: center;
+        margin: 2rem 0;
+    }
 }
 
 
-.trainer-main{
-
-}

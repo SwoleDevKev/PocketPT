@@ -65,14 +65,14 @@ function TrainerMain({programId, clientId}){
     if (program){
         return(
         
-            <section className='trainer-main-container'>
-              <div className='trainer-main'>
-                  <h1 className='trainer-main__heading'>Get Started</h1>
+            <section className='trainer-main'>
+              <div className='trainer-main__container'>
+                  <h2 className='trainer-main__heading'>Let's Work</h2>
                   <button className='trainer-main__button' onClick={handleModal}>Assign different Program</button>
 
               </div>
               {editModalVisibility && <AssignProgram setModal={setEditModalVisibility} modal={editModalVisibility} clientId={clientId} programId={programId}/>}
-              <h3>{program.program_info.program_name}</h3>
+              <h1 className='trainer-main__title'>{program.program_info.program_name}</h1>
               {program && program.workouts.map((week, index)=>{
                 return <WeekCard week={week} index={index} weekNum={index+1} />
               })}
