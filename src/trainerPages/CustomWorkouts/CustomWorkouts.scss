@@ -4,6 +4,14 @@
 
 .workout{
     min-height: 80vh;
+    padding: 0 1rem;
+
+    @include tablet{
+        padding: 0 3rem;
+    }
+    @include desktop{
+        padding: 0 5rem;
+    }
 
     &__heading{
         @include page-header-padding;
