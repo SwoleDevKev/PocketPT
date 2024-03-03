@@ -1,6 +1,5 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { API_URL } from "../../util"
 import './EditProgram.scss'
 
 
@@ -15,7 +14,7 @@ function EditProgram({ program, setEditProgramModal }) {
 
     useEffect(() => {
         async function getWeeklyPrograms() {
-            const response = await axios.get(`${API_URL}/api/programs/weekly`)
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/programs/weekly`)
             setWeeklyPrograms(response.data)
         }
         getWeeklyPrograms()
@@ -34,31 +33,12 @@ function EditProgram({ program, setEditProgramModal }) {
     const handleChangeWeek4 = (event) => {
         setWeek_4(event.target.value)
     }
-   
-    // const handleChangeWeek = (event, index) => {
 
-    //     switch (index) {
-    //         case 1:
-    //             setWeek_1(event.target.value)
-    //             break;
-    //         case 2:
-    //             setWeek_2(event.target.value)
-    //             break;
-    //         case 3:
-    //             setWeek_3(event.target.value)
-    //             break;
-    //         case 4:
-    //             setWeek_4(event.target.value)
-    //             break;
-            
-            
-    //     }
-    // }
     const handleSubmit = async (event) => {
         event.preventDefault(); 
 
         if (week_1 || week_2 || week_3 || week_4) {
-            const response = await axios.put(`${API_URL}/api/programs`, {
+            const response = await axios.put(`${process.env.REACT_APP_API_URL}/api/programs`, {
                 "program_id": program.id,
                 week_1,
                 week_2,

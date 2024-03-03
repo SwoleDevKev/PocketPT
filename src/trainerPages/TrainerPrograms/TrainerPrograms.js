@@ -1,6 +1,5 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { API_URL } from "../../util"
 import ProgramCard from "../../components/programCard/ProgramCard"
 import './TrainerPrograms.scss'
 import WeeklyProgramCard from "../../components/WeeklyProgramCard/WeeklyProgramCard"
@@ -31,7 +30,7 @@ function TrainerPrograms() {
 
     useEffect(() => {
         async function getPrograms() {
-            const response = await axios.get(`${API_URL}/api/programs`)
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/programs`)
             setPrograms(response.data)
         }
         getPrograms()
@@ -40,7 +39,7 @@ function TrainerPrograms() {
 
     useEffect(() => {
         async function getCustomWeeklyPrograms() {
-            const response = await axios.get(`${API_URL}/api/programs/weekly/custom/${user?.id}`)
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/programs/weekly/custom/${user?.id}`)
             setCustomWeeklyPrograms(response.data)
         }
         getCustomWeeklyPrograms()
@@ -49,13 +48,13 @@ function TrainerPrograms() {
 
     const handlePostWeeklyProgram = async (event) => {
         event.preventDefault()
-          await axios.post(`${API_URL}/api/programs/weekly/custom/${user?.id}`, {weekly_program_name: event.target.name.value, weekly_program_details: event.target.details.value})
+          await axios.post(`${process.env.REACT_APP_API_URL}/api/programs/weekly/custom/${user?.id}`, {weekly_program_name: event.target.name.value, weekly_program_details: event.target.details.value})
         setShow(false)
 
     }
     const handlePostMonthlyProgram = async (event) => {
         event.preventDefault()
-          await axios.post(`${API_URL}/api/programs/monthly/custom/${user?.id}`, {program_name: event.target.name.value, program_details: event.target.details.value})
+          await axios.post(`${process.env.REACT_APP_API_URL}/api/programs/monthly/custom/${user?.id}`, {program_name: event.target.name.value, program_details: event.target.details.value})
         setShowMonthly(false)
     }
 
@@ -69,7 +68,7 @@ function TrainerPrograms() {
         }
 
         axios
-            .get(`${API_URL}/api/trainers/current`, {
+            .get(`${process.env.REACT_APP_API_URL}/api/trainers/current`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

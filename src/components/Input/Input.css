@@ -1,0 +1,14 @@
+.field {
+  display: flex;
+  flex-direction: column;
+}
+.field__label {
+  margin-bottom: 0.5rem;
+}
+.field__input {
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: inherit;
+}/*# sourceMappingURL=Input.css.map */

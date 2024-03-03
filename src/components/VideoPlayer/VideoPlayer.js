@@ -8,7 +8,7 @@ function VideoPlayer ({exercise, handleModalVisibility, videoId}){
             <section className='video-player__container'>
                 <h2 className='video-player__heading'>{exercise.exercise_name}</h2>
                 <p className='video-player__cancel' onClick={handleModalVisibility}>X</p>
-                <iframe src={`https://www.youtube.com/embed/${videoId}`} className='video-player__video' allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share ; fullscreen"></iframe>
+                <iframe title={`demonstration of a ${exercise.exercise_name}`} src={`https://www.youtube.com/embed/${videoId}`} className='video-player__video' allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share ; fullscreen"></iframe>
                 <div className='video-player__exercise-stats'>
                     <p className='video-player__exercise-stat'><span className='video-player__exercise-label'>Sets:</span>{exercise.sets}</p>
                     <p className='video-player__exercise-stat'><span className='video-player__exercise-label'>Reps:</span>{exercise.reps}</p>

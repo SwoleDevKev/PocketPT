@@ -1,7 +1,6 @@
 import axios from "axios"
 import './EditWeeklyProgram.scss'
 import { useEffect, useState } from "react"
-import { API_URL } from "../../util"
 
 
 function EditWeeklyProgram({program, Modal, trainer_id}) {
@@ -19,7 +18,7 @@ function EditWeeklyProgram({program, Modal, trainer_id}) {
 
     useEffect(()=>{
         async function getWeeklyPrograms(){
-           const response = await axios.get(`${API_URL}/api/workouts/new/${trainer_id}`)
+           const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/workouts/new/${trainer_id}`)
            setWeeklyPrograms(response.data)
         }
         getWeeklyPrograms()
@@ -37,7 +36,7 @@ function EditWeeklyProgram({program, Modal, trainer_id}) {
     const handleSubmit = async (event)=>{
         event.preventDefault()
        
-            const response = await axios.put(`${API_URL}/api/programs/weekly`,{
+            const response = await axios.put(`${process.env.REACT_APP_API_URL}/api/programs/weekly`,{
                 "weeklyProgram_id": program.id, 
                 day1: dayValues[0],
                 day2: dayValues[1],

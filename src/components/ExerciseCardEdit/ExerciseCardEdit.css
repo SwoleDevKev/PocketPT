@@ -1,0 +1,72 @@
+.exercise {
+  min-height: 25vh;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 0 1rem 1rem;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+  background-color: rgb(26, 32, 79);
+  margin-bottom: 0.25rem;
+}
+@media screen and (min-width: 767px) {
+  .exercise {
+    padding: 0 2.25rem 2.25rem;
+  }
+}
+@media screen and (min-width: 1279px) {
+  .exercise {
+    padding: 0 5rem 2.25rem;
+  }
+}
+.exercise__checkbox-container {
+  max-height: 50%;
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.exercise__content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.exercise__heading {
+  width: 39%;
+  max-height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.exercise__image-container {
+  width: 50%;
+  max-height: 50%;
+}
+.exercise__image {
+  padding: 0.5rem 0;
+  width: 100%;
+  height: 100%;
+}
+.exercise__image:hover {
+  cursor: pointer;
+}
+.exercise__note {
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+  width: 100%;
+  min-height: 30%;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.exercise__stats {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: space-between;
+}
+.exercise__label {
+  color: #FFBD59;
+  margin-right: 0.5rem;
+  font-family: "Titillium Bold";
+}/*# sourceMappingURL=ExerciseCardEdit.css.map */

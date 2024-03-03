@@ -1,0 +1,35 @@
+@charset "UTF-8";
+.custom-checkbox-label {
+  position: relative;
+  cursor: pointer;
+  font-size: 14px;
+  overflow: hidden; /* This will hide the content outside the box */
+}
+
+.custom-checkbox-input {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -o-appearance: none;
+  outline: none;
+  content: none;
+}
+
+.custom-checkbox-input:before {
+  content: "✓"; /* Unicode checkmark character */
+  font-size: 24px;
+  padding-left: 2px;
+  padding-bottom: 3px;
+  color: transparent !important;
+  background: rgba(254, 242, 224, 0);
+  display: block;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #ffffff;
+  margin-right: 7px;
+  position: relative;
+  top: 4px; /* Adjust based on your design */
+}
+
+.custom-checkbox-input:checked:before {
+  color: #ffffff !important;
+}/*# sourceMappingURL=CustomCheckbox.css.map */

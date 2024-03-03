@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
-import { API_URL } from '../../util';
 
 
 
@@ -20,7 +19,7 @@ function Journal () {
 		}
 
 		axios
-			.get(`${API_URL}/api/clients/current`, {
+			.get(`${process.env.REACT_APP_API_URL}/api/clients/current`, {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}

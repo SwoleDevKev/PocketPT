@@ -3,7 +3,6 @@ import './DayOverviewEdit.scss'
 import Header from '../../components/Header/Header';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { API_URL } from '../../util';
 import ExerciseCardEdit from '../../components/ExerciseCardEdit/ExerciseCardEdit';
 import TrainerFooter from '../../components/TrainerFooter/TrainerFooter';
 
@@ -16,7 +15,7 @@ function DayOverviewEdit (){
     
     useEffect(()=>{
         async function getExercises(){
-          const response =  await axios.get(`${API_URL}/api/exercises/custom/${id}`)
+          const response =  await axios.get(`${process.env.REACT_APP_API_URL}/api/exercises/custom/${id}`)
 
           setExercises(response.data)
         }
@@ -35,7 +34,7 @@ function DayOverviewEdit (){
 		}
 
 		axios
-			.get(`${API_URL}/api/trainers/current`, {
+			.get(`${process.env.REACT_APP_API_URL}/api/trainers/current`, {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}

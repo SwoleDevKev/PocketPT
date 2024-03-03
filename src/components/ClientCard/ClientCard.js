@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom'
-import { API_URL } from '../../util'
 import './ClientCard.scss'
 
 function ClientCard( {program_id, client}){
     return(
             <section className='client'>
                 <div className='client__avatar-container'>
-                    <img className='client__avatar' src={client.client_avatar || `${API_URL}/images/profile.png`}/>
+                    <img alt='account profile' className='client__avatar' src={client.client_avatar || `${process.env.REACT_APP_DefaultAvatar}`}/>
                 </div>
                 <div className='client__info'>
                     <h3 className='client__heading'>{client?.first_name+' '+client?.last_name}</h3>

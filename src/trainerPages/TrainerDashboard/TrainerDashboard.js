@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import ClientCard from '../../components/ClientCard/ClientCard'
 import TrainerFooter from '../../components/TrainerFooter/TrainerFooter';
 import WelcomeHeader from '../../components/WelcomeHeader/WelcomeHeader';
-import { API_URL } from '../../util';
 import './TrainerDashboard.scss'
 
 
@@ -22,7 +21,7 @@ function TrainerDashboard (){
 		}
 
 		axios
-			.get(`${API_URL}/api/trainers/current`, {
+			.get(`${process.env.REACT_APP_API_URL}/api/trainers/current`, {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}
@@ -44,7 +43,7 @@ function TrainerDashboard (){
 
         if (user){
             axios
-			.get(`${API_URL}/api/trainers/${user.id}`, {
+			.get(`${process.env.REACT_APP_API_URL}/api/trainers/${user.id}`, {
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},

@@ -35,7 +35,7 @@ function ExerciseCard({ exercise }) {
                 <h2 className='exercise__heading'>{exercise.exercise_name}</h2>
                 
                 <div className='exercise__image-container'>
-                    <img className='exercise__image' src={`http://i3.ytimg.com/vi/${videoId}/maxresdefault.jpg`} onClick={handleModalVisibility} />
+                    <img alt={`person doing ${exercise.name}`} className='exercise__image' src={`http://i3.ytimg.com/vi/${videoId}/maxresdefault.jpg`} onClick={handleModalVisibility} />
                 </div>
                 
 

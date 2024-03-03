@@ -1,0 +1,96 @@
+.video-player {
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  background: #050A30;
+  padding: 1rem;
+  z-index: 1;
+}
+.video-player__container {
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  justify-content: space-between;
+  position: relative;
+}
+.video-player__heading {
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  font-weight: 600;
+  padding: 1.5rem 0rem;
+}
+@media screen and (min-width: 767px) {
+  .video-player__heading {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+}
+.video-player__exercise-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9375rem;
+  line-height: 1.625rem;
+  font-weight: 400;
+  padding: 1rem 0;
+  flex-wrap: wrap;
+  font-weight: 700;
+  margin-right: 1.5rem;
+}
+@media screen and (min-width: 767px) {
+  .video-player__exercise-stats {
+    font-size: 1rem;
+    line-height: 1.75rem;
+  }
+}
+.video-player__exercise-stat {
+  font-size: 0.9375rem;
+  line-height: 1.625rem;
+  font-weight: 400;
+}
+@media screen and (min-width: 767px) {
+  .video-player__exercise-stat {
+    font-size: 1rem;
+    line-height: 1.75rem;
+  }
+}
+.video-player__exercise-note {
+  font-size: 0.9375rem;
+  line-height: 1.625rem;
+  font-weight: 400;
+  font-weight: 700;
+}
+@media screen and (min-width: 767px) {
+  .video-player__exercise-note {
+    font-size: 1rem;
+    line-height: 1.75rem;
+  }
+}
+.video-player__exercise-label {
+  margin-right: 0.5rem;
+}
+.video-player__video {
+  width: 100%;
+  aspect-ratio: 16/9;
+  max-height: 50vh;
+}
+.video-player__cancel {
+  width: -moz-fit-content;
+  width: fit-content;
+  position: absolute;
+  top: 1.5rem;
+  right: 0;
+  background-color: #ffffff;
+  color: #050A30;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Titillium Bold";
+}
+.video-player__cancel:hover {
+  cursor: pointer;
+}/*# sourceMappingURL=VideoPlayer.css.map */

@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState, useRef } from 'react'
 import { Button } from 'react-bootstrap';
-import { API_URL, youtubeAPI_URL} from '../../util'
 import './BuildDailyWorkout.scss'
 
 function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, trainer_id }) {
@@ -21,7 +20,7 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
     useEffect(() => {
         const fetchAllVideos = async () => {
             try {
-                const response = await axios.get(`${API_URL}/api/exercises`);
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/exercises`);
                 setExerciseBank(response.data);
             } catch (error) {
                 console.error('Error fetching exercises:', error);
@@ -39,7 +38,7 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
 
     const addExercise = async (exercise) => {
         try {
-            await axios.post(`${API_URL}/api/workouts`, {
+            await axios.post(`${process.env.REACT_APP_API_URL}/api/workouts`, {
                 "daily_workout_id": workout.id,
                 "exercise_id": exercise.id,
                 "trainer_id": trainer_id
@@ -64,12 +63,12 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
     async function handlePostNewExercise(event) {
         event.preventDefault()
         const exercise_name = event.target.name.value
-        await axios.post(`${API_URL}/api/exercises`,{ trainer_id, exercise_name, video_link })
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/exercises`,{ trainer_id, exercise_name, video_link })
     }
     const handleGetNewExercises = async (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
         try {
-            const response = await axios.get(`${youtubeAPI_URL}${event.target.search.value}`);
+            const response = await axios.get(`${process.env.REACT_APP_youtubeAPI_URL}${event.target.search.value}`);
             setVideoResults(response.data.items);
         } catch (error) {
             console.error('Error fetching new exercises:', error);

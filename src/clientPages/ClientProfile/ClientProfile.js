@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { API_URL, defaultAvatar } from '../../util';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import './ClientProfile.scss'
@@ -22,7 +21,7 @@ function ClientProfile (){
 		}
 
 		axios
-			.get(`${API_URL}/api/clients/current`, {
+			.get(`${process.env.REACT_APP_API_URL}/api/clients/current`, {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}
@@ -70,7 +69,7 @@ function ClientProfile (){
 					<div className="dashboard__content">
 						<h2 className="dashboard__heading" >My Profile</h2>
 						<div className="dashboard__avatar-container">
-							<img className="dashboard__avatar" src={user.trainer_avatar || defaultAvatar}/>
+							<img alt='account profile' className="dashboard__avatar" src={user.trainer_avatar || process.env.REACT_APP_defaultAvatar}/>
 						</div>
 						<p>Name: {`${user.first_name} ${user.last_name}`}</p>
 						<p>Email: {user.email}</p>

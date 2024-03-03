@@ -1,0 +1,96 @@
+.workout {
+  min-height: 80vh;
+  padding: 0 1rem;
+}
+@media screen and (min-width: 767px) {
+  .workout {
+    padding: 0 3rem;
+  }
+}
+@media screen and (min-width: 1279px) {
+  .workout {
+    padding: 0 5rem;
+  }
+}
+.workout__heading {
+  padding: 1.5rem 0rem;
+  text-align: center;
+}
+.workout__button-container {
+  display: flex;
+  justify-content: center;
+}
+.workout__button {
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  font-family: "Titillium";
+  margin: 0.5rem 0;
+  background-color: #FFBD59;
+  color: #050A30;
+  width: 100%;
+  border-radius: 1.25rem;
+  border: none;
+  padding: 0 1rem;
+  margin-bottom: 0.3125rem;
+  height: 2.25rem;
+  width: 50%;
+}
+@media screen and (min-width: 767px) {
+  .workout__button {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
+}
+.workout__button:hover {
+  background-color: rgb(26, 32, 79);
+  color: #ffffff;
+}
+
+.workout-card {
+  display: flex;
+  padding: 20px;
+  border: 1px solid black;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.workout-card__details {
+  width: 100%;
+}
+.workout-card__heading {
+  text-transform: capitalize;
+  width: 100%;
+  text-align: center;
+  color: rgb(26, 32, 79);
+}
+.workout-card__content {
+  width: 100%;
+}
+.workout-card__button {
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  font-family: "Titillium";
+  margin: 0.5rem 0;
+  background-color: #FFBD59;
+  color: #050A30;
+  width: 100%;
+  border-radius: 1.25rem;
+  border: none;
+  padding: 0 1rem;
+  margin-bottom: 0.3125rem;
+  height: 2.25rem;
+  width: 40%;
+  padding: 0;
+}
+@media screen and (min-width: 767px) {
+  .workout-card__button {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
+}
+.workout-card__button:hover {
+  background-color: rgb(26, 32, 79);
+  color: #ffffff;
+}/*# sourceMappingURL=CustomWorkouts.css.map */

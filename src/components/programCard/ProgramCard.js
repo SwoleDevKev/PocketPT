@@ -1,6 +1,4 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { API_URL } from '../../util'
+import { useState } from 'react'
 import EditProgram from '../EditProgram/EditProgram'
 import './ProgramCard.scss'
 

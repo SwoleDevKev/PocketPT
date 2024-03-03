@@ -5,7 +5,6 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { API_URL } from '../../util';
 
 
 function DayOverview (){
@@ -15,7 +14,7 @@ function DayOverview (){
     
     useEffect(()=>{
         async function getExercises(){
-          const response =  await axios.get(`${API_URL}/api/exercises/${id}`)
+          const response =  await axios.get(`${process.env.REACT_APP_API_URL}/api/exercises/${id}`)
 
           setExercises(response.data)
         }
@@ -34,7 +33,7 @@ function DayOverview (){
 		}
 
 		axios
-			.get(`${API_URL}/api/clients/current`, {
+			.get(`${process.env.REACT_APP_API_URL}/api/clients/current`, {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}

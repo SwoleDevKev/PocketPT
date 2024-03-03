@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import InputUpgrade from "../../components/InputUpgrade/InputUpgrade";
-import { API_URL } from "../../util";
 
 function Signup () {
     const [error, setError] = useState("");
@@ -14,7 +13,7 @@ function Signup () {
 
     useEffect(()=>{
         async function getTrainers(){
-          const response = await axios.get(`${API_URL}/api/trainers`)
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/trainers`)
           setTrainers(response.data)
         }
         getTrainers()
@@ -24,7 +23,7 @@ function Signup () {
 
         try{
 
-            await axios.post(`${API_URL}/api/clients/register`, {
+            await axios.post(`${process.env.REACT_APP_API_URL}/api/clients/register`, {
                 email: event.target.email.value,
                 password: event.target.password.value,
                 first_name: event.target.first_name.value,
@@ -40,7 +39,7 @@ function Signup () {
         }
             
         try {
-           const response =  await axios.post(`${API_URL}/api/clients/login`, {
+           const response =  await axios.post(`${process.env.REACT_APP_API_URL}/api/clients/login`, {
                 email: event.target.email.value,
                 password: event.target.password.value
             })

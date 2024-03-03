@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import Input from '../Input/Input';
 import axios from 'axios';
-import { API_URL } from '../../util';
 
 
 function ExerciseCardEdit({ details, setDetails, exercise }) {
@@ -41,7 +40,7 @@ function ExerciseCardEdit({ details, setDetails, exercise }) {
         const rest = event.target.rest.value 
         const note = event.target.note.value || ''
         
-        await axios.put(`${API_URL}/api/exercises/${exercise.id}`, {
+        await axios.put(`${process.env.REACT_APP_API_URL}/api/exercises/${exercise.id}`, {
             reps,sets,weight,rest,note
         })
         details ? setDetails(false) : setDetails(true)

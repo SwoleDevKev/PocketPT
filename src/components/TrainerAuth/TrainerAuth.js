@@ -1,4 +1,9 @@
-function Authorization (){
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from 'axios'
+
+function TrainerAuthorization (){
+	
     
     const [user, setUser] = useState(null);
 	const [failedAuth, setFailedAuth] = useState(false);
@@ -11,7 +16,7 @@ function Authorization (){
 		}
 
 		axios
-			.get(`${API_URL}/api/trainers/current`, {
+			.get(`${process.env.REACT_APP_API_URL}/api/trainers/current`, {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}
@@ -46,3 +51,5 @@ function Authorization (){
 		);
 	}
 }
+
+export default TrainerAuthorization

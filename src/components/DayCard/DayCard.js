@@ -1,5 +1,4 @@
 import './DayCard.scss'
-import { API_URL } from '../../util'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -11,7 +10,7 @@ function DayCard({dailyWorkout, dayNum}){
 
      useEffect(()=>{
         async function getWorkoutDays(){
-            const response = await axios.get(`${API_URL}/api/exercises/custom/${dailyWorkout['id']}`)
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/exercises/custom/${dailyWorkout['id']}`)
             setExercises(response.data)
         }
         getWorkoutDays()

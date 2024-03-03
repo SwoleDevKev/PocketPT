@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import TrainerFooter from '../../components/TrainerFooter/TrainerFooter';
-import { API_URL, defaultAvatar } from '../../util';
 import './TrainerProfile.scss'
 
 
@@ -21,7 +20,7 @@ function TrainerProfile (){
 		}
 
 		axios
-			.get(`${API_URL}/api/trainers/current`, {
+			.get(`${process.env.REACT_APP_API_URL}/api/trainers/current`, {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}
@@ -75,7 +74,7 @@ function TrainerProfile (){
 			<div className="dashboard__content">
 				<h2 className="dashboard__heading" >My Profile</h2>
 				<div className="dashboard__avatar-container">
-					<img className="dashboard__avatar" alt='account profile' src={user.trainer_avatar || defaultAvatar}/>
+					<img className="dashboard__avatar" alt='account profile' src={user.trainer_avatar || process.env.REACT_APP_defaultAvatar}/>
 				</div>
 				<p>Name: {`${user.first_name} ${user.last_name}`}</p>
 				<p>Email: {user.email}</p>

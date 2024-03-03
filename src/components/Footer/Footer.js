@@ -10,19 +10,19 @@ function Footer (){
         <div className='footer'>
             <Link to='/journal' className='footer__link'>
             <div className='footer__pic-block'>
-                <img className='footer__pic' src={program} />
+                <img alt='journal and a pen icon' className='footer__pic' src={program} />
                 <p className='footer__pic-text'>Journal</p>
             </div>
             </Link>
             <Link to='/client' className='footer__link'>
             <div className='footer__pic-block'>
-                <img className='footer__pic' src={home}/>
+                <img alt='home icon' className='footer__pic' src={home}/>
                 <p className='footer__pic-text'> Home</p>
             </div>
             </Link>
             <Link to='/profile' className='footer__link'>
             <div className='footer__pic-block'>
-                <img className='footer__pic' src={profile} />
+                <img alt='account profile' className='footer__pic' src={profile} />
                 <p className='footer__pic-text'>Profile</p>
             </div>
             </Link>

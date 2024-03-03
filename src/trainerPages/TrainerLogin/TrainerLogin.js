@@ -2,7 +2,6 @@ import './TrainerLogin.scss';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { API_URL } from '../../util';
 
 function TrainerLogin() {
     const [error, setError] = useState("");
@@ -12,7 +11,7 @@ function TrainerLogin() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-		axios.post(`${API_URL}/api/trainers/login`, {
+		axios.post(`${process.env.REACT_APP_API_URL}/api/trainers/login`, {
             email: event.target.email.value,
             password: event.target.password.value
         })

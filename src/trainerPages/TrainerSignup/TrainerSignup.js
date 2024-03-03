@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import InputUpgrade from "../../components/InputUpgrade/InputUpgrade";
-import { API_URL } from "../../util";
 
 function TrainerSignup () {
     const [error, setError] = useState("");
@@ -15,7 +14,7 @@ function TrainerSignup () {
         event.preventDefault();
 
         axios
-            .post(`${API_URL}/api/trainers/register`, {
+            .post(`${process.env.REACT_APP_API_URL}/api/trainers/register`, {
                 email: event.target.email.value,
                 password: event.target.password.value,
                 first_name: event.target.first_name.value,
@@ -32,7 +31,7 @@ function TrainerSignup () {
                 setError(error.response.data);
             });
         axios
-            .post(`${API_URL}/api/trainers/login`, {
+            .post(`${process.env.REACT_APP_API_URL}/api/trainers/login`, {
                 email: event.target.email.value,
                 password: event.target.password.value
             })

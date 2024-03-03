@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { API_URL } from '../../util'
 import './ViewExercises.scss'
 
 
@@ -13,7 +12,7 @@ function ViewExercises ({workout}){
     let videoId = ''
 
     const removeExercise = async (exercise)=>{
-        await axios.delete(`${API_URL}/api/workouts/${exercise.id}`);
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/workouts/${exercise.id}`);
         alert('done')
 
         alert(`removed ${exercise.exercise_name}`)
@@ -30,7 +29,7 @@ function ViewExercises ({workout}){
 
     useEffect(()=>{
         async function getCurrentVideos(){
-            const response = await axios.get(`${API_URL}/api/exercises/${workout.id}`)
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/exercises/${workout.id}`)
             setExerciseBank(response.data)
         }
 

@@ -2,7 +2,6 @@ import './Main.scss'
 
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { API_URL } from '../../util'
 import ClientWeekCard from '../ClientWeekCard/ClientWeekCard'
 
 function Main({programId}){
@@ -13,7 +12,7 @@ function Main({programId}){
     useEffect( () => {
 
         async function getProgram(){
-            const response = await axios.get(`${API_URL}/api/programs/${programId}`)
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/programs/${programId}`)
             setProgram(response.data.workouts)
         }
         if(programId){

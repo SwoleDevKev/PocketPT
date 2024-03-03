@@ -1,0 +1,19 @@
+.main {
+  height: -moz-fit-content;
+  height: fit-content;
+  min-height: 80vh;
+}
+.main__heading {
+  padding: 0 1rem 1rem;
+  text-align: center;
+}
+@media screen and (min-width: 767px) {
+  .main__heading {
+    padding: 0 2.25rem 2.25rem;
+  }
+}
+@media screen and (min-width: 1279px) {
+  .main__heading {
+    padding: 0 5rem 2.25rem;
+  }
+}/*# sourceMappingURL=Main.css.map */

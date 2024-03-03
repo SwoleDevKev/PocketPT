@@ -1,0 +1,139 @@
+@keyframes drop {
+  from {
+    transform: translatey(-100%);
+  }
+  to {
+    transform: translatey(0%);
+  }
+}
+.landing-top {
+  display: flex;
+  flex-direction: column;
+  border-radius: 20% 20% 0 0;
+  height: 60vh;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+@media screen and (min-width: 767px) {
+  .landing-top {
+    width: 40%;
+    height: 100vh;
+  }
+}
+.landing-top__image {
+  height: 100%;
+}
+@media screen and (min-width: 767px) {
+  .landing-top__image {
+    width: 100%;
+  }
+}
+.landing-top__image--inner {
+  height: 30%;
+  position: absolute;
+  padding-left: 10px;
+  animation: 3s infinite drop;
+}
+@media screen and (min-width: 767px) {
+  .landing-top__image--inner {
+    width: 70%;
+  }
+}
+.landing-top__image-container {
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.landing-top__heading {
+  font-family: "Titillium bold";
+  font-size: 48px;
+  color: #050A30;
+}
+.landing-top__span {
+  color: #FFBD59;
+}
+.landing-top__link {
+  text-decoration: none;
+  text-align: center;
+  color: blue;
+}
+.landing-top__link:hover {
+  cursor: pointer;
+}
+
+.landing {
+  background-color: #ffffff;
+}
+@media screen and (min-width: 767px) {
+  .landing {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+.landing-bottom {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10% 10% 0 0;
+  background-color: #050A30;
+  height: 40vh;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (min-width: 767px) {
+  .landing-bottom {
+    width: 40%;
+    height: 50vh;
+    border-radius: 10%;
+  }
+}
+.landing-bottom__link {
+  text-decoration: none;
+  text-align: center;
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  font-family: "Titillium";
+  margin: 0.5rem 0;
+  background-color: #FFBD59;
+  color: #050A30;
+  width: 100%;
+  border-radius: 1.25rem;
+  border: none;
+  padding: 0 1rem;
+  margin-bottom: 0.3125rem;
+  height: 2.25rem;
+  color: #ffffff;
+  border-radius: 10px;
+  width: 50%;
+  font-family: "Titillium bold";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (min-width: 767px) {
+  .landing-bottom__link {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
+}
+.landing-bottom__link:hover {
+  background-color: rgb(26, 32, 79);
+  color: #ffffff;
+}
+@media screen and (min-width: 767px) {
+  .landing-bottom__link {
+    width: 75%;
+  }
+}
+.landing-bottom__link:hover {
+  cursor: pointer;
+}
+.landing-bottom__link--alt {
+  background-color: transparent;
+  border: 2px solid #FFBD59;
+}/*# sourceMappingURL=LandingPage.css.map */

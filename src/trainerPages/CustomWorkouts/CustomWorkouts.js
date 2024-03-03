@@ -7,7 +7,6 @@ import CreateDailyWorkout from '../../components/CreateDailyWorkout/CreateDailyW
 import Header from '../../components/Header/Header'
 import ViewExercisesCustom from '../../components/ViewExercisesCustom/ViewExercisesCustom'
 import TrainerFooter from '../../components/TrainerFooter/TrainerFooter'
-import { API_URL } from '../../util'
 
 
 function CustomWorkouts (){
@@ -25,7 +24,7 @@ function CustomWorkouts (){
 
   useEffect(()=>{
     async function getWorkouts(){
-        const response = await axios.get(`${API_URL}/api/workouts/new/${user?.id}`)
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/workouts/new/${user?.id}`)
         setWorkouts(response.data)
      }
      getWorkouts()
@@ -50,7 +49,7 @@ function CustomWorkouts (){
 		}
 
 		axios
-			.get(`${API_URL}/api/trainers/current`, {
+			.get(`${process.env.REACT_APP_API_URL}/api/trainers/current`, {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}

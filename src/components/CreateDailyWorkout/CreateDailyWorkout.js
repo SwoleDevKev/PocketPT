@@ -1,7 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { API_URL } from "../../util";
 import Input from "../Input/Input"
 import "./CreateDailyWorkout.scss"
 
@@ -21,14 +19,14 @@ function CreateDailyWorkout ({setShowDaily, user, exList , setExList}){
             "dailyWorkout_details" : event.target.details.value
         }
 
-       const response = await axios.post(`${API_URL}/api/workouts/new`, newWorkout);
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/workouts/new`, newWorkout);
        handleCloseEdit()
         exList ? setExList(false) : setExList(true)
     }
 
     return(
         <Modal
-                show={setShowDaily}
+                show={handleShowDaily}
                 onHide={handleCloseEdit} 
                 backdrop="static"
                 keyboard={false}

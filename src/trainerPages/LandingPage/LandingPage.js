@@ -10,8 +10,8 @@ function LandingPage (){
         <div className='landing-top'>
             
             <div className='landing-top__image-container'>
-                <img className='landing-top__image'src={logo}/>
-                <img className='landing-top__image landing-top__image--inner'src={innerLogo}/>
+                <img alt='the letters PT' className='landing-top__image'src={logo}/>
+                <img alt="an outline of a pants back pocket" className='landing-top__image landing-top__image--inner'src={innerLogo}/>
             </div>
             
             <h1 className='landing-top__heading'>POCKET<span className='landing-top__span'>PT</span></h1>

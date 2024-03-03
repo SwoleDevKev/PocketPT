@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './CustomCheckbox.scss'; // Create this file for styling
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+
 
 const CustomCheckbox = () => {
   const [isChecked, setIsChecked] = useState(false);

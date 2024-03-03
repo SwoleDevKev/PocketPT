@@ -2,7 +2,6 @@ import './ClientWeekCard.scss'
 import dropDown from '../../assets/icons/dropDown.svg'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { API_URL } from '../../util'
 import DayCard from '../DayCard/DayCard.js'
 
 function ClientWeekCard({week, weekNum, index}){
@@ -13,7 +12,7 @@ function ClientWeekCard({week, weekNum, index}){
 
      useEffect(()=>{
         async function getWorkoutDays(){
-            const response = await axios.get(`${API_URL}/api/workouts/custom/${week?.id}`)
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/workouts/custom/${week?.id}`)
             setProgramDays(response.data)
         }
         getWorkoutDays()
