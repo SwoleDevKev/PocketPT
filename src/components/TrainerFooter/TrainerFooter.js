@@ -21,7 +21,7 @@ function TrainerFooter ({user}){
             </Link>
             <Link to='/trainer/profile' className='footer__link'>
             <div className='footer__pic-block'>
-                <img alt='account profile' className='footer__pic' src={user?.client_avatar || `${process.env.REACT_APP_API_URL}/images/profile.png`} />
+                <img alt='account' className='footer__pic' src={user?.client_avatar || process.env.REACT_APP_defaultAvatar} />
                 <p className='footer__pic-text'>Profile</p>
             </div>
             </Link>
