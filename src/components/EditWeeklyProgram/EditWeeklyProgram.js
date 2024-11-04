@@ -3,7 +3,7 @@ import './EditWeeklyProgram.scss'
 import { useEffect, useState } from "react"
 
 
-function EditWeeklyProgram({program, Modal, trainer_id}) {
+function EditWeeklyProgram({program, Modal, trainer_id, updatedProgram, setUpdatedProgram}) {
 
     const [weeklyPrograms, setWeeklyPrograms] = useState(null)
     const [dayValues, setDayValues] = useState([
@@ -20,8 +20,13 @@ function EditWeeklyProgram({program, Modal, trainer_id}) {
         async function getWeeklyPrograms(){
            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/workouts/new/${trainer_id}`)
            setWeeklyPrograms(response.data)
+           console.log('ran weekly programs')
+           console.log(response.data);
+           ;
         }
         getWeeklyPrograms()
+       
+        
     },[trainer_id])
 
  
@@ -48,7 +53,23 @@ function EditWeeklyProgram({program, Modal, trainer_id}) {
         })
         if (response) {
             alert('succsessfully updated program')
+
+            console.log("BEFORE: ",updatedProgram);
+            
+
+            if (updatedProgram) {
+                setUpdatedProgram(false)
+                console.log("ran 1");
+            } else {
+                setUpdatedProgram(true)
+                console.log("ran 2");
+            }
+            
+            console.log("AFTER: ",updatedProgram);
+
+            
             Modal(false)
+
         } else {
             alert('all values cannot be empty')
         }
@@ -65,7 +86,7 @@ function EditWeeklyProgram({program, Modal, trainer_id}) {
             {days.map((day,index) => {
 
                 return (
-                    <div className="weekly-program-edit__input-container">
+                    <div className="weekly-program-edit__input-container" key={index}>
 
                         <label className='weekly-program-edit__label' htmlFor='program'>{day}</label>
                         <select
@@ -81,6 +102,7 @@ function EditWeeklyProgram({program, Modal, trainer_id}) {
                                     {weeklyProgram['daily-workout_name']}
                                 </option>
                             ))}
+                            <option value={0}>Rest Day</option>
                         </select>
                     </div>
                 )

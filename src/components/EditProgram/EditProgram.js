@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import './EditProgram.scss'
 
 
-function EditProgram({ program, setEditProgramModal }) {
+function EditProgram({ program, setEditProgramModal, updatedMonthlyProgram, setUpdatedMonthlyProgram }) {
 
 
     const [weeklyPrograms, setWeeklyPrograms] = useState(null)
@@ -48,6 +48,14 @@ function EditProgram({ program, setEditProgramModal }) {
             
             if (response) {
                 alert('succsessfully updated program')
+
+                if(!updatedMonthlyProgram){
+                    setUpdatedMonthlyProgram(true)
+                } else {
+                    setUpdatedMonthlyProgram(false)
+                }
+
+
                 setEditProgramModal(false)
     
             }

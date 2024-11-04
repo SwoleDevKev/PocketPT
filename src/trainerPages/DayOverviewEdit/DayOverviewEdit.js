@@ -76,7 +76,6 @@ function DayOverviewEdit (){
             {exercises && exercises.map((exercise)=>{
               return  <ExerciseCardEdit details={details} setDetails={setDetails} exercise={exercise}/>
             })}
-            <button onClick={()=>{ navigate('/client') }} className='day-overview__button'>Done</button>
             <TrainerFooter />
         </>
     )

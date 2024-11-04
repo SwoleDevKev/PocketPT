@@ -9,6 +9,7 @@ import TrainerFooter from "../../components/TrainerFooter/TrainerFooter"
 import {Modal} from 'react-bootstrap'
 import {Button} from 'react-bootstrap'
 import Input from "../../components/Input/Input"
+import { response } from "express"
 
 
 function TrainerPrograms() {
@@ -17,6 +18,9 @@ function TrainerPrograms() {
     const [customWeeklyPrograms, setCustomWeeklyPrograms] = useState([])
     const [user, setUser] = useState(null);
     const [failedAuth, setFailedAuth] = useState(false);
+    const [updatedWeeklyProgram, setUpdatedWeeklyProgram] = useState(false)
+    const [updatedMonthlyProgram, setUpdatedMonthlyProgram] = useState(false)
+
 
     const [show, setShow] = useState(false);
     const [showMonthly, setShowMonthly] = useState(false);
@@ -34,7 +38,9 @@ function TrainerPrograms() {
             setPrograms(response.data)
         }
         getPrograms()
-    }, [])
+        console.log('updated monthly program', response.data);
+        
+    }, [updatedMonthlyProgram])
 
 
     useEffect(() => {
@@ -43,7 +49,7 @@ function TrainerPrograms() {
             setCustomWeeklyPrograms(response.data)
         }
         getCustomWeeklyPrograms()
-    }, [user])
+    }, [user,updatedWeeklyProgram])
 
 
     const handlePostWeeklyProgram = async (event) => {
@@ -114,7 +120,7 @@ function TrainerPrograms() {
                     <h2 className="program__heading">Monthly Programs </h2>
                     {programs && programs.map((program) => {
                         return (
-                            <ProgramCard key={program.id} program={program} />
+                            <ProgramCard key={program.id} program={program} updatedMonthlyProgram={updatedMonthlyProgram} setUpdatedMonthlyProgram={setUpdatedMonthlyProgram}/>
                             )
                         })}
                 </section>
@@ -154,7 +160,8 @@ function TrainerPrograms() {
                     <h2 className="program__heading" >Weekly Programs</h2>
                     {customWeeklyPrograms && customWeeklyPrograms.map((program) => {
                         return (
-                            <WeeklyProgramCard key={program.id} program={program} trainer_id={user.id}/>
+                            <WeeklyProgramCard key={program.id} program={program} updatedProgram={updatedWeeklyProgram} setUpdatedProgram={setUpdatedWeeklyProgram}
+                            trainer_id={user.id}/>
                             )
                         })}
                 </section>

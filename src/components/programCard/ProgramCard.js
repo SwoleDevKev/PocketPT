@@ -3,7 +3,7 @@ import EditProgram from '../EditProgram/EditProgram'
 import './ProgramCard.scss'
 
 
-function ProgramCard({program}){
+function ProgramCard({program, updatedMonthlyProgram, setUpdatedMonthlyProgram}){
 
 
     const [editProgramModal , setEditProgramModal] = useState(false)
@@ -23,7 +23,12 @@ function ProgramCard({program}){
                 <p className='program-card__details'>{program.program_details}</p>
             </div>
             <button className='program-card__button' onClick={handleProgramModal}>Edit this program</button>
-            {editProgramModal && <EditProgram setEditProgramModal={setEditProgramModal} program={program}/>}
+            {editProgramModal && <EditProgram setEditProgramModal={setEditProgramModal} 
+                                              program={program} 
+                                              updatedMonthlyProgram={updatedMonthlyProgram} 
+                                              setUpdatedMonthlyProgram={setEditProgramModal}  
+                                />
+            }
         </section>
     )
 }

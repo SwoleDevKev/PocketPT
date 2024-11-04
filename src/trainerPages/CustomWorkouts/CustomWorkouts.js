@@ -7,6 +7,7 @@ import CreateDailyWorkout from '../../components/CreateDailyWorkout/CreateDailyW
 import Header from '../../components/Header/Header'
 import ViewExercisesCustom from '../../components/ViewExercisesCustom/ViewExercisesCustom'
 import TrainerFooter from '../../components/TrainerFooter/TrainerFooter'
+import { v4 as uuidv4 } from 'uuid';
 
 
 function CustomWorkouts (){
@@ -93,8 +94,8 @@ function CustomWorkouts (){
                 <h1 className='workout__heading'>Daily Workouts</h1>
                 { workouts?.map((workout) => { return(
                     
-                    <>
-                    <div className='workout-card' >
+                    
+                    <div className='workout-card' key={uuidv4()}>
                         <h3 className='workout-card__heading'>{workout['daily-workout_name']}</h3>
                         <p className='workout-card__details'>{workout['daily-workout_details']}</p>
                         <button className='workout-card__button' onClick={()=>{ handleModal(workout)}} >Add Exercises</button>
@@ -102,7 +103,7 @@ function CustomWorkouts (){
                     </div>
                     
                     
-                    </>
+                   
                 )})
                 
                 }
