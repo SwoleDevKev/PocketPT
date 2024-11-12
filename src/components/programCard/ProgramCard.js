@@ -26,7 +26,7 @@ function ProgramCard({program, updatedMonthlyProgram, setUpdatedMonthlyProgram})
             {editProgramModal && <EditProgram setEditProgramModal={setEditProgramModal} 
                                               program={program} 
                                               updatedMonthlyProgram={updatedMonthlyProgram} 
-                                              setUpdatedMonthlyProgram={setEditProgramModal}  
+                                              setUpdatedMonthlyProgram={setUpdatedMonthlyProgram}  
                                 />
             }
         </section>

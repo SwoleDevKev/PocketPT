@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import './ViewExercisesCustom.scss'
+import { v4 as uuidv4 } from 'uuid';
 
 
 function ViewExercisesCustom ({workout, exList, setExList }){
@@ -45,15 +46,13 @@ function ViewExercisesCustom ({workout, exList, setExList }){
              videoId =  exercise.video_link
         
             return(
-                <>
-                {
-                <div className='listItem' >
+               
+                <div className='listItem' key={uuidv4()}>
                     <img alt={`demonstation of ${exercise.exercise_name}`} className='listItem__image' src={`http://i3.ytimg.com/vi/${videoId}/hqdefault.jpg`}/>
                     <p className='listItem__name'>{exercise.exercise_name}</p>
                     <button className='listItem__button' onClick={ ()=>{removeExercise(exercise)}}>delete</button>
                 </div>
-                }
-                </>
+                
             )
             
                 

@@ -2,9 +2,14 @@ import axios from 'axios'
 import { useEffect, useState, useRef } from 'react'
 import { Button } from 'react-bootstrap';
 import './BuildDailyWorkout.scss'
+import { v4 as uuidv4 } from 'uuid';
+import { convertFromISO8601, formatNumberWithCommas  } from '../../HelperFunctions/conversions';
+import Input from '../Input/Input';
+
 
 function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, trainer_id }) {
     const [exerciseBank, setExerciseBank] = useState([]);
+    const [allExercises, setAllExercises] = useState([]);
     const [showCreateExModal, setShowCreateExModal] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
     const formRef = useRef();
@@ -14,6 +19,9 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
     const [videoTitle, setVideoTitle] = useState('')
     const [video_link, setVideo_link] = useState('')
     const [videoResults, setVideoResults] = useState([]);
+    const [nextPageToken, setNextPageToken] = useState('');
+    const [vidDetails, setVidDetails] = useState([])
+
 
     let videoId = ''
 
@@ -22,6 +30,7 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
             try {
                 const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/exercises`);
                 setExerciseBank(response.data);
+                setAllExercises(response.data);
             } catch (error) {
                 console.error('Error fetching exercises:', error);
             }
@@ -64,16 +73,65 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
         event.preventDefault()
         const exercise_name = event.target.name.value
         await axios.post(`${process.env.REACT_APP_API_URL}/api/exercises`,{ trainer_id, exercise_name, video_link })
+        alert('Exercise created successfully')
+        setShowCreateExModal(false)
     }
     const handleGetNewExercises = async (event) => {
-        event.preventDefault(); // Prevent the default form submission behavior
+        event.preventDefault(); 
+        console.log(event.target.search.value);
+        
         try {
-            const response = await axios.get(`${process.env.REACT_APP_youtubeAPI_URL}${event.target.search.value}`);
+            const response = await axios.get(`${process.env.REACT_APP_youtubeAPI_URL}${process.env.REACT_APP_youtubeAPI_search}${event.target.search.value}&maxResults=10&pageToken=${nextPageToken}`);
             setVideoResults(response.data.items);
+            setNextPageToken(response.data.nextPageToken);           
         } catch (error) {
             console.error('Error fetching new exercises:', error);
         }
     };
+
+
+    useEffect(() => {
+        getVidDetails()
+
+    }, [videoResults])
+
+    const getVidDetails = async () => {
+        const vidList = videoResults.map((el) =>  el.id.videoId ).join(',')
+
+        const response = await axios.get(`${process.env.REACT_APP_youtubeAPI_URL}${process.env.REACT_APP_youtubeAPI_details}${vidList}`)
+        console.log(response.data.items);
+        
+        setVidDetails(response.data.items.map((el) => {
+            return {
+                duration: el.contentDetails.duration,
+                views: el.statistics.viewCount
+            }
+        }))
+        
+        
+
+    }
+
+    const handleGetMoreVids = async () => {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_youtubeAPI_URL}${process.env.REACT_APP_youtubeAPI_search}${inputRef.current.value}&maxResults=10&pageToken=${nextPageToken}`);
+            setVideoResults([...videoResults, ...response.data.items]);
+            setNextPageToken(response.data.nextPageToken);
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error fetching more videos:', error);
+        }
+    }
+
+    const handleChangeExerciseList = (event) => {
+        const searchValue = event.target.value.toLowerCase();
+        const filteredExercises = allExercises.filter((exercise) => 
+            exercise.exercise_name.toLowerCase().includes(searchValue)
+        );
+        setExerciseBank(filteredExercises);
+    }
+
+
     const handleChangeName = (event) => {
         setName(event.target.value)
       };
@@ -83,6 +141,7 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
             <section className='list'>
                 <h3 className='list__heading' >{`Add Exercises for ${workout['daily-workout_name']}`}</h3>
                 <p className='list__cancel' onClick={() => { setModalVisibility(false) }}>X</p>
+                <Input classNameDiv="list__container" type='text' placeholder='Search' onChange={handleChangeExerciseList}/>
                 {exerciseBank.map((exercise) => {
 
                     videoId = exercise.video_link
@@ -94,9 +153,9 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
                     }
                        
                     return (
-                        <div className='list__item' onClick={() => { addExercise(exercise) }}>
+                        <div key={uuidv4()} className='list__item' onClick={() => { addExercise(exercise) }}>
                             <img className='list__image' alt={exercise.exercise_name} src={`http://i3.ytimg.com/vi/${videoId}/hqdefault.jpg`} />
-                            <p>{exercise.exercise_name}</p>
+                            <p className='list__text'>{exercise.exercise_name}</p>
                         </div>
                     )
 
@@ -164,12 +223,12 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
                             />
 
                         </div>
-                        <button type="submit" className="btn btn-primary">Search</button> {/* Search button added */}
+                        <button type="submit" className="btn btn-primary">Search</button>
                     </form>
 
                     <ul className='search-modal__list'>
 
-                        {videoResults?.map((el) => {
+                        {videoResults?.map((el,i) => {
 
                             const htmlString = el.snippet.title
                             
@@ -179,18 +238,24 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
                             console.log(htmlTitle);
 
                             return (
-                                <li className='search-modal__list-item' onClick={() => {
+                                <li className='search-modal__list-item' key={uuidv4()} onClick={() => {
                                     handleAddExercise(el.id.videoId, el.snippet.title, el.snippet.thumbnails.medium.url )
                                 }}>
                                     <img className='search-modal__image' alt={el.snippet.title} src={el.snippet.thumbnails.medium.url} />
-                                    <div>
+                                    <div className='search-modal__text-container'>
                                         <h4 className='search-modal__video-title'>{htmlTitle}</h4>
+                                        <div className='search-modal__video-stats'>
+                                            <p className='search-modal__duration'>Time: {convertFromISO8601(vidDetails[i]?.duration || "")}</p>
+                                            <p className='search-modal__views'>Views: {formatNumberWithCommas(vidDetails[i]?.views|| "")}</p>
+                                        </div>
                                     </div>
                                 </li>
                             )
 
                         })}
+
                     </ul>
+                    {videoResults.length > 0 && <button className='search-modal__button' onClick={handleGetMoreVids}>Load More</button>}
                 </div>
 
             </section>}

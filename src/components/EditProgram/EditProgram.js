@@ -88,6 +88,7 @@ function EditProgram({ program, setEditProgramModal, updatedMonthlyProgram, setU
                             {weeklyProgram.weekly_program_name}
                         </option>
                     ))}
+                    <option value=''>week Off</option>
                 </select>
             </div>
             <div className="program-edit__entry-container">
@@ -105,6 +106,8 @@ function EditProgram({ program, setEditProgramModal, updatedMonthlyProgram, setU
                             {weeklyProgram.weekly_program_name}
                         </option>
                     ))}
+                   <option value=''>week Off</option>
+
                 </select>
             </div>
             <div className="program-edit__entry-container">
@@ -122,6 +125,8 @@ function EditProgram({ program, setEditProgramModal, updatedMonthlyProgram, setU
                             {weeklyProgram.weekly_program_name}
                         </option>
                     ))}
+                    <option value=''>week Off</option>
+
                 </select>
             </div>
             <div className="program-edit__entry-container">
@@ -139,6 +144,7 @@ function EditProgram({ program, setEditProgramModal, updatedMonthlyProgram, setU
                             {weeklyProgram.weekly_program_name}
                         </option>
                     ))}
+                    <option value=''>Week Off</option>
                 </select>
             </div>
 

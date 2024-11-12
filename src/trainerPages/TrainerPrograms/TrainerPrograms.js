@@ -9,7 +9,6 @@ import TrainerFooter from "../../components/TrainerFooter/TrainerFooter"
 import {Modal} from 'react-bootstrap'
 import {Button} from 'react-bootstrap'
 import Input from "../../components/Input/Input"
-import { response } from "express"
 
 
 function TrainerPrograms() {
@@ -38,7 +37,7 @@ function TrainerPrograms() {
             setPrograms(response.data)
         }
         getPrograms()
-        console.log('updated monthly program', response.data);
+        console.log('updated monthly program', programs);
         
     }, [updatedMonthlyProgram])
 
