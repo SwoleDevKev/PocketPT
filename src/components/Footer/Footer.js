@@ -5,7 +5,7 @@ import profile from '../../assets/icons/profile.png'
 import { Link } from 'react-router-dom'
 
 
-function Footer (){
+function Footer ({user}){
     return(
         <div className='footer'>
             <Link to='/journal' className='footer__link'>
@@ -22,7 +22,7 @@ function Footer (){
             </Link>
             <Link to='/profile' className='footer__link'>
             <div className='footer__pic-block'>
-                <img alt='account profile' className='footer__pic' src={profile} />
+                <img alt='account profile' className='footer__pic footer__pic--round' src={user.icon || profile} />
                 <p className='footer__pic-text'>Profile</p>
             </div>
             </Link>

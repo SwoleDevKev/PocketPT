@@ -11,12 +11,10 @@ import {Button} from 'react-bootstrap'
 import Input from "../../components/Input/Input"
 
 
-function TrainerPrograms() {
+function TrainerPrograms({user}) {
 
     const [programs, setPrograms] = useState(null)
     const [customWeeklyPrograms, setCustomWeeklyPrograms] = useState([])
-    const [user, setUser] = useState(null);
-    const [failedAuth, setFailedAuth] = useState(false);
     const [updatedWeeklyProgram, setUpdatedWeeklyProgram] = useState(false)
     const [updatedMonthlyProgram, setUpdatedMonthlyProgram] = useState(false)
 
@@ -37,7 +35,6 @@ function TrainerPrograms() {
             setPrograms(response.data)
         }
         getPrograms()
-        console.log('updated monthly program', programs);
         
     }, [updatedMonthlyProgram])
 
@@ -64,50 +61,6 @@ function TrainerPrograms() {
     }
 
 
-
-    useEffect(() => {
-        const token = sessionStorage.getItem('token')
-
-        if (!token) {
-            return setFailedAuth(true)
-        }
-
-        axios
-            .get(`${process.env.REACT_APP_API_URL}/api/trainers/current`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-            .then((response) => {
-                setUser(response.data)
-            })
-            .catch((error) => {
-                setFailedAuth(true)
-            })
-
-
-
-    }, []);
-
-
-    if (failedAuth) {
-        return (
-            <main className="dashboard">
-                <p>You must be logged in to see this page.</p>
-                <p>
-                    <Link to="/trainer/login">Log in</Link>
-                </p>
-            </main>
-        );
-    }
-
-    if (user === null) {
-        return (
-            <main className="dashboard">
-                <p>Loading...</p>
-            </main>
-        );
-    }
 
     return (
         <>
@@ -201,7 +154,7 @@ function TrainerPrograms() {
                 </div>
 
             </div>
-            <TrainerFooter />
+            <TrainerFooter user={user} />
 
         </>
     )
