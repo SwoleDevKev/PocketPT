@@ -51,9 +51,7 @@ export function TrainerAuthorization(WrappedComponent) {
                     <p>Loading...</p>
                 </main>
             );
-        }
-		console.log(user,"USER IN AUTH");
-		
+        }		
 
         return (
 			<WrappedComponent {...props} user={user} />

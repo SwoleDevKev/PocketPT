@@ -78,7 +78,6 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
     }
     const handleGetNewExercises = async (event) => {
         event.preventDefault(); 
-        console.log(event.target.search.value);
         
         try {
             const response = await axios.get(`${process.env.REACT_APP_youtubeAPI_URL}${process.env.REACT_APP_youtubeAPI_search}${event.target.search.value}&maxResults=10&pageToken=${nextPageToken}`);
@@ -99,7 +98,6 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
         const vidList = videoResults.map((el) =>  el.id.videoId ).join(',')
 
         const response = await axios.get(`${process.env.REACT_APP_youtubeAPI_URL}${process.env.REACT_APP_youtubeAPI_details}${vidList}`)
-        console.log(response.data.items);
         
         setVidDetails(response.data.items.map((el) => {
             return {
@@ -117,7 +115,6 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
             const response = await axios.get(`${process.env.REACT_APP_youtubeAPI_URL}${process.env.REACT_APP_youtubeAPI_search}${inputRef.current.value}&maxResults=10&pageToken=${nextPageToken}`);
             setVideoResults([...videoResults, ...response.data.items]);
             setNextPageToken(response.data.nextPageToken);
-            console.log(response.data);
         } catch (error) {
             console.error('Error fetching more videos:', error);
         }
@@ -234,8 +231,6 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
                             
                             const parser = new DOMParser();
                             const htmlTitle = parser.parseFromString(htmlString, 'text/html').body.textContent;
-
-                            console.log(htmlTitle);
 
                             return (
                                 <li className='search-modal__list-item' key={uuidv4()} onClick={() => {

@@ -9,9 +9,7 @@ import TrainerFooter from '../../components/TrainerFooter/TrainerFooter';
 function CurrentClientProgram ({user}) {
 
 	const {clientId, programId} = useParams()
-    console.log(user, "TEST USER");
     
-
     return (
         <>
             <Header />
