@@ -13,11 +13,18 @@
     z-index: 3;
     overflow-x: hidden;
     padding:5rem 2rem;
-    padding-top: 5rem;
 
     @include tablet {
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 5rem;
+
+    }
+
+    &__container{
+        width: 100%;
+        @include page-header-padding;
     }
 
     &__cancel{
@@ -44,19 +51,25 @@
     &__item{
         height: 10vh;
         display: flex;
-        margin-bottom:1rem ;
+        padding-bottom: .5rem ;
+        margin-top: 1rem;
         align-items: center; 
+        @include divider;
     
     
         @include tablet {
-           width: 50%;
+           width: 45%;
         }
+    }
+    &__text{
+        font-size: 1.5rem;
     }
     &__image{
         height: 100%;
+        margin-right: 1rem ;
     }
     &__button-container{
-        background-color: $yellow;
+        background-color: rgba($white, .97);
         width: 100%;
         display:flex;
         justify-content: center;
@@ -68,7 +81,11 @@
         
     }
     &__button{
+        @include button;
 
+        @include tablet {
+            width: 30%;
+        }
     }
 }
 
@@ -96,15 +113,71 @@
     }
     &__list{
         list-style: none;
+        padding-left:0 ;
         margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+
+        @include tablet {
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-between;
+            
+        }
     }
     &__list-item{
         display: flex;
         height: 10vh;
         margin: 0.5rem 0;
+        box-shadow: 1px 1px #dee6ef;
+
+
+        @include tablet {
+            width: 45%;
+        }
+
+        
+
+    }
+
+    &__button{
+        @include button;
+        width: 100%;
+    }
+    &__image{
+        width: 30%;
+    }
+
+    &__text-container{
+        width: 60%;
+        padding-left: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
     }
     &__video-title{
-        padding-left: 1rem ;
+        height: 40%;
+        font-size: 1.2rem;
+        margin: 0;
+        white-space: nowrap;        /* Prevents text from wrapping to the next line */
+        overflow: hidden;           /* Hides any overflow text */
+        text-overflow: ellipsis;    /* Shows an ellipsis when text is cut off */
+        max-width: 50vw; 
+    }
+    &__video-stats{
+        height: 35%;
+        display: flex;
+        justify-content: space-between;
+        font-size: 1rem;
+
+    }
+    &__duration{
+        margin: 0;
+        padding-right: 1rem;
+        border-right: 1px solid $light-grey;
+    }
+    &__views{
+        margin: 0;
     }
 }
 

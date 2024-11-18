@@ -34,11 +34,12 @@ function TrainerMain({programId, clientId}){
 
       if (programId === 'null') {
         return(
-          <>
-            <h2>client has no program set</h2>
+          <div className="trainer-main__container">
+
+            <h2 className="workout__heading">client has no program set</h2>
             <button className='trainer-main__button' onClick={handleModal}>Assign different Program</button>
             {editModalVisibility && <AssignProgram setModal={setEditModalVisibility} modal={editModalVisibility} clientId={clientId} programId={programId}/>}
-          </>
+          </div>
          
         )
       }
@@ -46,7 +47,7 @@ function TrainerMain({programId, clientId}){
     if (program?.workouts.length === 0){
       return(
         
-        <section className='trainer-main-container'>
+        <section className='trainer-main__container'>
           <div className='trainer-main'>
               <h1 className='trainer-main__heading'><span>{program?.program_info.program_name} </span>Program is empty</h1>
               <button className='trainer-main__button' onClick={handleModal}>Assign different Program</button>

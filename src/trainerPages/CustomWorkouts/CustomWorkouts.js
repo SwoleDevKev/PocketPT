@@ -1,15 +1,15 @@
 import './CustomWorkouts.scss'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import BuildDailyWorkout from '../../components/BuildDailyWorkout/BuildDailyWorkout'
 import CreateDailyWorkout from '../../components/CreateDailyWorkout/CreateDailyWorkout'
 import Header from '../../components/Header/Header'
 import ViewExercisesCustom from '../../components/ViewExercisesCustom/ViewExercisesCustom'
 import TrainerFooter from '../../components/TrainerFooter/TrainerFooter'
+import { v4 as uuidv4 } from 'uuid';
 
 
-function CustomWorkouts (){
+function CustomWorkouts ({user}){
 
     const [workouts, setWorkouts] = useState(null)
     const [modalVisibility, setModalVisibility] = useState(null)
@@ -17,8 +17,6 @@ function CustomWorkouts (){
     const [exList, setExList ]= useState(null)
     const [workoutList, setWorkoutList ]= useState(null)
     const [showDaily, setShowDaily] = useState(false);
-    const [user, setUser] = useState(null);
-	const [failedAuth, setFailedAuth] = useState(false);
 
 
 
@@ -41,49 +39,7 @@ function CustomWorkouts (){
 
    
 
-	useEffect(() => {
-		const token = sessionStorage.getItem('token')
-
-		if(!token) {
-			return setFailedAuth(true)
-		}
-
-		axios
-			.get(`${process.env.REACT_APP_API_URL}/api/trainers/current`, {
-				headers: {
-					Authorization: `Bearer ${token}`
-				}
-			})
-			.then((response) => {
-				setUser(response.data)
-			})
-			.catch((error) => {
-				setFailedAuth(true)
-			})
-
-        
-		
-	}, []);
-
-
-	if (failedAuth) {
-		return (
-			<main className="dashboard">
-				<p>You must be logged in to see this page.</p>
-				<p>
-					<Link to="/trainer/login">Log in</Link>
-				</p>
-			</main>
-		);
-	}
-
-	if (user === null) {
-		return (
-			<main className="dashboard">
-				<p>Loading...</p>
-			</main>
-		);
-	}
+	
     return (
         <>
 
@@ -93,8 +49,8 @@ function CustomWorkouts (){
                 <h1 className='workout__heading'>Daily Workouts</h1>
                 { workouts?.map((workout) => { return(
                     
-                    <>
-                    <div className='workout-card' >
+                    
+                    <div className='workout-card' key={uuidv4()}>
                         <h3 className='workout-card__heading'>{workout['daily-workout_name']}</h3>
                         <p className='workout-card__details'>{workout['daily-workout_details']}</p>
                         <button className='workout-card__button' onClick={()=>{ handleModal(workout)}} >Add Exercises</button>
@@ -102,7 +58,7 @@ function CustomWorkouts (){
                     </div>
                     
                     
-                    </>
+                   
                 )})
                 
                 }
@@ -114,7 +70,7 @@ function CustomWorkouts (){
             {showDaily && <CreateDailyWorkout exList={workoutList} setExList={setWorkoutList}
             setShowDaily={setShowDaily} user={user} />}
 
-            <TrainerFooter />
+            <TrainerFooter user={user}/>
         </>
     )
 }

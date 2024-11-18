@@ -16,9 +16,28 @@ import ClientProfile from './clientPages/ClientProfile/ClientProfile';
 import BuildDailyWorkout from './components/BuildDailyWorkout/BuildDailyWorkout';
 import CustomWorkouts from './trainerPages/CustomWorkouts/CustomWorkouts'
 import DayOverviewEdit from './trainerPages/DayOverviewEdit/DayOverviewEdit';
+import { TrainerAuthorization } from './components/TrainerAuth/TrainerAuth';
+import { ClientAuthorization } from './components/ClientAuth/ClientAuth';
+
 
 
 function App() {
+
+  const AuthenticatedProgramOverview = ClientAuthorization(ProgramOverview)
+  const AuthenticatedDayOverview = ClientAuthorization(DayOverview)
+  const AuthenticatedJournal = ClientAuthorization(Journal)
+  const AuthenticatedClientProfile = ClientAuthorization(ClientProfile)
+
+
+  const AuthenticatedTrainerDashboard = TrainerAuthorization(TrainerDashboard)
+  const AuthenticatedTrainerPrograms = TrainerAuthorization(TrainerPrograms)
+  const AuthenticatedCustomWorkouts = TrainerAuthorization(CustomWorkouts)
+  const AuthenticatedCurrentClientProgram = TrainerAuthorization(CurrentClientProgram)
+  const AuthenticatedDayOverviewEdit = TrainerAuthorization(DayOverviewEdit)
+  const AuthenticatedTrainerProfile = TrainerAuthorization(TrainerProfile)
+  const AuthenticatedBuildDailyWorkout = TrainerAuthorization(BuildDailyWorkout)
+
+
 
 
   
@@ -29,23 +48,24 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path='/' element={<LandingPage  />}></Route>
-          <Route path='/client' element={<ProgramOverview  />}></Route>
-          <Route path='/workout/:id' element={<DayOverview  />}></Route>
-          <Route path="/journal" element={<Journal />} />
-          <Route path="/profile" element={<ClientProfile />} />
+
+          <Route path='/client' element={<AuthenticatedProgramOverview  />}></Route>
+          <Route path='/workout/:id' element={<AuthenticatedDayOverview  />}></Route>
+          <Route path="/journal" element={<AuthenticatedJournal />} />
+          <Route path="/profile" element={<AuthenticatedClientProfile />} />
           
 					
 
 
           <Route path="/trainer/login" element={<TrainerLogin />} />
 					<Route path="trainer/signup" element={<TrainerSignup />} />
-          <Route path="/trainer/home" element={<TrainerDashboard />} />
-          <Route path="/trainer/programs" element={<TrainerPrograms />} />
-          <Route path='/trainer/workouts' element={<CustomWorkouts/>}></Route>
-          <Route path='/trainer/client/:clientId/:programId' element={<CurrentClientProgram  />}></Route>
-          <Route path='/trainer/workout/:id' element={<DayOverviewEdit  />}></Route>
-          <Route path="/trainer/profile" element={<TrainerProfile />} />
-          <Route path="/trainer/add-exercise" element={<BuildDailyWorkout />} />
+          <Route path="/trainer/home" element={<AuthenticatedTrainerDashboard />} />
+          <Route path="/trainer/programs" element={<AuthenticatedTrainerPrograms />} />
+          <Route path='/trainer/workouts' element={<AuthenticatedCustomWorkouts/>}></Route>
+          <Route path='/trainer/client/:clientId/:programId' element={<AuthenticatedCurrentClientProgram  />}></Route>
+          <Route path='/trainer/workout/:id' element={<AuthenticatedDayOverviewEdit  />}></Route>
+          <Route path="/trainer/profile" element={<AuthenticatedTrainerProfile />} />
+          <Route path="/trainer/add-exercise" element={<AuthenticatedBuildDailyWorkout />} />
 
           
       </Routes>

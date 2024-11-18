@@ -1,12 +1,12 @@
 import "./Input.scss";
 
-function Input({ label, name, type , auto }) {
+function Input({ label, name, type , auto, placeholder, onChange , classNameDiv, classNameInput, classNameLabel }) {
     return (
-        <div className="field">
-            <label htmlFor={name} className="field__label">
+        <div className={`${classNameDiv || ''} field`} >
+            <label htmlFor={name} className={`${classNameLabel || ''} field__label`}>
                 {label}
             </label>
-            <input type={type} id={name} autoComplete={auto || 'off'} name={name} className="field__input" />
+            <input placeholder={placeholder || ""} type={type} id={name} autoComplete={auto || 'off'} name={name} className={`${classNameInput || ''} field__input`} onChange={onChange} />
         </div>
     );
 }

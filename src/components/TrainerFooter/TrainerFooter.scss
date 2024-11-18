@@ -29,9 +29,15 @@
         justify-content: center;
     }
     &__pic{
-        height: 60%;
+        height: 48px;
+        width: 48px;
+
+        &--round{
+            border-radius: 50%;
+        }
 
     }
+
     &__pic-text{
         height: 40%;
         text-align: center;

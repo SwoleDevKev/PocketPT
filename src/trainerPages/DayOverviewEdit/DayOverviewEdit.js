@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import './DayOverviewEdit.scss'
 import Header from '../../components/Header/Header';
 import { useEffect, useState } from 'react';
@@ -7,7 +7,7 @@ import ExerciseCardEdit from '../../components/ExerciseCardEdit/ExerciseCardEdit
 import TrainerFooter from '../../components/TrainerFooter/TrainerFooter';
 
 
-function DayOverviewEdit (){
+function DayOverviewEdit ({user}){
 
     const [exercises, setExercises] = useState()
 	const [details, setDetails] = useState(false)
@@ -23,52 +23,7 @@ function DayOverviewEdit (){
     },[id, details])
     const navigate = useNavigate()
 
-    const [user, setUser] = useState(null);
-	const [failedAuth, setFailedAuth] = useState(false);
-
-	useEffect(() => {
-		const token = sessionStorage.getItem('token')
-
-		if(!token) {
-			return setFailedAuth(true)
-		}
-
-		axios
-			.get(`${process.env.REACT_APP_API_URL}/api/trainers/current`, {
-				headers: {
-					Authorization: `Bearer ${token}`
-				}
-			})
-			.then((response) => {
-				setUser(response.data)
-			})
-			.catch((error) => {
-				setFailedAuth(true)
-			})
-
-        
-		
-	}, []);
-
-
-	if (failedAuth) {
-		return (
-			<main className="dashboard">
-				<p>You must be logged in to see this page.</p>
-				<p>
-					<Link to="/trainer/login">Log in</Link>
-				</p>
-			</main>
-		);
-	}
-
-	if (user === null) {
-		return (
-			<main className="dashboard">
-				<p>Loading...</p>
-			</main>
-		);
-	}
+    
     return (
         <>
             <Header />
@@ -76,8 +31,8 @@ function DayOverviewEdit (){
             {exercises && exercises.map((exercise)=>{
               return  <ExerciseCardEdit details={details} setDetails={setDetails} exercise={exercise}/>
             })}
-            <button onClick={()=>{ navigate('/client') }} className='day-overview__button'>Done</button>
-            <TrainerFooter />
+			<button className='day-overview__button' onClick={()=>navigate(-1)}>Back</button>
+            <TrainerFooter user={user}/>
         </>
     )
 }

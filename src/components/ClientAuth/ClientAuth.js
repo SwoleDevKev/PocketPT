@@ -2,12 +2,9 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-// Create AuthContext to share auth state
-const AuthContext = createContext();
 
-export const useAuth = () => useContext(AuthContext);
 
-export function TrainerAuthorization(WrappedComponent) {
+export function ClientAuthorization(WrappedComponent) {
     return function AuthenticatedComponent(props) {
         const [user, setUser] = useState(null);
         const [failedAuth, setFailedAuth] = useState(false);
@@ -21,7 +18,7 @@ export function TrainerAuthorization(WrappedComponent) {
             }
 
             axios
-                .get(`${process.env.REACT_APP_API_URL}/api/trainers/current`, {
+                .get(`${process.env.REACT_APP_API_URL}/api/clients/current`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

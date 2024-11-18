@@ -7,35 +7,9 @@ import WelcomeHeader from '../../components/WelcomeHeader/WelcomeHeader';
 import './TrainerDashboard.scss'
 
 
-function TrainerDashboard (){
+function TrainerDashboard ({user}){
 
-    const [user, setUser] = useState(null);
     const [clients, setClients] = useState(null)
-	const [failedAuth, setFailedAuth] = useState(false);
-
-	useEffect(() => {
-		const token = sessionStorage.getItem('token')
-
-		if(!token) {
-			return setFailedAuth(true)
-		}
-
-		axios
-			.get(`${process.env.REACT_APP_API_URL}/api/trainers/current`, {
-				headers: {
-					Authorization: `Bearer ${token}`
-				}
-			})
-			.then((response) => {
-				setUser(response.data)
-			})
-			.catch((error) => {
-				setFailedAuth(true)
-			})
-
-        
-		
-	}, []);
 
     useEffect(()=>{
 
@@ -57,24 +31,6 @@ function TrainerDashboard (){
     },[user])
 
 
-	if (failedAuth) {
-		return (
-			<main className="dashboard">
-				<p>You must be logged in to see this page.</p>
-				<p>
-					<Link to="/trainer/login">Log in</Link>
-				</p>
-			</main>
-		);
-	}
-
-	if (user === null) {
-		return (
-			<main className="dashboard">
-				<p>Loading...</p>
-			</main>
-		);
-	}
     if (clients === null) {
 		return (
 			<main className="dashboard">

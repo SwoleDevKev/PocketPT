@@ -4,11 +4,11 @@ import logo from '../../assets/logos/PocketPT-logo.svg'
 import { Link } from 'react-router-dom'
 
 
-function WelcomeHeader ({path, name, user}) {
+function WelcomeHeader ({path, user}) {
     return (
         <div className='welcome-header'>
             <div className='welcome-header__welcome-block'>
-                <img alt='account profile' className='welcome-header__icon' src={user?.client_avatar || `${process.env.REACT_APP_API_URL}/images/profile.png`}/>
+                <img alt='account profile' className='welcome-header__icon' src={user?.icon || `${process.env.REACT_APP_API_URL}/images/profile.png`}/>
                 <div className='welcome-header__text-block'>
                     <h2 className='welcome-header__heading'>Welcome Back !</h2>
                     <p className='welcome-header__text'>{user?.first_name.toUpperCase()}</p>

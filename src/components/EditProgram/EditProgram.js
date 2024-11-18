@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import './EditProgram.scss'
 
 
-function EditProgram({ program, setEditProgramModal }) {
+function EditProgram({ program, setEditProgramModal, updatedMonthlyProgram, setUpdatedMonthlyProgram }) {
 
 
     const [weeklyPrograms, setWeeklyPrograms] = useState(null)
@@ -48,6 +48,14 @@ function EditProgram({ program, setEditProgramModal }) {
             
             if (response) {
                 alert('succsessfully updated program')
+
+                if(!updatedMonthlyProgram){
+                    setUpdatedMonthlyProgram(true)
+                } else {
+                    setUpdatedMonthlyProgram(false)
+                }
+
+
                 setEditProgramModal(false)
     
             }
@@ -80,6 +88,7 @@ function EditProgram({ program, setEditProgramModal }) {
                             {weeklyProgram.weekly_program_name}
                         </option>
                     ))}
+                    <option value=''>week Off</option>
                 </select>
             </div>
             <div className="program-edit__entry-container">
@@ -97,6 +106,8 @@ function EditProgram({ program, setEditProgramModal }) {
                             {weeklyProgram.weekly_program_name}
                         </option>
                     ))}
+                   <option value=''>week Off</option>
+
                 </select>
             </div>
             <div className="program-edit__entry-container">
@@ -114,6 +125,8 @@ function EditProgram({ program, setEditProgramModal }) {
                             {weeklyProgram.weekly_program_name}
                         </option>
                     ))}
+                    <option value=''>week Off</option>
+
                 </select>
             </div>
             <div className="program-edit__entry-container">
@@ -131,6 +144,7 @@ function EditProgram({ program, setEditProgramModal }) {
                             {weeklyProgram.weekly_program_name}
                         </option>
                     ))}
+                    <option value=''>Week Off</option>
                 </select>
             </div>
 

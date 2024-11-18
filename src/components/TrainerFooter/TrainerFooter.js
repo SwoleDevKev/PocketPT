@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom'
 
 
 function TrainerFooter ({user}){
+
+    
+         
     return(
         <div className='footer'>
             <Link to='/trainer/programs' className='footer__link'>
@@ -21,7 +24,7 @@ function TrainerFooter ({user}){
             </Link>
             <Link to='/trainer/profile' className='footer__link'>
             <div className='footer__pic-block'>
-                <img alt='account' className='footer__pic' src={user?.client_avatar || process.env.REACT_APP_defaultAvatar} />
+                <img alt='account' className='footer__pic footer__pic--round' src={user?.icon || process.env.REACT_APP_defaultAvatar} />
                 <p className='footer__pic-text'>Profile</p>
             </div>
             </Link>

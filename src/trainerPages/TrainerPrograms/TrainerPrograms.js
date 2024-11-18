@@ -11,12 +11,13 @@ import {Button} from 'react-bootstrap'
 import Input from "../../components/Input/Input"
 
 
-function TrainerPrograms() {
+function TrainerPrograms({user}) {
 
     const [programs, setPrograms] = useState(null)
     const [customWeeklyPrograms, setCustomWeeklyPrograms] = useState([])
-    const [user, setUser] = useState(null);
-    const [failedAuth, setFailedAuth] = useState(false);
+    const [updatedWeeklyProgram, setUpdatedWeeklyProgram] = useState(false)
+    const [updatedMonthlyProgram, setUpdatedMonthlyProgram] = useState(false)
+
 
     const [show, setShow] = useState(false);
     const [showMonthly, setShowMonthly] = useState(false);
@@ -34,7 +35,8 @@ function TrainerPrograms() {
             setPrograms(response.data)
         }
         getPrograms()
-    }, [])
+        
+    }, [updatedMonthlyProgram])
 
 
     useEffect(() => {
@@ -43,7 +45,7 @@ function TrainerPrograms() {
             setCustomWeeklyPrograms(response.data)
         }
         getCustomWeeklyPrograms()
-    }, [user])
+    }, [user,updatedWeeklyProgram])
 
 
     const handlePostWeeklyProgram = async (event) => {
@@ -60,50 +62,6 @@ function TrainerPrograms() {
 
 
 
-    useEffect(() => {
-        const token = sessionStorage.getItem('token')
-
-        if (!token) {
-            return setFailedAuth(true)
-        }
-
-        axios
-            .get(`${process.env.REACT_APP_API_URL}/api/trainers/current`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-            .then((response) => {
-                setUser(response.data)
-            })
-            .catch((error) => {
-                setFailedAuth(true)
-            })
-
-
-
-    }, []);
-
-
-    if (failedAuth) {
-        return (
-            <main className="dashboard">
-                <p>You must be logged in to see this page.</p>
-                <p>
-                    <Link to="/trainer/login">Log in</Link>
-                </p>
-            </main>
-        );
-    }
-
-    if (user === null) {
-        return (
-            <main className="dashboard">
-                <p>Loading...</p>
-            </main>
-        );
-    }
-
     return (
         <>
             <Header />
@@ -114,7 +72,7 @@ function TrainerPrograms() {
                     <h2 className="program__heading">Monthly Programs </h2>
                     {programs && programs.map((program) => {
                         return (
-                            <ProgramCard key={program.id} program={program} />
+                            <ProgramCard key={program.id} program={program} updatedMonthlyProgram={updatedMonthlyProgram} setUpdatedMonthlyProgram={setUpdatedMonthlyProgram}/>
                             )
                         })}
                 </section>
@@ -154,7 +112,8 @@ function TrainerPrograms() {
                     <h2 className="program__heading" >Weekly Programs</h2>
                     {customWeeklyPrograms && customWeeklyPrograms.map((program) => {
                         return (
-                            <WeeklyProgramCard key={program.id} program={program} trainer_id={user.id}/>
+                            <WeeklyProgramCard key={program.id} program={program} updatedProgram={updatedWeeklyProgram} setUpdatedProgram={setUpdatedWeeklyProgram}
+                            trainer_id={user.id}/>
                             )
                         })}
                 </section>
@@ -195,7 +154,7 @@ function TrainerPrograms() {
                 </div>
 
             </div>
-            <TrainerFooter />
+            <TrainerFooter user={user} />
 
         </>
     )
