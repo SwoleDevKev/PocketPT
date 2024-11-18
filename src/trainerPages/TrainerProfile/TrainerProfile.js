@@ -91,7 +91,7 @@ function TrainerProfile ({user}){
                 &times;
               </span>
               <form onSubmit={handleProfilePicUpload}>
-                <h2>Upload a new profile picture</h2>
+                <h2 className='modal-custom__heading'>Upload a new profile picture</h2>
                 <input
                   className="modal-custom__input"
                   type="file"

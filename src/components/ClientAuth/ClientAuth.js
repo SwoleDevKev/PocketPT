@@ -49,7 +49,6 @@ export function ClientAuthorization(WrappedComponent) {
                 </main>
             );
         }
-		console.log(user,"USER IN AUTH");
 		
 
         return (

@@ -44,7 +44,7 @@
     backdrop-filter: blur(5px);
     z-index: 1000;
     &__content{
-        background-color: $light-grey;
+        background-color: $lighter-blue;
         padding: 1rem;
         border-radius: 10px;
         width: 80%;
@@ -60,14 +60,20 @@
         top: 0;
         right: 0;
         padding: 0.5rem;
-        background-color: $light-grey;
+        background-color: $white;
         border: none;
         cursor: pointer;
+        border-radius: 0 10px;
     }
    
     &__input{
         width: 100%;
         margin-bottom: 1rem;
+        border-radius: 15px 15px;
+        color: white;
+    }
+    &__heading{
+        color: $white;
     }
     &__button{
         @include button;
@@ -86,5 +92,6 @@
     &__preview{
         width: 80%;
         height: 80%;
+        border-radius: 50%;
     }
 }
