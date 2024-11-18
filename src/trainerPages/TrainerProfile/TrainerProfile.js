@@ -47,7 +47,6 @@ function TrainerProfile ({user}){
 			},
 		  });
 		  closeModal();
-		  console.log("updated:", response.data);
 		} catch (error) {
 		  console.error(error);
 		}
@@ -57,7 +56,7 @@ function TrainerProfile ({user}){
 		const file = event.target.files[0];
 		if (file) {
 		  if (file.size > 10 * 1000 * 1024) {
-			console.log("File with maximum size of 10MB is allowed");
+			alert("File size cannot exceed 10MB");
 			return false;
 		  }
 		  setPreviewImage(URL.createObjectURL(file));
@@ -92,7 +91,7 @@ function TrainerProfile ({user}){
                 &times;
               </span>
               <form onSubmit={handleProfilePicUpload}>
-                <h2>Upload a new profile picture</h2>
+                <h2 className='modal-custom__heading'>Upload a new profile picture</h2>
                 <input
                   className="modal-custom__input"
                   type="file"
