@@ -23,6 +23,7 @@
     &__heading{
         @include page-header-font;
         @include page-header-padding;
+        color: $white;
     }
     &__exercise-stats{
         display: flex;

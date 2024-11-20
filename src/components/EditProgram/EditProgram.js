@@ -82,13 +82,13 @@ function EditProgram({ program, setEditProgramModal, updatedMonthlyProgram, setU
                     value={week_1}
                     onChange={handleChangeWeek1}
                 >
-                    <option value='' disabled >Please select</option>
+                    <option value='' disabled >Week Off</option>
                     {weeklyPrograms?.map((weeklyProgram) => (
                         <option key={weeklyProgram.id} value={weeklyProgram.id}>
                             {weeklyProgram.weekly_program_name}
                         </option>
                     ))}
-                    <option value=''>week Off</option>
+                    <option value=''>Week Off</option>
                 </select>
             </div>
             <div className="program-edit__entry-container">
@@ -100,13 +100,13 @@ function EditProgram({ program, setEditProgramModal, updatedMonthlyProgram, setU
                     value={week_2}
                     onChange={handleChangeWeek2}
                 >
-                    <option value='' disabled >Please select</option>
+                    <option value='' disabled >Week Off</option>
                     {weeklyPrograms?.map((weeklyProgram) => (
                         <option key={weeklyProgram.id} value={weeklyProgram.id}>
                             {weeklyProgram.weekly_program_name}
                         </option>
                     ))}
-                   <option value=''>week Off</option>
+                   <option value=''>Week Off</option>
 
                 </select>
             </div>
@@ -119,13 +119,13 @@ function EditProgram({ program, setEditProgramModal, updatedMonthlyProgram, setU
                     value={week_3}
                     onChange={handleChangeWeek3}
                 >
-                    <option value='' disabled >Please select</option>
+                    <option value='' disabled >Week Off</option>
                     {weeklyPrograms?.map((weeklyProgram) => (
                         <option key={weeklyProgram.id} value={weeklyProgram.id}>
                             {weeklyProgram.weekly_program_name}
                         </option>
                     ))}
-                    <option value=''>week Off</option>
+                    <option value=''>Week Off</option>
 
                 </select>
             </div>
@@ -138,7 +138,7 @@ function EditProgram({ program, setEditProgramModal, updatedMonthlyProgram, setU
                     value={week_4}
                     onChange={handleChangeWeek4}
                 >
-                    <option value='' disabled >Please select</option>
+                    <option value='' disabled >Week Off</option>
                     {weeklyPrograms?.map((weeklyProgram) => (
                         <option key={weeklyProgram.id} value={weeklyProgram.id}>
                             {weeklyProgram.weekly_program_name}
