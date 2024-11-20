@@ -21,6 +21,8 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
     const [videoResults, setVideoResults] = useState([]);
     const [nextPageToken, setNextPageToken] = useState('');
     const [vidDetails, setVidDetails] = useState([])
+    const [showVideoPlayer, setShowVideoPlayer] = useState(false)
+    const [exerciseBankRefresh, setExerciseBankRefresh] = useState(false)
 
 
     let videoId = ''
@@ -37,7 +39,7 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
         };
 
         fetchAllVideos();
-    }, []);
+    }, [exerciseBankRefresh]);
 
     useEffect(() => {
         if (showSearch && inputRef.current) {
@@ -59,7 +61,14 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
         }
     };
 
-    const handleAddExercise = async function (videoId, videoName, videoImage) {
+    const handlePlayVideo = async (event, videoId, videoName) => {
+        event.stopPropagation();
+        setVideoTitle(videoName)
+        setVideo_link(videoId)
+        setShowVideoPlayer(true)        
+    }
+
+    const handleAddExercise = async function ( videoId, videoName, videoImage) {
         setShowSearch(false)
         setVideoTitle(videoName)
         setExerciseImage(videoImage)
@@ -75,10 +84,12 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
         await axios.post(`${process.env.REACT_APP_API_URL}/api/exercises`,{ trainer_id, exercise_name, video_link })
         alert('Exercise created successfully')
         setShowCreateExModal(false)
+
+
+        exerciseBankRefresh ? setExerciseBankRefresh(false) : setExerciseBankRefresh(true)
     }
     const handleGetNewExercises = async (event) => {
         event.preventDefault(); 
-        console.log(event.target.search.value);
         
         try {
             const response = await axios.get(`${process.env.REACT_APP_youtubeAPI_URL}${process.env.REACT_APP_youtubeAPI_search}${event.target.search.value}&maxResults=10&pageToken=${nextPageToken}`);
@@ -99,7 +110,6 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
         const vidList = videoResults.map((el) =>  el.id.videoId ).join(',')
 
         const response = await axios.get(`${process.env.REACT_APP_youtubeAPI_URL}${process.env.REACT_APP_youtubeAPI_details}${vidList}`)
-        console.log(response.data.items);
         
         setVidDetails(response.data.items.map((el) => {
             return {
@@ -117,7 +127,6 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
             const response = await axios.get(`${process.env.REACT_APP_youtubeAPI_URL}${process.env.REACT_APP_youtubeAPI_search}${inputRef.current.value}&maxResults=10&pageToken=${nextPageToken}`);
             setVideoResults([...videoResults, ...response.data.items]);
             setNextPageToken(response.data.nextPageToken);
-            console.log(response.data);
         } catch (error) {
             console.error('Error fetching more videos:', error);
         }
@@ -235,26 +244,39 @@ function BuildDailyWorkout({ workout, setModalVisibility, exList, setExList, tra
                             const parser = new DOMParser();
                             const htmlTitle = parser.parseFromString(htmlString, 'text/html').body.textContent;
 
-                            console.log(htmlTitle);
-
                             return (
                                 <li className='search-modal__list-item' key={uuidv4()} onClick={() => {
                                     handleAddExercise(el.id.videoId, el.snippet.title, el.snippet.thumbnails.medium.url )
                                 }}>
-                                    <img className='search-modal__image' alt={el.snippet.title} src={el.snippet.thumbnails.medium.url} />
+                                    <img className='search-modal__image' alt={el.snippet.title} src={el.snippet.thumbnails.medium.url} onClick={(e)=> handlePlayVideo(e,el.id.videoId,el.snippet.title)} />
                                     <div className='search-modal__text-container'>
                                         <h4 className='search-modal__video-title'>{htmlTitle}</h4>
                                         <div className='search-modal__video-stats'>
-                                            <p className='search-modal__duration'>Time: {convertFromISO8601(vidDetails[i]?.duration || "")}</p>
+                                            <p className='search-modal__duration'> &#x23F0; {convertFromISO8601(vidDetails[i]?.duration || "")}</p>
                                             <p className='search-modal__views'>Views: {formatNumberWithCommas(vidDetails[i]?.views|| "")}</p>
                                         </div>
                                     </div>
                                 </li>
+                                
+                                
                             )
 
                         })}
 
                     </ul>
+                    {showVideoPlayer && 
+                    
+                    <div className='video-player' key={uuidv4()}>
+                         <section className='video-player__container'>
+                                 <h2 className='video-player__heading'>{name}</h2>
+                                 <p className='video-player__cancel' onClick={()=> setShowVideoPlayer(false)}>X</p>
+                                 <iframe title={`demonstration of a ${name}`} src={`https://www.youtube.com/embed/${video_link}`} className='video-player__video' allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share ; fullscreen"></iframe>
+                             </section>
+                    </div>
+                        }
+
+                    
+
                     {videoResults.length > 0 && <button className='search-modal__button' onClick={handleGetMoreVids}>Load More</button>}
                 </div>
 

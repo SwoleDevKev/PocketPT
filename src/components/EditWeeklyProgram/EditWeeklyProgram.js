@@ -19,10 +19,7 @@ function EditWeeklyProgram({program, Modal, trainer_id, updatedProgram, setUpdat
     useEffect(()=>{
         async function getWeeklyPrograms(){
            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/workouts/new/${trainer_id}`)
-           setWeeklyPrograms(response.data)
-           console.log('ran weekly programs')
-           console.log(response.data);
-           ;
+           setWeeklyPrograms(response.data);
         }
         getWeeklyPrograms()
        
@@ -54,19 +51,11 @@ function EditWeeklyProgram({program, Modal, trainer_id, updatedProgram, setUpdat
         if (response) {
             alert('succsessfully updated program')
 
-            console.log("BEFORE: ",updatedProgram);
-            
-
             if (updatedProgram) {
                 setUpdatedProgram(false)
-                console.log("ran 1");
             } else {
                 setUpdatedProgram(true)
-                console.log("ran 2");
             }
-            
-            console.log("AFTER: ",updatedProgram);
-
             
             Modal(false)
 
