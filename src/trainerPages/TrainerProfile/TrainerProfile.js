@@ -27,7 +27,7 @@ function TrainerProfile ({user}){
 
 	const handleLogout = () => {
 		sessionStorage.removeItem("token");
-		navigate('/login');
+		navigate('/trainer/login');
 		
 	};
 
