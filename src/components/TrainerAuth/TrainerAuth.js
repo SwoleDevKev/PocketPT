@@ -39,7 +39,7 @@ export function TrainerAuthorization(WrappedComponent) {
                 <main className="dashboard">
                     <p>You must be logged in to see this page.</p>
                     <p>
-                        <Link to="/login">Log in</Link>
+                        <Link to="/trainer/login">Log in</Link>
                     </p>
                 </main>
             );

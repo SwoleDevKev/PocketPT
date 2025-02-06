@@ -13,7 +13,7 @@ function Login() {
         event.preventDefault();
 
 		axios.post(`${process.env.REACT_APP_API_URL}/api/clients/login`, {
-            email: event.target.email.value,
+            email: event.target.email.value.trim(),
             password: event.target.password.value
         })
 		.then((response) => {
