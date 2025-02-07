@@ -1,0 +1,29 @@
+@use "../../styles/variables" as * ;
+@use "../../styles/mixins" as * ;
+
+
+.redirect{
+    height:90vh;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    @include section-padding;
+    background-color: $lighter-blue;
+    &__title{
+        @include page-header-padding;
+        text-align: center;
+        color: $white;
+    }
+
+    &__link{
+        display: flex;
+        justify-content: center;
+    
+    }
+
+    &__button{
+        @include button;
+        color: $white;
+        width: 25%;
+    }
+}

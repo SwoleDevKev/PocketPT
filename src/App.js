@@ -18,6 +18,7 @@ import CustomWorkouts from './trainerPages/CustomWorkouts/CustomWorkouts'
 import DayOverviewEdit from './trainerPages/DayOverviewEdit/DayOverviewEdit';
 import { TrainerAuthorization } from './components/TrainerAuth/TrainerAuth';
 import { ClientAuthorization } from './components/ClientAuth/ClientAuth';
+import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 
 
 
@@ -66,6 +67,7 @@ function App() {
           <Route path='/trainer/workout/:id' element={<AuthenticatedDayOverviewEdit  />}></Route>
           <Route path="/trainer/profile" element={<AuthenticatedTrainerProfile />} />
           <Route path="/trainer/add-exercise" element={<AuthenticatedBuildDailyWorkout />} />
+          <Route path="*" element={<NotFoundPage />} />
 
           
       </Routes>

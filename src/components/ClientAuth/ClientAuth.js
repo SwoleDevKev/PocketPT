@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import RedirectPage from "../RedirectPage/RedirectPage";
 
 
 
@@ -33,12 +34,7 @@ export function ClientAuthorization(WrappedComponent) {
 
         if (failedAuth) {
             return (
-                <main className="dashboard">
-                    <p>You must be logged in to see this page.</p>
-                    <p>
-                        <Link to="/login">Log in</Link>
-                    </p>
-                </main>
+                <RedirectPage role="client" />
             );
         }
 
