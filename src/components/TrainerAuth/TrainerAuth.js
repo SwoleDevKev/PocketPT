@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import RedirectPage from "../RedirectPage/RedirectPage";
 
 // Create AuthContext to share auth state
 const AuthContext = createContext();
@@ -36,12 +37,7 @@ export function TrainerAuthorization(WrappedComponent) {
 
         if (failedAuth) {
             return (
-                <main className="dashboard">
-                    <p>You must be logged in to see this page.</p>
-                    <p>
-                        <Link to="/trainer/login">Log in</Link>
-                    </p>
-                </main>
+                <RedirectPage role="trainer" />
             );
         }
 

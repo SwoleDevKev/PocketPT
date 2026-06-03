@@ -1,0 +1,7 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.current-program {
+    @include desktop-offset;
+    @include section-padding;
+}

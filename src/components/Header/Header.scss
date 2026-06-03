@@ -7,22 +7,29 @@
     flex-wrap: wrap;
     background-color: $dark-blue;
     justify-content: flex-end;
-    @include section-padding;
+    @include page-header-padding;
+    padding-left: 4rem ;
+    padding-right: 4rem ;
     color: $white;
+    @include desktop-offset;
 
-    
-    &__welcome-block{
-        display: flex; 
+      @include desktop {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    &__welcome-block {
+        display: flex;
         justify-content: space-around;
         width: 50%;
         align-items: center;
-
     }
-    &__heading{
+
+    &__heading {
         @include page-header-font;
     }
 
-    &__icon{
+    &__icon {
         min-height: 36px;
         min-width: 36px;
         max-height: 36px;
@@ -33,27 +40,40 @@
         justify-content: center;
         align-items: center;
     }
-    &__link{
+
+    &__link {
         order: -1;
-        width:100%;
-        height:10vh;
+        width: 100%;
+        height: 5vh;
         justify-content: center;
         align-items: center;
         display: flex;
+
+        // On desktop — inline, not stacked
+        @include desktop {
+            order: 0;
+            width: auto;
+            height: auto;
+        }
     }
-    &__image{
-        width:70%;
-        height:70%;
+
+    &__image {
+        width: 70%;
+        height: 70%;
         border-radius: 50%;
     }
-    &__notification-dot{
-       background-color: $yellow; 
+
+    &__notification-dot {
+        background-color: $yellow;
     }
-    &__logo{
-        width:30%;
+
+    &__logo {
+        width: 30%;
         height: 80%;
+
+        @include desktop {
+            width: auto;
+            height: 40px;
+        }
     }
-
 }
-
-

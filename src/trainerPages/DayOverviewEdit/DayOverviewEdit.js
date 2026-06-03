@@ -27,11 +27,12 @@ function DayOverviewEdit ({user}){
     return (
         <>
             <Header />
-            <h1 className='day-overview__heading'>Let's get it</h1>
             {exercises && exercises.map((exercise)=>{
               return  <ExerciseCardEdit details={details} setDetails={setDetails} exercise={exercise}/>
             })}
-			<button className='day-overview__button' onClick={()=>navigate(-1)}>Back</button>
+            <div className='day-overview__button-container'>
+			    <button className='day-overview__button' onClick={()=>navigate(-1)}>Back</button>
+            </div>
             <TrainerFooter user={user}/>
         </>
     )

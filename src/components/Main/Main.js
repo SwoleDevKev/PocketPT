@@ -27,7 +27,7 @@ function Main({programId}){
         return(
         
             <div className='main'>
-              <h1 className='main__heading'>Get Started</h1>
+              <h1 className='main__heading'>Month at a Glance</h1>
               {program && program.map((week, index)=>{
                 return <ClientWeekCard week={week} weekNum={index+1} index={index} />
               })}

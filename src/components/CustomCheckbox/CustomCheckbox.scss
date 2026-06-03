@@ -3,37 +3,43 @@
 .custom-checkbox-label {
     position: relative;
     cursor: pointer;
-    font-size: 14px;
-    overflow: hidden; /* This will hide the content outside the box */
-  }
-  
-  .custom-checkbox-input {
-    -moz-appearance: none;
+    display: flex;
+    align-items: center;
+}
+
+.custom-checkbox-input {
     -webkit-appearance: none;
-    -o-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     outline: none;
-    content: none;
-  }
-  
-  .custom-checkbox-input:before {
-    content: '\2713'; /* Unicode checkmark character */
-    font-size: 24px;
-    padding-left: 2px;
-    padding-bottom: 3px;
-    color: transparent !important;
-    background: #fef2e000;
-    display: block;
-    width: 24px;
-    height: 24px;
-    border: 1px solid $white;
-    margin-right: 7px;
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid $light-grey;
+    border-radius: 5px;
+    background: #fff;
+    cursor: pointer;
     position: relative;
-    top: 4px; /* Adjust based on your design */
-  }
-  
-  .custom-checkbox-input:checked:before {
-    color: $white !important;
-  }
-  
-  
-  
+    transition: background 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+
+    &::before {
+        content: '\2713';
+        font-size: 14px;
+        font-weight: $bold;
+        color: transparent;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        line-height: 1;
+    }
+
+    &:checked {
+        background: $yellow;
+        border-color: $yellow;
+
+        &::before {
+            color: #3D2800;
+        }
+    }
+}

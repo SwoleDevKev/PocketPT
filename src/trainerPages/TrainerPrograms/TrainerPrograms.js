@@ -75,11 +75,13 @@ function TrainerPrograms({user}) {
                             <ProgramCard key={program.id} program={program} updatedMonthlyProgram={updatedMonthlyProgram} setUpdatedMonthlyProgram={setUpdatedMonthlyProgram}/>
                             )
                         })}
-                </section>
-                
-                <div className="btn-container">
+
+                        <div className="btn-container">
                     <button onClick={handleShowMonthly} className="btn btn-primary">Create Monthly Program</button>
                 </div>
+                </section>
+                
+                
 
                 <Modal
                     show={showMonthly}
@@ -116,10 +118,12 @@ function TrainerPrograms({user}) {
                             trainer_id={user.id}/>
                             )
                         })}
-                </section>
-                <div className="btn-container">
+
+                        <div className="btn-container">
                     <button onClick={handleShow} className="btn btn-primary">Create Weekly Program</button>
                 </div>
+                </section>
+                
 
                 <Modal
                     show={show}

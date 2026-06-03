@@ -7,24 +7,49 @@
     flex-wrap: wrap;
     background-color: $dark-blue;
     justify-content: space-between;
-    @include section-padding;
+    @include page-header-padding;
+    padding-left: 2rem ;
+    padding-right: 2rem ;
     color: $white;
+    @include desktop-offset;
 
-    
-    &__welcome-block{
-        display: flex; 
+    @include desktop {
+        flex-wrap: nowrap;
+    }
+
+    &__welcome-block {
+        display: flex;
         width: 70%;
         align-items: center;
 
+        @include desktop {
+            width: auto;
+        }
     }
-    &__heading{
-        @include subheader-font;
+
+    &__text-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @include desktop {
+            width: auto;
+        }
+    }
+
+    &__text{
+        margin-bottom: 0;
+        @include body-medium-font
+    }
+
+    &__heading {
+        @include body-large-font;
         font-family: 'Titillium';
-
     }
 
-    &__icon{
-        width:36px;
+    &__icon {
+        width: 24px;
+        height:24px;
         min-height: 36px;
         min-width: 36px;
         max-height: 48px;
@@ -36,27 +61,48 @@
         align-items: center;
         margin-right: .5rem;
     }
-    &__logo-container{
+
+    &__icon--small {
+        width: 24px;
+        height:24px;
+        min-height: 24px;
+        min-width: 24px;
+    }
+
+    &__logo-container {
         order: -1;
-        width:100%;
-        height:10vh;
+        width: 100%;
+        height: 5vh;
         justify-content: center;
         align-items: center;
         display: flex;
+        margin-bottom: 5px;
+
+        // On desktop — inline, not stacked
+        @include desktop {
+            order: 0;
+            width: auto;
+            height: auto;
+        }
     }
-    &__image{
-        width:70%;
-        height:70%;
+
+    &__image {
+        width: 70%;
+        height: 70%;
         border-radius: 50%;
     }
-    &__notification-dot{
-       background-color: $yellow; 
+
+    &__notification-dot {
+        background-color: $yellow;
     }
-    &__logo{
-        width:30%;
+
+    &__logo {
+        width: 30%;
         height: 80%;
+
+        @include desktop {
+            width: auto;
+            height: 40px;
+        }
     }
-
 }
-
-

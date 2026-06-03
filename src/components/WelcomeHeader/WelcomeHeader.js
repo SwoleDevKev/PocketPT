@@ -18,7 +18,7 @@ function WelcomeHeader ({path, user}) {
                 <Link className='welcome-header__logo-container' to={path}><img alt='pants pocket outline with the letters PT inside' className='welcome-header__logo' src={logo}/></Link>
          
             
-            <div className='welcome-header__icon'>
+            <div className='welcome-header__icon welcome-header__icon--small'>
                 <img alt='bell icon' className='welcome-header__image' src={bell}/>
                 <div className='welcome-header__notification-dot'></div>
             </div>

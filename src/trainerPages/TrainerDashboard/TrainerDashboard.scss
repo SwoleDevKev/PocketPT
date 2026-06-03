@@ -1,17 +1,23 @@
 @use '../../styles/mixins' as *;
 @use '../../styles/variables' as *;
 
-.dashboard__heading{
+.dashboard-main{
+         background: #f4f5f9;
+         height: 100%;
+
+}
+.dashboard__heading {
     @include section-header-padding;
     text-align: center;
-        text-transform: uppercase;
-        color: $yellow;
-        text-shadow: 1px 1px 1px $dark-blue;
+    text-transform: uppercase;
+    color: $yellow;
+    text-shadow: 1px 1px 1px $dark-blue;
+    
 }
 
-
-.client-container{
+.client-container {
     height: 100%;
+    @include desktop-offset;
 
     @include tablet {
         display: flex;
@@ -19,6 +25,7 @@
         flex-wrap: wrap;
     }
 }
+
 .client {
     @include tablet {
         width: 45%;

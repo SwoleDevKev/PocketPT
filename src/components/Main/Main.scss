@@ -6,7 +6,16 @@
     min-height: 80vh;
     &__heading {
         @include section-padding;
+        padding-top: 1rem;;
         text-align: center;
+            color: #FFBD59;
+    text-shadow: 1px 1px 1px #050A30;
+    background-color: rgba(0, 0, 0, 0.133);
+    margin-bottom: 0;
+    }
+
+    @include desktop{
+        margin-left: 220px;
     }
 }
 
