@@ -1,35 +1,30 @@
 // Colors
 
 //Primary colors
-$dark-blue: #050A30; // - Global text color
+$dark-blue: #050A30;
 $light-blue: rgb(26, 32, 79);
 $lighter-blue: rgb(77, 87, 148); 
-$white: #ffffff; // - Global white color
+$white: #ffffff;
 
 //Secondary colors
-$yellow: #FFBD59; // - Table column headers & placeholder text
-$dark-grey: #8F8E8E; // - Outlines, dividers, borders, table sorting icon
+$yellow: #FFBD59;
+$dark-grey: #8F8E8E;
 $light-grey: #D1D1D1;
 
 //Background colors
 $cover-black: #14161A;
 
-
 //Supporting colors
 $green: #158463; 
 $red: #c94515; 
 
-//break points
+// Layout
+$sidebar-width: 220px;
 
+//break points
 $tablet-breakpoint: 767px;
 $desktop-breakpoint: 1279px;
 
-
-
 // Font Weights
-
 $bold: 600;
 $normal: 400;
-
-
-

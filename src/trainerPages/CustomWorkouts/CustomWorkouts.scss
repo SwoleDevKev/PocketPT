@@ -1,59 +1,147 @@
-@use '../../styles/mixins' as * ;
-@use '../../styles/variables' as * ;
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
 
-
-.workout{
+.workout {
     min-height: 80vh;
-    padding: 0 1rem;
+    padding: 0 1rem 5rem;
+    @include desktop-offset;
 
-    @include tablet{
-        padding: 0 3rem;
-    }
-    @include desktop{
-        padding: 0 5rem;
-    }
+    @include tablet { padding: 0 2.25rem 5rem; }
+    @include desktop { padding: 0 5rem 2rem; }
 
-    &__heading{
+    &__heading {
         @include page-header-padding;
-        text-align: center
-    }
-    &__button-container{
+        font-size: 0.6875rem;
+        font-weight: $bold;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: $yellow;
+        margin-bottom: 1rem;
         display: flex;
-        justify-content: center
+        align-items: center;
+        gap: 0.5rem;
+
+        &::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 189, 89, 0.25);
+        }
     }
-    &__button{
+
+    &__button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
+
+    &__button {
         @include button;
         width: 50%;
-        
     }
 }
 
-.workout-card{
-    display: flex;
-    padding: 20px;
-    border: 1px solid black;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    justify-content: space-between;
+// .workout-card {
+//     background: #fff;
+//     border: 0.5px solid #e0e0e0;
+//     border-radius: 10px;
+//     padding: 1rem 1.25rem;
+//     margin-bottom: 0.875rem;
+//     text-align: center;
 
-    &__details{
-        width: 100%;
-        
+//     &__heading {
+//         font-size: 1rem;
+//         font-weight: 600;
+//         color: $dark-blue;
+//         text-transform: capitalize;
+//         margin-bottom: 0.25rem;
+//     }
 
-    }
+//     &__details {
+//         font-size: 0.875rem;
+//         color: #6b7280;
+//         margin-bottom: 0.875rem;
+//     }
 
-    &__heading{
-        text-transform: capitalize;
-        width: 100%;
+//     &__content { width: 100%; }
+
+//     // Two-button row: Add Exercises | View Exercises
+//     &__buttons {
+//         display: grid;
+//         grid-template-columns: 1fr 1fr;
+//         gap: 0.5rem;
+//     }
+
+//     &__button {
+//         @include button;
+//         width: 100%;
+//         border-radius: 6px;
+//         padding: 0;
+
+//         &--view {
+//             background-color: $dark-blue;
+//             color: #fff;
+//             &:hover { background-color: $light-blue; color: #fff; }
+//         }
+//     }
+// }
+
+
+.workout-card {
+    background: #ffffff;
+    border: 0.5px solid rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.875rem;
+ 
+    &__heading {
+        font-size: 1rem;
+        font-weight: $bold;
+        color: $dark-blue;
         text-align: center;
-        color: $light-blue;
+        text-transform: capitalize;
+        margin-bottom: 0.25rem;
     }
-    &__content{
+ 
+    &__details {
+        font-size: 0.8125rem;
+        color: $dark-grey;
+        text-align: center;
+        margin-bottom: 0.875rem;
+        line-height: 1.4;
+    }
+ 
+    &__content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
         width: 100%;
     }
-    &__button{
-        @include button;
-        width: 40%;
-        padding: 0;
+ 
+    &__button {
+        padding: 0.4375rem 0;
+        border: none;
+        border-radius: 6px;
+        font-size: 0.8125rem;
+        font-weight: $bold;
+        text-align: center;
+        cursor: pointer;
+        transition: opacity 0.2s;
+        width: 100%;
+ 
+        &:hover { opacity: 0.85; }
+ 
+        // Add Exercises — yellow
+        &:nth-child(3) {
+            background: $yellow;
+            color: #3D2800;
+        }
+ 
+        // View Exercises — dark navy
+        &:last-child {
+            background: $dark-blue;
+            color: #ffffff;
+        }
     }
 }
+ 

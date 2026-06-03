@@ -1,9 +1,13 @@
 @use '../../styles/variables' as *;
 @use '../../styles/mixins' as *;
 
-.week-card , .week-card0, .week-card1, .week-card2, .week-card3{
+.week-card,
+.week-card0,
+.week-card1,
+.week-card2,
+.week-card3 {
     @include section-padding;
-    height:20vh;
+    height: 20vh;
     display: flex;
     align-items: center;
     background-image: url(../../assets/images/4.png);
@@ -12,32 +16,45 @@
     position: relative;
     z-index: 1;
 
-    &::before{
+    &::before {
         box-sizing: border-box;
         content: ' ';
         width: 100%;
-        height:20vh;
+        height: 20vh;
         position: absolute;
         left: 0;
         top: 0;
         background-color: $cover-black;
         opacity: .5;
     }
-    &__image-container{
+
+    @include desktop {
+        height: 22vh;
+
+        &::before {
+            height: 22vh;
+        }
+
+    }
+
+
+    &__image-container {
         display: flex;
         align-items: center;
         width: 30%;
-        height:100%;
+        height: 100%;
         z-index: 1;
     }
-    &__image{
-        height: 35%;
 
-        &:hover{
+    &__image {
+        height: 30%;
+
+        &:hover {
             cursor: pointer;
         }
     }
-    &__content{
+
+    &__content {
         display: flex;
         align-items: flex-end;
         flex-direction: column;
@@ -46,19 +63,22 @@
         color: $white;
 
     }
-    &__span{
+
+    &__span {
         color: $yellow;
     }
 
 
 }
 
-.week-card1{
+.week-card1 {
     background-image: url(../../assets/images/1.png);
 }
-.week-card2{
+
+.week-card2 {
     background-image: url(../../assets/images/2.png);
 }
-.week-card3{
+
+.week-card3 {
     background-image: url(../../assets/images/3.png);
 }

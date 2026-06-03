@@ -1,38 +1,109 @@
 @use '../../styles/mixins' as *;
 @use '../../styles/variables' as *;
 
-.program-container{
-    min-height:100%
-}
-.btn-container{
-    display: flex;
-    justify-content: center
-}
-.program{
+.program-container {
+    min-height: 100%;
+    padding-bottom: 5rem;
+    @include desktop-offset;
+    padding-top: 32px ;
+     background: #f4f5f9;
 
+    @include desktop {
+        padding-bottom: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: flex-start;
+    }
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    padding: 0 1rem 1rem;
+
+    @include tablet { padding: 0 2.25rem 1rem; }
+    @include desktop { padding: 0 5rem 1rem; }
+}
+
+.program {
     @include section-padding;
-    padding-top: 3rem ;
+    padding-top: 1.5rem;
     text-decoration: none;
 
-    &__heading{
-        @include page-header-padding;
-        text-align: center;
+    @include desktop{
+          width:49%;
+    }
+  
+
+    &__heading {
+        font-size: 0.6875rem;
+        font-weight: $bold;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
         color: $yellow;
-        text-shadow: 1px 1px 1px $dark-blue;
+        margin-bottom: 0.875rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
 
-        &--link{
+        &::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 189, 89, 0.25);
+            display: inline-block;
+        }
 
+        // "Daily Workouts" link variant
+        &--link {
+            text-decoration: underline;
+            text-underline-offset: 3px;
             padding: 0;
-            &:hover{
-                cursor: pointer;
-                color: $light-blue;
-                opacity: 75%;
+            cursor: pointer;
+            display: inline-flex;
+
+            &::after { display: none; }
+
+            &:hover {
+                color: darken(#FFBD59, 10%);
+                opacity: 1;
             }
         }
-        
     }
-    &__button{
+
+    &__button {
         @include button;
+    }
+}
+
+
+.program-card{
+    &__button{
+        color: $yellow;
+        background-color: $light-blue;
+    }
+}
+
+.workout-container {
+        display: flex;
+        justify-self: center;
+        text-align: center;
+        padding: 0.5rem 0 1rem;
+    }
+
+@include desktop {
+
+
+    // Btn containers share the grid
+    .btn-container {
+        grid-column: auto;
+    }
+
+    // Workouts link spans full width
+    .workout-container {
+        display: unset;
+        text-align: center;
+        padding: 0.5rem 0 1rem;
     }
 }
